@@ -44,7 +44,7 @@
     "class-transformer": "^0.2.3",
     "dotenv": "^8.2.0",
     "graphql": "^14.5.8",
-    "mongoose": "^5.7.7",
+    "mongoose": "^5.7.9",
     "nestjs-typegoose": "^7.0.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
