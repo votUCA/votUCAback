@@ -4781,6 +4781,11 @@ is-ci@^2.0.0:
   dependencies:
     ci-info "^2.0.0"
 
+is-class@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/is-class/-/is-class-0.0.7.tgz#8eca1823d47489cd543cb0c848f3b84bf80c7171"
+  integrity sha512-HXAKcoeWP+zzEGrqDvAVFOBc3nKoV/FbJN5Fa7/en9DakH2egTjEg4RQQZSs3ijUySPPR8s96XM93nQwloItcA==
+
 is-data-descriptor@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/is-data-descriptor/-/is-data-descriptor-0.1.4.tgz#0b5ee648388e2c860282e793f1856fec3f301b56"
@@ -6411,6 +6416,14 @@ neo-async@^2.5.0, neo-async@^2.6.0, neo-async@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
+
+nestjs-typegoose@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/nestjs-typegoose/-/nestjs-typegoose-7.0.0.tgz#aa638c06bd4b35c3ac1db9384d1e3ba354665d67"
+  integrity sha512-1IU+olcGdNjDH8yRz4bwRDt8V0D3gZ+wToY5QfczAz9HLwKII6DCW2gAbFfnX8NcWrdHw2jgNEJria8odsKcXQ==
+  dependencies:
+    is-class "^0.0.7"
+    reflect-metadata "^0.1.13"
 
 next-tick@1, next-tick@~1.0.0:
   version "1.0.0"
