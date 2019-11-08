@@ -545,10 +545,10 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
-"@nestjs/cli@^6.11.2":
-  version "6.11.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/cli/-/cli-6.11.2.tgz#89825454248ad5e7aebd437413b035ae65e33a1d"
-  integrity sha512-unHYC5QoTRuhs6TbfYr9MU9QLB/iyoAj0VqN8VYPMLj8L3tGXih+nOGV3ZnvPvejYUU8R+Vd2RPmlBzXFk0jfA==
+"@nestjs/cli@^6.11.3":
+  version "6.11.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/cli/-/cli-6.11.3.tgz#97d1f970100d40de17a78d1ec9a19a953da1d414"
+  integrity sha512-MpzuqnXP8dOInqf1KA9Hhj/f4DuIMWV0Vt5OiQE5NkngD00g100/rgZucCc3CKdBFU3IL3LcKYyOQ5pSZtqCdQ==
   dependencies:
     "@angular-devkit/core" "8.3.15"
     "@angular-devkit/schematics" "8.3.15"
@@ -564,9 +564,9 @@
     node-emoji "1.10.0"
     ora "4.0.2"
     os-name "3.1.0"
-    path-to-regexp "3.1.0"
     rimraf "3.0.0"
     tree-kill "1.2.1"
+    tsconfig-paths "3.9.0"
     tsconfig-paths-webpack-plugin "3.2.0"
     webpack "4.41.2"
     webpack-node-externals "1.7.2"
@@ -7249,11 +7249,6 @@ path-to-regexp@0.1.7:
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
   integrity sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
 
-path-to-regexp@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-3.1.0.tgz#f45a9cc4dc6331ae8f131e0ce4fde8607f802367"
-  integrity sha512-PtHLisEvUOepjc+sStXxJ/pDV/s5UBTOKWJY2SOz3e6E/iN/jLknY9WL72kTwRrwXDUbZTEAtSnJbz2fF127DA==
-
 path-type@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-1.1.0.tgz#59c44f7ee491da704da415da5a4070ba4f8fe441"
@@ -9014,7 +9009,7 @@ tsconfig-paths-webpack-plugin@3.2.0:
     enhanced-resolve "^4.0.0"
     tsconfig-paths "^3.4.0"
 
-tsconfig-paths@^3.4.0, tsconfig-paths@^3.9.0:
+tsconfig-paths@3.9.0, tsconfig-paths@^3.4.0, tsconfig-paths@^3.9.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.9.0.tgz#098547a6c4448807e8fcb8eae081064ee9a3c90b"
   integrity sha512-dRcuzokWhajtZWkQsDVKbWyY+jgcLC5sqJhg2PSgf4ZkH2aHPvaOY8YWGhmjb68b5qqTfasSsDO9k7RUiEmZAw==
