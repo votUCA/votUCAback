@@ -35,7 +35,7 @@
     "@nestjs/jwt": "^6.1.1",
     "@nestjs/passport": "^6.1.0",
     "@nestjs/platform-express": "^6.8.5",
-    "@typegoose/typegoose": "^6.0.4",
+    "@typegoose/typegoose": "^6.1.1",
     "@types/bcrypt": "^3.0.0",
     "@types/dotenv": "^8.2.0",
     "@types/hapi__joi": "^16.0.3",
