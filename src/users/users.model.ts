@@ -1,14 +1,23 @@
-import { buildSchema, prop as Property } from '@typegoose/typegoose'
+import { prop } from '@typegoose/typegoose'
 import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class User {
   @Field()
-  @Property({ required: true })
-  uid: string
+  get id (this: any) {
+    return this._id || this._doc._id
+  }
 
-  @Property({ required: true })
+  @Field()
+  @prop({ required: true })
+  user: string
+
+  @prop({ required: true })
   password: string
-}
 
-export const UserSchema = buildSchema(User)
+  @prop({ required: true })
+  firstName: string
+
+  @prop({ required: true })
+  lastName: string
+}
