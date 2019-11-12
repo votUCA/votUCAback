@@ -747,10 +747,10 @@
     "@angular-devkit/core" "8.3.18"
     "@angular-devkit/schematics" "8.3.18"
 
-"@typegoose/typegoose@^6.1.1":
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-6.1.1.tgz#7bc1bfc0db966e6fa10177760c85fc8f70ed3382"
-  integrity sha512-nqmsgZFgS8ws/WletvSvKN9jw4rGkMoUZDvRNJOhXJnP0REz4sFGoKxrtUYyGZMMS0SMhh89JmyA5rZY/MACJA==
+"@typegoose/typegoose@^6.1.2":
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-6.1.2.tgz#ca9f72a2004101e658a0f045fe926fd46a0ae2c7"
+  integrity sha512-NpqwZ6QuXYpV0W6GZaUbQKB3gadWCeP25dpaKHYv1SY4x7L+tIeSlGKIrBW7fVP/Xx6kdRJjJR59i7J92HKGlQ==
   dependencies:
     lodash "^4.17.15"
     loglevel "^1.6.4"
