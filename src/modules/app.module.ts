@@ -3,16 +3,15 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { TypegooseModule } from 'nestjs-typegoose'
 import { AuthModule } from './auth/auth.module'
 import { ConfigModule } from './config/config.module'
-import { mongodbFactory } from './config/config.mongo'
 import { ConfigService } from './config/config.service'
 import { UsersModule } from './users/users.module'
+import { TypegooseConfigService } from '../common/typegoose-config'
 
 @Module({
   imports: [
     ConfigModule,
     TypegooseModule.forRootAsync({
-      useFactory: mongodbFactory,
-      inject: [ConfigService]
+      useClass: TypegooseConfigService
     }),
     GraphQLModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
