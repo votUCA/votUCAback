@@ -747,10 +747,10 @@
     "@angular-devkit/core" "8.3.18"
     "@angular-devkit/schematics" "8.3.18"
 
-"@typegoose/typegoose@^6.1.1":
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-6.1.1.tgz#7bc1bfc0db966e6fa10177760c85fc8f70ed3382"
-  integrity sha512-nqmsgZFgS8ws/WletvSvKN9jw4rGkMoUZDvRNJOhXJnP0REz4sFGoKxrtUYyGZMMS0SMhh89JmyA5rZY/MACJA==
+"@typegoose/typegoose@^6.1.2":
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-6.1.2.tgz#ca9f72a2004101e658a0f045fe926fd46a0ae2c7"
+  integrity sha512-NpqwZ6QuXYpV0W6GZaUbQKB3gadWCeP25dpaKHYv1SY4x7L+tIeSlGKIrBW7fVP/Xx6kdRJjJR59i7J92HKGlQ==
   dependencies:
     lodash "^4.17.15"
     loglevel "^1.6.4"
@@ -1214,15 +1214,14 @@
     "@types/json-schema" "^7.0.3"
     "@typescript-eslint/typescript-estree" "2.7.0"
     eslint-scope "^5.0.0"
-
-"@typescript-eslint/parser@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-2.6.1.tgz#3c00116baa0d696bc334ca18ac5286b34793993c"
-  integrity sha512-PDPkUkZ4c7yA+FWqigjwf3ngPUgoLaGjMlFh6TRtbjhqxFBnkElDfckSjm98q9cMr4xRzZ15VrS/xKm6QHYf0w==
+"@typescript-eslint/parser@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-2.7.0.tgz#b5e6a4944e2b68dba1e7fbfd5242e09ff552fd12"
+  integrity sha512-ctC0g0ZvYclxMh/xI+tyqP0EC2fAo6KicN9Wm2EIao+8OppLfxji7KAGJosQHSGBj3TcqUrA96AjgXuKa5ob2g==
   dependencies:
     "@types/eslint-visitor-keys" "^1.0.0"
-    "@typescript-eslint/experimental-utils" "2.6.1"
-    "@typescript-eslint/typescript-estree" "2.6.1"
+    "@typescript-eslint/experimental-utils" "2.7.0"
+    "@typescript-eslint/typescript-estree" "2.7.0"
     eslint-visitor-keys "^1.1.0"
 
 "@typescript-eslint/typescript-estree@2.6.1":
