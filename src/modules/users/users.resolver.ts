@@ -7,7 +7,7 @@ import { GqlAuthGuard } from '../auth/gql.guard'
 import { LdapService } from '../ldap/ldap.service'
 import { LoginInput } from './login.input'
 import { LoginPayload } from './login.payload'
-import { User } from './users.model'
+import { User } from './users.type'
 import { UsersService } from './users.service'
 
 @Resolver(() => User)
