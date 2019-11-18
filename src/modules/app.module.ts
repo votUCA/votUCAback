@@ -6,6 +6,8 @@ import { ConfigModule } from './config/config.module'
 import { ConfigService } from './config/config.service'
 import { UsersModule } from './users/users.module'
 import { TypegooseConfigService } from '../common/typegoose-config'
+import { PollsModule } from './polls/polls.module'
+import { ElectionsModule } from './elections/elections.module'
 
 @Module({
   imports: [
@@ -22,7 +24,9 @@ import { TypegooseConfigService } from '../common/typegoose-config'
       inject: [ConfigService]
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    PollsModule,
+    ElectionsModule
   ]
 })
 export class AppModule {}
