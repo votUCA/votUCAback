@@ -1,4 +1,6 @@
 import { ObjectType, Field, Int, ID } from 'type-graphql'
+import { prop } from '@typegoose/typegoose'
+import { required } from '../../common/constants'
 
 @ObjectType()
 export class Subject {
@@ -8,11 +10,14 @@ export class Subject {
   }
 
   @Field()
+  @prop({ required })
   name: string
 
   @Field()
+  @prop({ required })
   degree: string
 
   @Field(() => Int)
+  @prop({ required })
   course: number
 }

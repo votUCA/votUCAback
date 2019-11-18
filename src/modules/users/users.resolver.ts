@@ -7,13 +7,16 @@ import { GqlAuthGuard } from '../auth/gql.guard'
 import { LdapService } from '../ldap/ldap.service'
 import { LoginInput } from './login.input'
 import { LoginPayload } from './login.payload'
-import { User } from './users.type'
 import { UsersService } from './users.service'
+import { User } from './users.type'
 
 @Resolver(() => User)
 @UseGuards(GqlAuthGuard)
 export class UsersResolver {
-  constructor (private usersService: UsersService) {}
+  constructor (
+    private readonly usersService: UsersService,
+    private readonly ldapService: LdapService
+  ) {}
 
   @Query(() => [User])
   async users () {
@@ -21,8 +24,8 @@ export class UsersResolver {
   }
 
   @Query(() => User)
-  async user (@Args({ name: 'id', type: () => ID }) id: string) {
-    return this.usersService.findById(id)
+  async user (@Args({ name: 'uid', type: () => ID }) uid: string) {
+    return this.ldapService.findByUid(uid)
   }
 
   @Query(() => User)
@@ -34,8 +37,8 @@ export class UsersResolver {
 @Resolver(() => User)
 export class UnprotectedUsersResolver {
   constructor (
-    private ldapService: LdapService,
-    private authService: AuthService
+    private readonly ldapService: LdapService,
+    private readonly authService: AuthService
   ) {}
 
   @Mutation(() => LoginPayload)
@@ -47,7 +50,7 @@ export class UnprotectedUsersResolver {
     if (!id) {
       throw new BadRequestException('user or password are incorrect')
     }
-    const accessToken = await this.authService.createToken(input.user)
+    const accessToken = await this.authService.createToken(input.uid)
     return { accessToken }
   }
 }
