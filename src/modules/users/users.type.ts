@@ -6,9 +6,6 @@ export class User {
   uid: string
 
   @Field()
-  password: string
-
-  @Field()
   firstName: string
 
   @Field()
