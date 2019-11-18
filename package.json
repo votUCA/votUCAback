@@ -40,6 +40,7 @@
     "class-validator": "^0.11.0",
     "dotenv": "^8.2.0",
     "graphql": "^14.5.8",
+    "ldapts": "^1.10.0",
     "mongoose": "^5.7.10",
     "nestjs-typegoose": "^7.0.0",
     "passport": "^0.4.0",
