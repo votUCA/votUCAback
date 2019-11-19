@@ -1,19 +1,11 @@
 import { forwardRef, Module } from '@nestjs/common'
-import { TypegooseModule } from 'nestjs-typegoose'
 import { AuthModule } from '../auth/auth.module'
-import { User } from './users.type'
-import { UnprotectedUsersResolver, UsersResolver } from './users.resolver'
-import { UsersService } from './users.service'
 import { LdapService } from '../ldap/ldap.service'
+import { UnprotectedUsersResolver, UsersResolver } from './users.resolver'
 
 @Module({
-  imports: [TypegooseModule.forFeature([User]), forwardRef(() => AuthModule)],
-  providers: [
-    UsersService,
-    LdapService,
-    UsersResolver,
-    UnprotectedUsersResolver
-  ],
-  exports: [UsersService]
+  imports: [forwardRef(() => AuthModule)],
+  providers: [LdapService, UsersResolver, UnprotectedUsersResolver],
+  exports: [LdapService]
 })
 export class UsersModule {}
