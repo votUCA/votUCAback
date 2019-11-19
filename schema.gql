@@ -4,7 +4,7 @@
 # -----------------------------------------------
 
 input LoginInput {
-  user: String!
+  uid: String!
   password: String!
 }
 
@@ -13,26 +13,17 @@ type LoginPayload {
 }
 
 type Mutation {
-  createUser(input: UserInput!): User!
   login(input: LoginInput!): LoginPayload!
 }
 
 type Query {
   users: [User!]!
-  user(id: ID!): User!
+  user(uid: ID!): User!
+  me: User!
 }
 
 type User {
-  id: ID!
-  user: String!
-  password: String!
-  firstName: String!
-  lastName: String!
-}
-
-input UserInput {
-  user: String!
-  password: String!
+  uid: ID!
   firstName: String!
   lastName: String!
 }

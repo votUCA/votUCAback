@@ -7,20 +7,17 @@ import { GqlAuthGuard } from '../auth/gql.guard'
 import { LdapService } from '../ldap/ldap.service'
 import { LoginInput } from './login.input'
 import { LoginPayload } from './login.payload'
-import { UsersService } from './users.service'
 import { User } from './users.type'
 
 @Resolver(() => User)
 @UseGuards(GqlAuthGuard)
 export class UsersResolver {
-  constructor (
-    private readonly usersService: UsersService,
-    private readonly ldapService: LdapService
-  ) {}
+  constructor (private readonly ldapService: LdapService) {}
 
+  // FIXME: replace null with the real query
   @Query(() => [User])
   async users () {
-    return this.usersService.findAll()
+    return null
   }
 
   @Query(() => User)
