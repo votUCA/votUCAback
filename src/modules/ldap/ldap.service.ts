@@ -1,12 +1,16 @@
 import { Injectable, Inject, NotFoundException } from '@nestjs/common'
-import { Client } from 'ldapts'
+import { Client, SearchOptions } from 'ldapts'
 import { ConfigService } from '../config/config.service'
 import { LoginInput } from '../users/login.input'
 import { User } from '../users/users.type'
 
+export type LdapSearchOptions = SearchOptions & {
+  group?: string
+}
 @Injectable()
 export class LdapService {
   private readonly client: Client
+
   constructor (
     @Inject(ConfigService)
     private readonly configService: ConfigService
@@ -31,19 +35,26 @@ export class LdapService {
     return isAuth
   }
 
+  async findAll ({
+    group = '',
+    ...options
+  }: LdapSearchOptions): Promise<User[]> {
+    const { searchEntries } = await this.client.search(
+      this.configService.ldapBaseDn + group,
+      options
+    )
+    return searchEntries.map(e => ({
+      uid: e.uid as string,
+      firstName: '',
+      lastName: ''
+    }))
+  }
+
   async findByUid (uid: string): Promise<User> {
-    try {
-      const {
-        searchEntries: [user]
-      } = await this.client.search(this.configService.ldapBaseDn, {
-        scope: 'sub',
-        filter: `uid=${uid}`
-      })
-      return { uid: user.uid as string, firstName: '', lastName: '' }
-    } catch {
+    const [user] = await this.findAll({ scope: 'sub', filter: `uid=${uid}` })
+    if (user === undefined) {
       throw new NotFoundException()
-    } finally {
-      await this.client.unbind()
     }
+    return user
   }
 }
