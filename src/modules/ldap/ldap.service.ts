@@ -16,21 +16,19 @@ export class LdapService {
     })
   }
 
-  async ldapAuth ({ user, password }: LoginInput) {
+  async ldapAuth ({ uid, password }: LoginInput) {
     let isAuth: boolean
     try {
       await this.client.bind(
-        `cn=${user},ou=Usuarios,dc=votouca,dc=com`,
+        `cn=${uid},ou=Usuarios,dc=votouca,dc=com`,
         password
       )
       isAuth = true
     } catch {
       isAuth = false
-    } finally {
-      await this.client.unbind()
-      // eslint-disable-next-line no-unsafe-finally
-      return isAuth
     }
+    await this.client.unbind()
+    return isAuth
   }
 
   async findByUid (uid: string): Promise<User> {

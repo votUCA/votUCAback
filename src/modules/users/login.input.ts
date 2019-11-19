@@ -5,7 +5,7 @@ import { UID } from '../../common/validators'
 export class LoginInput {
   @Field()
   @Validate(UID)
-  user: string
+  uid: string
 
   @Field()
   password: string
