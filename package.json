@@ -11,9 +11,9 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "preinstall": "npx use-yarn",
-    "build": "nest build",
+    "build": "tsc",
     "release": "standard-version --no-verify",
-    "prestart": "tsc",
+    "prestart": "yarn build",
     "start": "node dist/main",
     "start:mongo": "docker-compose -f .devcontainer/docker-compose.yml up -d mongo",
     "down:mongo": "docker-compose -f .devcontainer/docker-compose.yml down -v",
