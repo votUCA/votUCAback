@@ -40,13 +40,13 @@ export class LdapService {
     ...options
   }: LdapSearchOptions): Promise<User[]> {
     const { searchEntries } = await this.client.search(
-      this.configService.ldapBaseDn + group,
+      group + this.configService.ldapBaseDn,
       options
     )
     return searchEntries.map(e => ({
       uid: e.uid as string,
-      firstName: '',
-      lastName: ''
+      firstName: e.givenName as string,
+      lastName: e.sn as string
     }))
   }
 
