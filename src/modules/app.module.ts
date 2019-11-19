@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module'
 import { TypegooseConfigService } from '../common/typegoose-config'
 import { PollsModule } from './polls/polls.module'
 import { ElectionsModule } from './elections/elections.module'
+import { ElectoralProcessModule } from './electoral-process/electoral-process.module'
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { ElectionsModule } from './elections/elections.module'
     UsersModule,
     AuthModule,
     PollsModule,
-    ElectionsModule
+    ElectionsModule,
+    ElectoralProcessModule
   ]
 })
 export class AppModule {}
