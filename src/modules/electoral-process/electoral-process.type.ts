@@ -1,35 +1,17 @@
-import { Field, ID, ObjectType, Int } from 'type-graphql'
-import { prop } from '@typegoose/typegoose'
-import { required } from '../../common/constants'
+import { createUnionType } from 'type-graphql'
+import { Election } from '../elections/elections.type'
+import { Poll } from '../polls/polls.type'
 
-@ObjectType()
-export class ElectoralProcess {
-  @Field(() => ID)
-  get id (this: any) {
-    return this._id || this._doc._id
+export const ElectoralProcess = createUnionType({
+  name: 'ElectoralProcess', // the name of the GraphQL union
+  types: () => [Election, Poll], // function that returns array of object types classes
+  resolveType: value => {
+    if ('isSecret' in value) {
+      return Poll
+    }
+    if ('candidate' in value) {
+      return Election
+    }
+    return undefined
   }
-
-  @Field()
-  @prop({ required })
-  idSecretary: string
-
-  @Field()
-  @prop({ required })
-  censusFile: string
-
-  @Field(() => Int)
-  @prop({ required })
-  tableMember: number
-
-  @Field(() => Date)
-  @prop({ required })
-  startTime: Date
-
-  @Field(() => Date)
-  @prop({ required })
-  endTime: Date
-
-  @Field()
-  @prop({ required })
-  correctVote: boolean
-}
+})

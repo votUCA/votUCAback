@@ -1,14 +1,10 @@
-import { Field, ID, ObjectType, Int } from 'type-graphql'
+import { Field, ObjectType, Int } from 'type-graphql'
 import { prop } from '@typegoose/typegoose'
 import { required } from '../../common/constants'
+import { ElectoralProcessBase } from '../electoral-process/electoral-process.abstract'
 
 @ObjectType()
-export class Poll {
-  @Field(() => ID)
-  get id (this: any) {
-    return this._id || this._doc._id
-  }
-
+export class Poll extends ElectoralProcessBase {
   @Field()
   @prop({ required })
   question: string

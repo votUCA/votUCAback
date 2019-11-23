@@ -1,22 +1,29 @@
-import { Resolver, Query, Args } from '@nestjs/graphql'
-import { ElectoralProcess } from './electoral-process.type'
 import { UseGuards } from '@nestjs/common'
+import { Query, Resolver, Args } from '@nestjs/graphql'
 import { GqlAuthGuard } from '../auth/gql.guard'
+import { ElectionsService } from '../elections/elections.service'
+import { PollsService } from '../polls/polls.service'
+import { ElectoralProcess } from './electoral-process.type'
 import { ID } from 'type-graphql'
-import { ElectoralProcessService } from './electoral-process.service'
 
-@Resolver(() => ElectoralProcess)
+@Resolver()
 @UseGuards(GqlAuthGuard)
 export class ElectoralProcessResolver {
-  constructor (private electoralprocessService: ElectoralProcessService) {}
+  constructor (private pollsService: PollsService, private electionsService: ElectionsService) {}
 
   @Query(() => [ElectoralProcess])
-  async electoralprocess () {
-    return this.electoralprocessService.findAll()
+  async electoralprocesses () {
+    const polls = await this.pollsService.findAll()
+    const elections = await this.electionsService.findAll()
+
+    return [...polls, ...elections]
   }
 
-  @Query(() => ElectoralProcess)
-  async electoralprocesses (@Args({ name: 'id', type: () => ID }) id: string) {
-    return this.electoralprocessService.findById(id)
+  @Query(() => [ElectoralProcess])
+  async electoralprocess (@Args({ name: 'id', type: () => ID }) id: string) {
+    const poll = await this.pollsService.findById(id)
+    const election = await this.electionsService.findById(id)
+
+    return poll || election
   }
 }
