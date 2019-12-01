@@ -20,6 +20,7 @@ type Query {
   users: [User!]!
   user(uid: ID!): User!
   me: User!
+  usersByGroup(group: String!): [User!]!
 }
 
 type User {

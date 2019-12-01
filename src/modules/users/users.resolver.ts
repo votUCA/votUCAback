@@ -29,6 +29,15 @@ export class UsersResolver {
   async me (@CurrentUser() user: User) {
     return user
   }
+
+  @Query(() => [User])
+  async usersByGroup (@Args({ name: 'group', type: () => String }) group: string) {
+    return this.ldapService.findAll({
+      group: `ou=${group},`,
+      scope: 'sub',
+      filter: '(objectClass=inetOrgPerson)'
+    })
+  }
 }
 
 @Resolver(() => User)
