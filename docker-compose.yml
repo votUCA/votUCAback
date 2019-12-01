@@ -1,0 +1,14 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:4.2.1-bionic
+  app:
+    image: docker.pkg.github.com/votUCA/votUCAback/api:latest
+    env_file:
+      - .env
+    ports:
+      - '${PORT}:${PORT}'
+    links:
+      - mongo
+    depends_on:
+      - mongo
