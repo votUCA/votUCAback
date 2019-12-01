@@ -6,6 +6,10 @@ import { ConfigModule } from './config/config.module'
 import { ConfigService } from './config/config.service'
 import { UsersModule } from './users/users.module'
 import { TypegooseConfigService } from '../common/typegoose-config'
+import { PollsModule } from './polls/polls.module'
+import { ElectionsModule } from './elections/elections.module'
+import { ElectoralProcessModule } from './electoral-process/electoral-process.module'
+import { RolesModule } from './roles/roles.module'
 
 @Module({
   imports: [
@@ -22,7 +26,11 @@ import { TypegooseConfigService } from '../common/typegoose-config'
       inject: [ConfigService]
     }),
     UsersModule,
-    AuthModule
+    AuthModule,
+    PollsModule,
+    ElectionsModule,
+    ElectoralProcessModule,
+    RolesModule
   ]
 })
 export class AppModule {}

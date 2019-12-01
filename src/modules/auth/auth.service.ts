@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { LdapService } from '../ldap/ldap.service'
+import { UsersService } from '../users/users.service'
 import { User } from '../users/users.type'
 
 @Injectable()
 export class AuthService {
   constructor (
     private readonly jwtService: JwtService,
-    private readonly ldapService: LdapService
+    private readonly usersService: UsersService
   ) {}
 
   async validateUser (id: string): Promise<User | null> {
-    const user = await this.ldapService.findByUid(id)
+    const user = await this.usersService.findById(id)
     if (id && user) {
       return user
     }
