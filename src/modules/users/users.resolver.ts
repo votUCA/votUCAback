@@ -1,5 +1,12 @@
 import { BadRequestException, UseGuards } from '@nestjs/common'
-import { Args, Mutation, Parent, Query, ResolveProperty, Resolver } from '@nestjs/graphql'
+import {
+  Args,
+  Mutation,
+  Parent,
+  Query,
+  ResolveProperty,
+  Resolver
+} from '@nestjs/graphql'
 import { ID } from 'type-graphql'
 import { AuthService } from '../auth/auth.service'
 import { CurrentUser } from '../auth/current-user.decorator'
@@ -48,7 +55,8 @@ export class UsersResolver {
 export class UnprotectedUsersResolver {
   constructor (
     private readonly ldapService: LdapService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly userService: UsersService
   ) {}
 
   @Mutation(() => LoginPayload)
@@ -56,11 +64,12 @@ export class UnprotectedUsersResolver {
     @Args('input')
       input: LoginInput
   ): Promise<LoginPayload> {
-    const id = await this.ldapService.ldapAuth(input)
-    if (!id) {
+    const isValid = await this.ldapService.ldapAuth(input)
+    if (!isValid) {
       throw new BadRequestException('user or password are incorrect')
     }
-    const accessToken = await this.authService.createToken(input.uid)
+    const user = await this.userService.findByUid(input.uid)
+    const accessToken = await this.authService.createToken(user.id)
     return { accessToken }
   }
 }

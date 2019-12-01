@@ -13,4 +13,8 @@ export class UsersService extends CrudService<User, UserInput> {
   ) {
     super(userModel)
   }
+
+  async findByUid (uid: string) {
+    return this.userModel.findOne({ uid })
+  }
 }

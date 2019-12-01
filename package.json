@@ -98,8 +98,12 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
-      "yarn lint:fix",
+    "*.+(ts|tsx)": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.+(json|less|md|yml)": [
+      "prettier --write",
       "git add"
     ]
   },
