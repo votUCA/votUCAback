@@ -1,33 +1,46 @@
 import { BadRequestException, UseGuards } from '@nestjs/common'
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { Args, Mutation, Parent, Query, ResolveProperty, Resolver } from '@nestjs/graphql'
 import { ID } from 'type-graphql'
 import { AuthService } from '../auth/auth.service'
 import { CurrentUser } from '../auth/current-user.decorator'
 import { GqlAuthGuard } from '../auth/gql.guard'
 import { LdapService } from '../ldap/ldap.service'
+import { RolesService } from '../roles/roles.service'
+import { Role } from '../roles/roles.type'
 import { LoginInput } from './login.input'
 import { LoginPayload } from './login.payload'
+import { UsersService } from './users.service'
 import { User } from './users.type'
 
 @Resolver(() => User)
 @UseGuards(GqlAuthGuard)
 export class UsersResolver {
-  constructor (private readonly ldapService: LdapService) {}
+  constructor (
+    private readonly rolesService: RolesService,
+    private readonly usersService: UsersService
+  ) {}
 
-  // FIXME: replace null with the real query
   @Query(() => [User])
   async users () {
-    return null
+    return this.usersService.findAll()
   }
 
   @Query(() => User)
-  async user (@Args({ name: 'uid', type: () => ID }) uid: string) {
-    return this.ldapService.findByUid(uid)
+  async user (@Args({ name: 'id', type: () => ID }) id: string) {
+    return this.usersService.findById(id)
   }
 
   @Query(() => User)
   async me (@CurrentUser() user: User) {
     return user
+  }
+
+  @ResolveProperty(() => [Role], { nullable: true })
+  async roles (@Parent() user: User) {
+    if (user.roles) {
+      return this.rolesService.findAll({ _id: { $in: user.roles } })
+    }
+    return null
   }
 }
 

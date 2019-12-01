@@ -9,6 +9,7 @@ import { TypegooseConfigService } from '../common/typegoose-config'
 import { PollsModule } from './polls/polls.module'
 import { ElectionsModule } from './elections/elections.module'
 import { ElectoralProcessModule } from './electoral-process/electoral-process.module'
+import { RolesModule } from './roles/roles.module'
 
 @Module({
   imports: [
@@ -28,7 +29,8 @@ import { ElectoralProcessModule } from './electoral-process/electoral-process.mo
     AuthModule,
     PollsModule,
     ElectionsModule,
-    ElectoralProcessModule
+    ElectoralProcessModule,
+    RolesModule
   ]
 })
 export class AppModule {}
