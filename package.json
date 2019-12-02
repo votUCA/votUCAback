@@ -34,7 +34,7 @@
   "config": {
     "image": "docker.pkg.github.com/votuca/votucaback/api",
     "deployFiles": "docker-compose.yml .env",
-    "sshServer": "rancher@178.128.243.119",
+    "sshServer": "rancher@votuca.krosf.com",
     "projectPath": ".votuca"
   },
   "dependencies": {
