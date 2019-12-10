@@ -1,13 +1,7 @@
-import { Field, Int, InputType } from 'type-graphql'
+import { Field, InputType } from 'type-graphql'
 
 @InputType()
 export class PollInput {
-  @Field()
-  question: string
-
-  @Field(() => [String])
-  answers: string[]
-
   @Field()
   presencial: boolean
 
@@ -16,7 +10,4 @@ export class PollInput {
 
   @Field()
   isSecret: boolean
-
-  @Field(() => [Int])
-  votesAnswer: number[]
 }
