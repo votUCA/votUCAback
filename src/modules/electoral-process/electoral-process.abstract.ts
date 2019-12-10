@@ -13,10 +13,6 @@ export class ElectoralProcessBase {
   @prop({ required })
   idSecretary: string
 
-  @Field()
-  @prop({ required })
-  censusFile: string
-
   @Field(() => Int)
   @prop({ required })
   tableMember: number
@@ -32,4 +28,8 @@ export class ElectoralProcessBase {
   @Field()
   @prop({ required })
   correctVote: boolean
+
+  @Field()
+  @prop({ required })
+  name: string
 }
