@@ -12,17 +12,17 @@ export class CandidatesResolver {
   constructor (private candidatesService: CandidatesService) {}
 
   @Query(() => [Candidate])
-  async candidatess () {
+  async candidates () {
     return this.candidatesService.findAll()
   }
 
   @Query(() => Candidate)
-  async candidates (@Args({ name: 'id', type: () => ID }) id: string) {
+  async candidate (@Args({ name: 'id', type: () => ID }) id: string) {
     return this.candidatesService.findById(id)
   }
 
   @Mutation(() => Candidate)
-  async createCandidates (@Args('input') input: CandidateInput) {
+  async createCandidate (@Args('input') input: CandidateInput) {
     return this.candidatesService.create(input)
   }
 }
