@@ -35,6 +35,7 @@ import { AnswersModule } from './answers/answers.module'
     RolesModule,
     AnswersModule,
     CandidatesModule
+
   ]
 })
 export class AppModule {}
