@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
-import { ElectionInput } from '../elections/elections.input'
-import { CrudService } from '../../common/crud.service'
-import { Election } from '../elections/elections.type'
-import { InjectModel } from 'nestjs-typegoose'
 import { ReturnModelType } from '@typegoose/typegoose'
+import { InjectModel } from 'nestjs-typegoose'
+import { CrudService } from '../../common/crud.service'
+import { ElectionInput } from '../elections/elections.input'
+import { Election } from '../elections/elections.type'
 
 @Injectable()
 export class ElectionsService extends CrudService<Election, ElectionInput> {
