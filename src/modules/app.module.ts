@@ -10,6 +10,7 @@ import { PollsModule } from './polls/polls.module'
 import { ElectionsModule } from './elections/elections.module'
 import { ElectoralProcessModule } from './electoral-process/electoral-process.module'
 import { RolesModule } from './roles/roles.module'
+import { AnswersModule } from './answers/answers.module'
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { RolesModule } from './roles/roles.module'
     PollsModule,
     ElectionsModule,
     ElectoralProcessModule,
-    RolesModule
+    RolesModule,
+    AnswersModule
   ]
 })
 export class AppModule {}

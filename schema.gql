@@ -3,6 +3,17 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Answer {
+  id: ID!
+  idPosibleAnswer: String
+  idCandidate: String
+}
+
+input AnswerInput {
+  idPosibleAnswer: String
+  idCandidate: String
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -47,6 +58,7 @@ type Mutation {
   login(input: LoginInput!): LoginPayload!
   createPoll(input: PollInput!): Poll!
   createElection(input: ElectionInput!): Election!
+  createAnswer(input: AnswerInput!): Answer!
 }
 
 type Poll {
@@ -86,6 +98,8 @@ type Query {
   election(id: ID!): Election!
   electoralprocesses: [ElectoralProcess!]!
   electoralprocess(id: ID!): [ElectoralProcess!]!
+  answers: [Answer!]!
+  answer(id: ID!): Answer!
 }
 
 type Role {
