@@ -3,26 +3,14 @@ import { Field, InputType } from 'type-graphql'
 @InputType()
 export class CensusInput {
   @Field()
-  name: string
+  group: string
 
   @Field()
-  lastName1: string
-
-  @Field()
-  lastName2: string
-
-  @Field()
-  center: string
+  place: string
 
   @Field(() => Date)
-  startTime: Date
+  date: Date
 
   @Field()
-  uid: string // 4_digits
-
-  @Field()
-  isVoted: boolean
-
-  @Field(() => String)
-  id_electoralProcess: string
+  course: string
 }

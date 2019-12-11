@@ -1,38 +1,26 @@
-import { prop } from '@typegoose/typegoose'
 import { Field, ObjectType } from 'type-graphql'
+import { prop, arrayProp, Ref } from '@typegoose/typegoose'
 import { required } from '../../common/constants'
+import { User } from '../users/users.type'
 
 @ObjectType()
 export class Census {
   @Field()
   @prop({ required })
-  name: string
+  group: string
 
   @Field()
   @prop({ required })
-  lastName1: string
-
-  @Field()
-  @prop({ required })
-  lastName2: string
-
-  @Field()
-  @prop({ required })
-  center: string
+  place: string
 
   @Field(() => Date)
-  @prop({ required })
-  startTime: Date
+  date: Date
 
   @Field()
   @prop({ required })
-  uid: string // 4_digits
+  course: string
 
   @Field()
-  @prop({ required })
-  isVoted: boolean
-
-  @Field(() => String)
-  @prop({ required })
-  id_electoralProcess: string
+  @arrayProp({ itemsRef: User })
+  voters: Ref<User>[]
 }
