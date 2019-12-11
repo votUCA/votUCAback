@@ -8,7 +8,7 @@ import { ElectionsService } from '../elections/elections.service'
 import { PollsService } from '../polls/polls.service'
 
 @Injectable()
-export class AnswerService extends CrudService<Answer, AnswerInput> {
+export class AnswersService extends CrudService<Answer, AnswerInput> {
   constructor (
     @InjectModel(Answer)
     private readonly AnswerModel: ReturnModelType<typeof Answer>,

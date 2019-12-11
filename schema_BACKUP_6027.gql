@@ -3,6 +3,17 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+<<<<<<< HEAD
+type Answer {
+  id: ID!
+  idPosibleAnswer: String
+  idCandidate: String
+}
+
+input AnswerInput {
+  idPosibleAnswer: String
+  idCandidate: String
+=======
 type Candidate {
   id: ID!
   name: String!
@@ -12,6 +23,7 @@ type Candidate {
 input CandidateInput {
   name: String!
   idElection: String!
+>>>>>>> develop
 }
 
 """
@@ -52,7 +64,11 @@ type Mutation {
   login(input: LoginInput!): LoginPayload!
   createPoll(input: PollInput!): Poll!
   createElection(input: ElectionInput!): Election!
+<<<<<<< HEAD
+  createAnswer(input: AnswerInput!): Answer!
+=======
   createCandidate(input: CandidateInput!): Candidate!
+>>>>>>> develop
 }
 
 type Poll {
@@ -86,8 +102,13 @@ type Query {
   election(id: ID!): Election!
   electoralprocesses: [ElectoralProcess!]!
   electoralprocess(id: ID!): [ElectoralProcess!]!
+<<<<<<< HEAD
+  answers: [Answer!]!
+  answer(id: ID!): Answer!
+=======
   candidates: [Candidate!]!
   candidate(id: ID!): Candidate!
+>>>>>>> develop
 }
 
 type Role {

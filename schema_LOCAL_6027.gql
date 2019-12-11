@@ -3,15 +3,15 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-type Candidate {
+type Answer {
   id: ID!
-  name: String!
-  idElection: String!
+  idPosibleAnswer: String
+  idCandidate: String
 }
 
-input CandidateInput {
-  name: String!
-  idElection: String!
+input AnswerInput {
+  idPosibleAnswer: String
+  idCandidate: String
 }
 
 """
@@ -22,18 +22,24 @@ scalar DateTime
 type Election {
   id: ID!
   idSecretary: String!
+  censusFile: String!
   tableMember: Int!
   startTime: DateTime!
   endTime: DateTime!
   correctVote: Boolean!
-  name: String!
+  candidate: [String!]!
+  electionsAnswers: [Int!]!
   voteOtherGroup: Boolean!
   nVotes: Int!
+  votesAnswers: [Int!]!
 }
 
 input ElectionInput {
+  candidate: [String!]!
+  electionsAnswers: [Int!]!
   voteOtherGroup: Boolean!
   nVotes: Int!
+  votesAnswers: [Int!]!
 }
 
 union ElectoralProcess = Election | Poll
@@ -52,26 +58,32 @@ type Mutation {
   login(input: LoginInput!): LoginPayload!
   createPoll(input: PollInput!): Poll!
   createElection(input: ElectionInput!): Election!
-  createCandidate(input: CandidateInput!): Candidate!
+  createAnswer(input: AnswerInput!): Answer!
 }
 
 type Poll {
   id: ID!
   idSecretary: String!
+  censusFile: String!
   tableMember: Int!
   startTime: DateTime!
   endTime: DateTime!
   correctVote: Boolean!
-  name: String!
+  question: String!
+  answers: [String!]!
   presencial: Boolean!
   canEdit: Boolean!
   isSecret: Boolean!
+  votesAnswer: [Int!]!
 }
 
 input PollInput {
+  question: String!
+  answers: [String!]!
   presencial: Boolean!
   canEdit: Boolean!
   isSecret: Boolean!
+  votesAnswer: [Int!]!
 }
 
 type Query {
@@ -86,8 +98,8 @@ type Query {
   election(id: ID!): Election!
   electoralprocesses: [ElectoralProcess!]!
   electoralprocess(id: ID!): [ElectoralProcess!]!
-  candidates: [Candidate!]!
-  candidate(id: ID!): Candidate!
+  answers: [Answer!]!
+  answer(id: ID!): Answer!
 }
 
 type Role {
