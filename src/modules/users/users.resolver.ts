@@ -44,7 +44,6 @@ export class UnprotectedUsersResolver {
   ): Promise<LoginPayload> {
     const tokenPayload = await this.userService.authenticate(input)
     const accessToken = await this.authService.createToken(tokenPayload)
-    console.log({ accessToken, input })
     return { accessToken }
   }
 }

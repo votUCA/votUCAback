@@ -59,6 +59,8 @@ type ElectionResults {
   id: ID!
   votes: Int!
   candidate: Candidate!
+  group: String!
+  location: String!
 }
 
 union ElectoralProcess = Election
@@ -79,6 +81,7 @@ type LoginPayload {
 type Mutation {
   login(input: LoginInput!): LoginPayload!
   createElection(input: ElectionInput!): Election!
+  vote(input: VoteInput!): Boolean!
   uploadFile(file: Upload!): File!
 }
 
@@ -90,8 +93,8 @@ type Query {
   candidate(id: ID!): Candidate!
   electoralprocesses: [ElectoralProcess!]!
   electoralprocess(id: ID!): ElectoralProcess!
-  election: [Election!]!
-  elections(id: ID!): Election!
+  elections: [Election!]!
+  election(id: ID!): Election!
   census(id: ID!): Census!
   censuses: [Census!]!
 }
@@ -111,6 +114,11 @@ type User {
   firstName: String!
   lastName: String!
   roles: [Role!]!
+}
+
+input VoteInput {
+  candidate: ID!
+  election: ID!
 }
 
 type Voter {

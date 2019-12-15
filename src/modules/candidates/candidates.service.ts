@@ -13,4 +13,8 @@ export class CandidatesService extends CrudService<Candidate, CandidateInput> {
   ) {
     super(candidateModel)
   }
+
+  async create (data: any) {
+    return this.candidateModel.create(data)
+  }
 }

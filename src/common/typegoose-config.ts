@@ -4,6 +4,7 @@ import {
   TypegooseOptionsFactory
 } from 'nestjs-typegoose'
 import { ConfigService } from '../modules/config/config.service'
+import { mongoose } from '@typegoose/typegoose'
 
 export class TypegooseConfigService implements TypegooseOptionsFactory {
   constructor (
@@ -13,6 +14,7 @@ export class TypegooseConfigService implements TypegooseOptionsFactory {
   createTypegooseOptions ():
     | Promise<TypegooseModuleOptions>
     | TypegooseModuleOptions {
+    mongoose.set('useFindAndModify', false)
     return {
       uri: this.configService.mongodbUri,
       useNewUrlParser: true,

@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { Injectable, InternalServerErrorException } from '@nestjs/common'
+import {
+  Injectable,
+  InternalServerErrorException,
+  OnModuleInit
+} from '@nestjs/common'
 import * as csvParse from 'csv-parse'
-import { createReadStream, createWriteStream } from 'fs'
+import { createReadStream, createWriteStream, existsSync, mkdirSync } from 'fs'
 import { FileUpload } from 'graphql-upload'
 import { join } from 'path'
 import * as uuid from 'uuid/v4'
@@ -9,7 +13,7 @@ import { ConfigService } from '../config/config.service'
 import { File } from './files.type'
 
 @Injectable()
-export class FileService {
+export class FileService implements OnModuleInit {
   constructor (private readonly configService: ConfigService) {}
 
   async save ({ createReadStream, filename }: FileUpload): Promise<File> {
@@ -29,7 +33,8 @@ export class FileService {
           {
             skip_empty_lines: true,
             skip_lines_with_empty_values: true,
-            skip_lines_with_error: true
+            skip_lines_with_error: true,
+            columns: true
           },
           (err, data) => {
             if (err) {
@@ -40,5 +45,11 @@ export class FileService {
         )
       )
     )
+  }
+
+  onModuleInit () {
+    if (!existsSync(this.configService.filesPath)) {
+      mkdirSync(this.configService.filesPath)
+    }
   }
 }

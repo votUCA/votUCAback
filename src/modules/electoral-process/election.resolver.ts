@@ -1,4 +1,4 @@
-import { UseGuards } from '@nestjs/common'
+import { UseGuards, UnauthorizedException } from '@nestjs/common'
 import {
   Args,
   Mutation,
@@ -12,13 +12,16 @@ import { GqlAuthGuard } from '../auth/gql.guard'
 import { CandidatesService } from '../candidates/candidates.service'
 import { Candidate } from '../candidates/candidates.type'
 import { FileService } from '../files/files.service'
-import { ElectionInput } from './election.input'
+import { ElectionInput, VoteInput } from './election.input'
 import { ElectionResultsService } from './election.results.service'
 import { ElectionsService } from './election.service'
 import { Election } from './election.type'
 import { ElectionResults } from './electoral-process.results.type'
 import { CensusService } from '../census/census.service'
 import { Census } from '../census/census.type'
+import { CurrentUser } from '../auth/current-user.decorator'
+import { User } from '../users/users.type'
+import { mongoose } from '@typegoose/typegoose'
 
 @Resolver(() => Election)
 @UseGuards(GqlAuthGuard)
@@ -32,12 +35,12 @@ export class ElectionResolver {
   ) {}
 
   @Query(() => [Election])
-  async election () {
+  async elections () {
     return this.electionsService.findAll()
   }
 
   @Query(() => Election)
-  async elections (@Args({ name: 'id', type: () => ID }) id: string) {
+  async election (@Args({ name: 'id', type: () => ID }) id: string) {
     return this.electionsService.findById(id)
   }
 
@@ -45,7 +48,7 @@ export class ElectionResolver {
   async createElection (
     @Args('input') { censuses, candidates, ...rest }: ElectionInput
   ) {
-    const census = await Promise.all(
+    const censusesOnDB = await Promise.all(
       censuses.map(async ({ file, date, group, location }) => {
         const voters = await this.filesService.readCSV(file)
         return this.censusService.create({
@@ -56,28 +59,80 @@ export class ElectionResolver {
         })
       })
     )
+
     const election = await this.electionsService.create({
       ...rest,
-      censuses: census
+      censuses: censusesOnDB.map(census => census.id)
     })
-    await this.candidatesService.create(
-      candidates.map(candidate => ({ ...candidate, election }))
+
+    const candidatesOnDB = await Promise.all(
+      candidates.map(candidate => {
+        return this.candidatesService.create({
+          ...candidate,
+          election: election.id
+        })
+      })
     )
+
+    for (const census of censusesOnDB) {
+      for (const candidate of candidatesOnDB) {
+        await this.electioResultsService.create({
+          candidate: candidate.id,
+          census: census.id,
+          election: election.id
+        })
+      }
+    }
     return election
   }
 
   @ResolveProperty(() => [Candidate])
   async candidates (@Parent() election: Election) {
-    return this.candidatesService.findAll({ election })
+    return this.candidatesService.findAll({ election: election.id })
   }
 
   @ResolveProperty(() => [ElectionResults])
   async results (@Parent() election: Election) {
-    return this.electioResultsService.findAll({ election })
+    return this.electioResultsService.findAll({ election: election.id })
   }
 
   @ResolveProperty(() => [Census])
   async censuses (@Parent() election: Election) {
     return this.censusService.findAll({ _id: { $in: election.censuses } })
+  }
+
+  @Mutation(() => Boolean)
+  async vote (
+    @Args('input') { election, candidate }: VoteInput,
+    @CurrentUser() user: User
+  ) {
+    const { censuses } = await this.electionsService.findById(election)
+    const match = {
+      _id: { $in: censuses },
+      'voters.uid': user.uid
+    }
+    const voter = await this.censusService.findVoter(match)
+    if (!voter) {
+      throw new UnauthorizedException(
+        'Apprently user is not allowed to vote in this election'
+      )
+    }
+    if (voter.hasVoted) {
+      throw new UnauthorizedException('User has already Voted')
+    }
+    await this.censusService.findOneAndUpdate(match, {
+      $set: {
+        'voters.$.hasVoted': true
+      }
+    })
+    await this.electioResultsService.findOneAndUpdate(
+      {
+        candidate: mongoose.Types.ObjectId(candidate),
+        election: mongoose.Types.ObjectId(election),
+        census: voter.census
+      },
+      { $inc: { votes: 1 } }
+    )
+    return true
   }
 }

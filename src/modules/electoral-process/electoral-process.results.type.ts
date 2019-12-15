@@ -3,6 +3,7 @@ import { prop, Ref } from '@typegoose/typegoose'
 import { Election } from './election.type'
 import { required } from '../../common/constants'
 import { Candidate } from '../candidates/candidates.type'
+import { Census } from '../census/census.type'
 
 @ObjectType()
 export class ElectionResults {
@@ -20,4 +21,7 @@ export class ElectionResults {
 
   @prop({ required })
   candidate: Ref<Candidate>
+
+  @prop({ required })
+  census: Ref<Census>
 }
