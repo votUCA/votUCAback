@@ -1,35 +1,43 @@
-import { Field, ID, ObjectType, Int } from 'type-graphql'
-import { prop } from '@typegoose/typegoose'
-import { required } from '../../common/constants'
+import { prop, arrayProp, Ref } from '@typegoose/typegoose'
+import { Field, ID, InputType, ObjectType } from 'type-graphql'
+import { isAbstract, required } from '../../common/constants'
+import { CensusInput } from '../census/census.input'
+import { Census } from '../census/census.type'
 
-@ObjectType({ isAbstract: true })
-export class ElectoralProcessBase {
+@ObjectType({ isAbstract })
+export class ElectoralProcess {
   @Field(() => ID)
   get id (this: any) {
     return this._id || this._doc._id
   }
 
-  @Field()
-  @prop({ required })
-  idSecretary: string
-
-  @Field()
-  @prop({ required })
-  censusFile: string
-
-  @Field(() => Int)
-  @prop({ required })
-  tableMember: number
+  @Field(() => Date)
+  @prop({ type: Date, required })
+  start: Date
 
   @Field(() => Date)
-  @prop({ required })
-  startTime: Date
-
-  @Field(() => Date)
-  @prop({ required })
-  endTime: Date
+  @prop({ type: Date, required })
+  end: Date
 
   @Field()
   @prop({ required })
-  correctVote: boolean
+  description: string
+
+  @arrayProp({ required, itemsRef: Census })
+  censuses: Ref<Census>[]
+}
+
+@InputType({ isAbstract })
+export class ElectoralProcessInput {
+  @Field(() => Date)
+  start: Date
+
+  @Field(() => Date)
+  end: Date
+
+  @Field()
+  description: string
+
+  @Field(() => [CensusInput])
+  censuses: CensusInput[]
 }

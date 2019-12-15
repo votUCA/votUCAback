@@ -3,6 +3,35 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Candidate {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  about: String
+  image: String
+}
+
+input CandidateInput {
+  firstName: String!
+  lastName: String!
+  about: String
+}
+
+type Census {
+  id: ID!
+  group: String!
+  date: DateTime!
+  location: String!
+  voters: [Voter!]!
+}
+
+input CensusInput {
+  group: String!
+  date: DateTime!
+  location: String!
+  file: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -10,28 +39,33 @@ scalar DateTime
 
 type Election {
   id: ID!
-  idSecretary: String!
-  censusFile: String!
-  tableMember: Int!
-  startTime: DateTime!
-  endTime: DateTime!
-  correctVote: Boolean!
-  candidate: [String!]!
-  electionsAnswers: [Int!]!
-  voteOtherGroup: Boolean!
-  nVotes: Int!
-  votesAnswers: [Int!]!
+  start: DateTime!
+  end: DateTime!
+  description: String!
+  candidates: [Candidate!]!
+  results: [ElectionResults!]!
+  censuses: [Census!]!
 }
 
 input ElectionInput {
-  candidate: [String!]!
-  electionsAnswers: [Int!]!
-  voteOtherGroup: Boolean!
-  nVotes: Int!
-  votesAnswers: [Int!]!
+  start: DateTime!
+  end: DateTime!
+  description: String!
+  censuses: [CensusInput!]!
+  candidates: [CandidateInput!]!
 }
 
-union ElectoralProcess = Election | Poll
+type ElectionResults {
+  id: ID!
+  votes: Int!
+  candidate: Candidate!
+}
+
+union ElectoralProcess = Election
+
+type File {
+  name: String!
+}
 
 input LoginInput {
   uid: String!
@@ -43,65 +77,44 @@ type LoginPayload {
 }
 
 type Mutation {
-  createRole(input: RoleInput!): Role!
   login(input: LoginInput!): LoginPayload!
-  createPoll(input: PollInput!): Poll!
   createElection(input: ElectionInput!): Election!
-}
-
-type Poll {
-  id: ID!
-  idSecretary: String!
-  censusFile: String!
-  tableMember: Int!
-  startTime: DateTime!
-  endTime: DateTime!
-  correctVote: Boolean!
-  question: String!
-  answers: [String!]!
-  presencial: Boolean!
-  canEdit: Boolean!
-  isSecret: Boolean!
-  votesAnswer: [Int!]!
-}
-
-input PollInput {
-  question: String!
-  answers: [String!]!
-  presencial: Boolean!
-  canEdit: Boolean!
-  isSecret: Boolean!
-  votesAnswer: [Int!]!
+  uploadFile(file: Upload!): File!
 }
 
 type Query {
-  roles: [Role!]!
-  role(id: ID!): Role!
   users: [User!]!
   user(id: ID!): User!
   me: User!
-  polls: [Poll!]!
-  poll(id: ID!): Poll!
-  elections: [Election!]!
-  election(id: ID!): Election!
+  candidates: [Candidate!]!
+  candidate(id: ID!): Candidate!
   electoralprocesses: [ElectoralProcess!]!
-  electoralprocess(id: ID!): [ElectoralProcess!]!
+  electoralprocess(id: ID!): ElectoralProcess!
+  election: [Election!]!
+  elections(id: ID!): Election!
+  census(id: ID!): Census!
+  censuses: [Census!]!
 }
 
-type Role {
-  id: ID!
-  name: String!
-  users: [User!]!
+"""All possible roles on app"""
+enum Role {
+  ADMIN
+  SECRETARY
 }
 
-input RoleInput {
-  name: String!
-}
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type User {
   id: ID!
   uid: String!
   firstName: String!
   lastName: String!
-  roles: [Role!]
+  roles: [Role!]!
+}
+
+type Voter {
+  firstName: String!
+  lastName: String!
+  uid: String!
 }

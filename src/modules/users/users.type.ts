@@ -1,7 +1,7 @@
+import { prop, arrayProp } from '@typegoose/typegoose'
 import { Field, ID, ObjectType } from 'type-graphql'
-import { prop, arrayProp, Ref } from '@typegoose/typegoose'
 import { required } from '../../common/constants'
-import { Role } from '../roles/roles.type'
+import { RoleType, Roles } from './roles.enum'
 
 @ObjectType()
 export class User {
@@ -14,6 +14,9 @@ export class User {
   @prop({ required })
   uid: string
 
+  @prop({ required })
+  password: string
+
   @Field()
   @prop({ required })
   firstName: string
@@ -22,6 +25,7 @@ export class User {
   @prop({ required })
   lastName: string
 
-  @arrayProp({ itemsRef: Role })
-  roles?: Ref<Role>[]
+  @arrayProp({ enum: Object.keys(Roles), default: [], type: String })
+  @Field(() => Roles)
+  roles?: [RoleType]
 }

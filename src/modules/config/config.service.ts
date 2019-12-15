@@ -10,8 +10,7 @@ type EnvConfig = {
   DB_HOST: string
   DB_NAME: string
   JWT_SECRET: string
-  LDAP_HOST: string
-  LDAP_BASE_DN: string
+  FILES_PATH: string
 }
 
 type Env = Record<string, string>
@@ -37,8 +36,7 @@ export class ConfigService {
         .required()
         .default('localhost'),
       JWT_SECRET: Joi.string().required(),
-      LDAP_HOST: Joi.string().required(),
-      LDAP_BASE_DN: Joi.string().required()
+      FILES_PATH: Joi.string().required()
     })
     const { error, value: validatedEnvConfig } = envVarsSchema.validate(
       envConfig
@@ -65,11 +63,7 @@ export class ConfigService {
     return this.envConfig.JWT_SECRET
   }
 
-  get ldapHost () {
-    return this.envConfig.LDAP_HOST
-  }
-
-  get ldapBaseDn () {
-    return this.envConfig.LDAP_BASE_DN
+  get filesPath () {
+    return this.envConfig.FILES_PATH
   }
 }
