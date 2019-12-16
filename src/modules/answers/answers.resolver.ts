@@ -5,6 +5,8 @@ import { GqlAuthGuard } from '../auth/gql.guard'
 import { AnswerInput } from './answers.input'
 import { AnswersService } from './answers.service'
 import { Answer } from './answers.type'
+import { CurrentUser } from '../auth/current-user.decorator'
+import { User } from '../users/users.type'
 
 @Resolver(() => Answer)
 @UseGuards(GqlAuthGuard)
@@ -22,7 +24,7 @@ export class AnswerResolver {
   }
 
   @Mutation(() => Answer)
-  async createAnswer (@Args('input') input: AnswerInput) {
-    return this.answersService.create(input)
+  async createAnswer (@Args('input') input: AnswerInput, @CurrentUser() user: User) {
+    return this.answersService.createAnswer(input, user)
   }
 }
