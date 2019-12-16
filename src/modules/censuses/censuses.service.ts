@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { CrudService } from '../../common/crud.service'
-import { Census } from '../censuses/censuses.type'
+import { Census } from './censuses.type'
 import { CensusInput } from './censuses.input'
 
 @Injectable()

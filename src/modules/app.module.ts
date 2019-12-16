@@ -10,8 +10,8 @@ import { PollsModule } from './polls/polls.module'
 import { ElectionsModule } from './elections/elections.module'
 import { ElectoralProcessModule } from './electoral-process/electoral-process.module'
 import { RolesModule } from './roles/roles.module'
-import { CandidatesModule } from './candidates/candidates.module'
 import { AnswersModule } from './answers/answers.module'
+import { CandidatesModule } from './candidates/candidates.module'
 import { CensusesModule } from './censuses/censuses.module'
 
 @Module({

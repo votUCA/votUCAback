@@ -8,21 +8,21 @@ import { Answer } from './answers.type'
 
 @Resolver(() => Answer)
 @UseGuards(GqlAuthGuard)
-export class AnswersResolver {
+export class AnswerResolver {
   constructor (private answersService: AnswersService) {}
 
   @Query(() => [Answer])
-  async answerss () {
+  async answers () {
     return this.answersService.findAll()
   }
 
   @Query(() => Answer)
-  async answers (@Args({ name: 'id', type: () => ID }) id: string) {
+  async answer (@Args({ name: 'id', type: () => ID }) id: string) {
     return this.answersService.findById(id)
   }
 
   @Mutation(() => Answer)
-  async createAnswers (@Args('input') input: AnswerInput) {
+  async createAnswer (@Args('input') input: AnswerInput) {
     return this.answersService.create(input)
   }
 }
