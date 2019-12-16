@@ -9,7 +9,7 @@ export class ElectionInput extends ElectoralProcessInput {
 }
 
 @InputType()
-export class VoteInput {
+export class VoteElectionInput {
   @Field(() => ID)
   candidate: string
 

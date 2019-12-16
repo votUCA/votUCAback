@@ -12,7 +12,7 @@ import { GqlAuthGuard } from '../auth/gql.guard'
 import { CandidatesService } from '../candidates/candidates.service'
 import { Candidate } from '../candidates/candidates.type'
 import { FileService } from '../files/files.service'
-import { ElectionInput, VoteInput } from './election.input'
+import { ElectionInput, VoteElectionInput } from './election.input'
 import { ElectionResultsService } from './election.results.service'
 import { ElectionsService } from './election.service'
 import { Election } from './election.type'
@@ -102,8 +102,8 @@ export class ElectionResolver {
   }
 
   @Mutation(() => Boolean)
-  async vote (
-    @Args('input') { election, candidate }: VoteInput,
+  async voteOnElection (
+    @Args('input') { election, candidate }: VoteElectionInput,
     @CurrentUser() user: User
   ) {
     const { censuses } = await this.electionsService.findById(election)

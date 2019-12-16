@@ -63,7 +63,7 @@ type ElectionResults {
   location: String!
 }
 
-union ElectoralProcess = Election
+union ElectoralProcess = Election | Poll
 
 type File {
   name: String!
@@ -81,8 +81,43 @@ type LoginPayload {
 type Mutation {
   login(input: LoginInput!): LoginPayload!
   createElection(input: ElectionInput!): Election!
-  vote(input: VoteInput!): Boolean!
+  voteOnElection(input: VoteElectionInput!): Boolean!
   uploadFile(file: Upload!): File!
+  createPoll(input: PollInput!): Poll!
+  voteOnPoll(input: VotePollInput!): Boolean!
+}
+
+type Poll {
+  id: ID!
+  start: DateTime!
+  end: DateTime!
+  description: String!
+  question: String!
+  options: [PollOption!]!
+  censuses: [Census!]!
+  results: [PollResults!]!
+}
+
+input PollInput {
+  start: DateTime!
+  end: DateTime!
+  description: String!
+  censuses: [CensusInput!]!
+  question: String!
+  options: [String!]!
+}
+
+type PollOption {
+  id: ID!
+  text: String!
+}
+
+type PollResults {
+  id: ID!
+  votes: Int!
+  option: PollOption!
+  group: String!
+  location: String!
 }
 
 type Query {
@@ -97,6 +132,8 @@ type Query {
   election(id: ID!): Election!
   census(id: ID!): Census!
   censuses: [Census!]!
+  polls: [Poll!]!
+  poll(id: ID!): Poll!
 }
 
 """All possible roles on app"""
@@ -116,9 +153,14 @@ type User {
   roles: [Role!]!
 }
 
-input VoteInput {
+input VoteElectionInput {
   candidate: ID!
   election: ID!
+}
+
+input VotePollInput {
+  option: ID!
+  poll: ID!
 }
 
 type Voter {
