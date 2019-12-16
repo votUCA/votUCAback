@@ -8,6 +8,7 @@ import { ElectionInput } from './elections.input'
 import { CandidatesService } from '../candidates/candidates.service'
 import { AnswersService } from '../answers/answers.service'
 import { ElectionResult } from './results.type'
+import { Candidate } from '../candidates/candidates.type'
 
 @Resolver(() => Election)
 @UseGuards(GqlAuthGuard)
@@ -24,6 +25,11 @@ export class ElectionsResolver {
   @Query(() => Election)
   async election (@Args({ name: 'id', type: () => ID }) id: string) {
     return this.electionsService.findById(id)
+  }
+
+  @Query(() => [Candidate])
+  async candidates (@Args({ name: 'id', type: () => ID }) id: string) {
+    return this.candidatesService.findAll({ idElection: id })
   }
 
   @Mutation(() => Election)
