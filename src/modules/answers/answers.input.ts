@@ -1,14 +1,21 @@
-import { prop } from '@typegoose/typegoose'
 import { Field, InputType } from 'type-graphql'
-import { required } from '../../common/constants'
+import { prop } from '@typegoose/typegoose'
 
 @InputType()
 export class AnswerInput {
-  @Field()
-  @prop({ required })
+  @Field(() => String)
+  @prop()
+  idElectoralProcess: string
+
+  @Field(() => String, { nullable: true })
+  @prop()
+  idPosibleAnswer?: string
+
+  @Field(() => String, { nullable: true })
+  @prop()
   idCandidate?: string
 
-  @Field()
-  @prop({ required })
-  idPosibleAnswer?: string
+  @Field(() => String, { nullable: true })
+  @prop()
+  idRectifiedAnswer?: string
 }

@@ -20,7 +20,7 @@ export class Census {
   @prop({ required })
   course: string
 
-  @Field()
+  @Field(() => [User])
   @arrayProp({ itemsRef: User })
   voters: Ref<User>[]
 }
