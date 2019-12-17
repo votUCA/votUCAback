@@ -13,4 +13,7 @@ export class CensusInput {
 
   @Field()
   course: string
+
+  @Field()
+  idElectoralProcess: string
 }
