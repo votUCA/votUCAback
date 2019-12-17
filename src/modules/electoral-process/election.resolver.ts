@@ -39,6 +39,11 @@ export class ElectionResolver {
     return this.electionsService.findAll()
   }
 
+  @Query(() => [Election])
+  async pendingElections (@CurrentUser() user: User) {
+    return this.electionsService.pendingElectionsOfVoter(user.uid)
+  }
+
   @Query(() => Election)
   async election (@Args({ name: 'id', type: () => ID }) id: string) {
     return this.electionsService.findById(id)

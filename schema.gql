@@ -129,6 +129,7 @@ type Query {
   electoralprocesses: [ElectoralProcess!]!
   electoralprocess(id: ID!): ElectoralProcess!
   elections: [Election!]!
+  pendingElections: [Election!]!
   election(id: ID!): Election!
   census(id: ID!): Census!
   censuses: [Census!]!

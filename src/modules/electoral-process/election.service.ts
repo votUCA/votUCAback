@@ -17,4 +17,24 @@ export class ElectionsService extends CrudService<
   ) {
     super(electionModel)
   }
+
+  async pendingElectionsOfVoter (uid: string) {
+    return this.electionModel.aggregate([
+      {
+        $lookup: {
+          from: 'census',
+          localField: 'censuses',
+          foreignField: '_id',
+          as: 'censuses'
+        }
+      },
+      {
+        $match: {
+          'censuses.voters.uid': uid,
+          'censuses.voters.hasVoted': false,
+          end: { $gte: new Date() }
+        }
+      }
+    ])
+  }
 }
