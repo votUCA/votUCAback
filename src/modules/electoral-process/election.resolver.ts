@@ -1,4 +1,4 @@
-import { UseGuards, UnauthorizedException } from '@nestjs/common'
+import { UnauthorizedException, UseGuards } from '@nestjs/common'
 import {
   Args,
   Mutation,
@@ -7,21 +7,21 @@ import {
   ResolveProperty,
   Resolver
 } from '@nestjs/graphql'
-import { ID, UnauthorizedError } from 'type-graphql'
+import { mongoose } from '@typegoose/typegoose'
+import { ID } from 'type-graphql'
+import { CurrentUser } from '../auth/current-user.decorator'
 import { GqlAuthGuard } from '../auth/gql.guard'
 import { CandidatesService } from '../candidates/candidates.service'
 import { Candidate } from '../candidates/candidates.type'
+import { CensusService } from '../census/census.service'
+import { Census } from '../census/census.type'
 import { FileService } from '../files/files.service'
+import { User } from '../users/users.type'
 import { ElectionInput, VoteElectionInput } from './election.input'
 import { ElectionResultsService } from './election.results.service'
 import { ElectionsService } from './election.service'
 import { Election } from './election.type'
 import { ElectionResults } from './electoral-process.results.type'
-import { CensusService } from '../census/census.service'
-import { Census } from '../census/census.type'
-import { CurrentUser } from '../auth/current-user.decorator'
-import { User } from '../users/users.type'
-import { mongoose } from '@typegoose/typegoose'
 
 @Resolver(() => Election)
 @UseGuards(GqlAuthGuard)
@@ -96,7 +96,7 @@ export class ElectionResolver {
     if (election.end < new Date()) {
       return this.electioResultsService.findAll({ election: election.id })
     }
-    throw new UnauthorizedError('Election is not finished')
+    throw new UnauthorizedException('Election is not finished')
   }
 
   @ResolveProperty(() => [Census])
