@@ -7,7 +7,7 @@ import {
   ResolveProperty,
   Resolver
 } from '@nestjs/graphql'
-import { ID } from 'type-graphql'
+import { ID, UnauthorizedError } from 'type-graphql'
 import { GqlAuthGuard } from '../auth/gql.guard'
 import { CandidatesService } from '../candidates/candidates.service'
 import { Candidate } from '../candidates/candidates.type'
@@ -93,7 +93,10 @@ export class ElectionResolver {
 
   @ResolveProperty(() => [ElectionResults])
   async results (@Parent() election: Election) {
-    return this.electioResultsService.findAll({ election: election.id })
+    if (election.end < new Date()) {
+      return this.electioResultsService.findAll({ election: election.id })
+    }
+    throw new UnauthorizedError('Election is not finished')
   }
 
   @ResolveProperty(() => [Census])

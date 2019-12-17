@@ -48,7 +48,10 @@ export class PollResolver {
 
   @ResolveProperty(() => [PollResults])
   async results (@Parent() poll: Poll) {
-    return this.pollResultsService.findAll({ poll: poll.id })
+    if (poll.end < new Date()) {
+      return this.pollResultsService.findAll({ poll: poll.id })
+    }
+    throw new UnauthorizedException('Election is open')
   }
 
   @Mutation(() => Poll)
