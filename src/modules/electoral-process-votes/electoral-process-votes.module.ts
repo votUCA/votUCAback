@@ -10,8 +10,8 @@ import { AnswersModule } from '../answers/answers.module'
 @Module({
   imports: [
     TypegooseModule.forFeature([ElectoralProcessVote]),
-    PollsModule,
-    ElectionsModule,
+    forwardRef(() => PollsModule),
+    forwardRef(() => ElectionsModule),
     UsersModule,
     forwardRef(() => AnswersModule)
   ],

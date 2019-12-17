@@ -1,4 +1,4 @@
-import { forwardRef, Module } from '@nestjs/common'
+import { Module } from '@nestjs/common'
 import { AnswerResolver } from './answers.resolver'
 import { AnswersService } from './answers.service'
 import { TypegooseModule } from 'nestjs-typegoose'
@@ -8,7 +8,7 @@ import { ElectoralProcessVotesModule } from '../electoral-process-votes/electora
 @Module({
   imports: [
     TypegooseModule.forFeature([Answer]),
-    forwardRef(() => ElectoralProcessVotesModule)],
+    ElectoralProcessVotesModule],
   providers: [AnswerResolver, AnswersService],
   exports: [AnswersService]
 })
