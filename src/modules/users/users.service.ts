@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common'
 import { ReturnModelType } from '@typegoose/typegoose'
-import * as bcrypt from 'bcrypt'
+import * as bcrypt from 'bcryptjs'
 import { InjectModel } from 'nestjs-typegoose'
 import { CrudService } from '../../common/crud.service'
 import { LoginInput } from './login.input'
