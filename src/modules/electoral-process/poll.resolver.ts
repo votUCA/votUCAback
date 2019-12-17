@@ -113,5 +113,6 @@ export class PollResolver {
       },
       { $inc: { votes: 1 } }
     )
+    return true
   }
 }
