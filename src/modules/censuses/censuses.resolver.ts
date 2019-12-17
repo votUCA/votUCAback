@@ -7,6 +7,7 @@ import { UsersService } from '../users/users.service'
 import { CurrentUser } from '../auth/current-user.decorator'
 import { ElectionsService } from '../elections/elections.service'
 import { ElectoralProcessVotesService } from '../electoral-process-votes/electoral-process-votes.service'
+import { RemainingVotes } from './remainingVotes.type'
 
 @Resolver(() => Census)
 export class CensusesResolver {
@@ -27,7 +28,7 @@ export class CensusesResolver {
     return this.censusesService.findById(id)
   }
 
-  @Query(() => [Census])
+  @Query(() => [RemainingVotes])
   async remainingElectoralProcesses (@CurrentUser() user: User) {
     const actualDate = new Date()
     // Obtenemos todos los censos donde esté el usuario
