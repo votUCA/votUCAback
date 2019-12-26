@@ -21,3 +21,18 @@ export class UserInput {
   @Field(() => [Role], { defaultValue: [] })
   roles?: [Role]
 }
+
+@InputType()
+export class UserUpdateInput {
+  @Field({ nullable: true })
+  password?: string
+
+  @Field({ nullable: true })
+  firstName?: string
+
+  @Field({ nullable: true })
+  lastName?: string
+
+  @Field(() => [Role], { nullable: true })
+  roles?: [Role]
+}
