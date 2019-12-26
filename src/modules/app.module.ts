@@ -1,19 +1,17 @@
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { TypegooseModule } from 'nestjs-typegoose'
+import { _10_MB } from '../common/constants'
+import { UploadScalar } from '../common/scalars/upload'
+import { TypegooseConfigService } from '../common/typegoose-config'
 import { AuthModule } from './auth/auth.module'
+import { CandidatesModule } from './candidates/candidates.module'
 import { ConfigModule } from './config/config.module'
 import { ConfigService } from './config/config.service'
-import { UsersModule } from './users/users.module'
-import { TypegooseConfigService } from '../common/typegoose-config'
-import { PollsModule } from './polls/polls.module'
-import { ElectionsModule } from './elections/elections.module'
 import { ElectoralProcessModule } from './electoral-process/electoral-process.module'
-import { RolesModule } from './roles/roles.module'
-import { AnswersModule } from './answers/answers.module'
-import { CandidatesModule } from './candidates/candidates.module'
-import { CensusesModule } from './censuses/censuses.module'
-import { ElectoralProcessVotesModule } from './electoral-process-votes/electoral-process-votes.module'
+import { FilesModule } from './files/files.module'
+import { UsersModule } from './users/users.module'
+import { CensusModule } from './census/census.module'
 
 @Module({
   imports: [
@@ -25,20 +23,22 @@ import { ElectoralProcessVotesModule } from './electoral-process-votes/electoral
       useFactory: (configService: ConfigService) => ({
         autoSchemaFile: 'schema.gql',
         context: ({ req }) => ({ req }),
-        debug: configService.debug
+        debug: configService.debug,
+        playground: configService.debug,
+        uploads: {
+          maxFileSize: _10_MB,
+          maxFiles: 5
+        }
       }),
       inject: [ConfigService]
     }),
     UsersModule,
     AuthModule,
-    PollsModule,
-    ElectionsModule,
+    FilesModule,
     ElectoralProcessModule,
-    RolesModule,
-    AnswersModule,
     CandidatesModule,
-    CensusesModule,
-    ElectoralProcessVotesModule
-  ]
+    CensusModule
+  ],
+  providers: [UploadScalar]
 })
 export class AppModule {}

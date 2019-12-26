@@ -1,6 +1,7 @@
-import { prop } from '@typegoose/typegoose'
-import { Field, ID, ObjectType } from 'type-graphql'
-import { required } from '../../common/constants'
+import { ObjectType, Field, ID } from 'type-graphql'
+import { Election } from '../electoral-process/election.type'
+import { Ref, prop } from '@typegoose/typegoose'
+import { required, nullable } from '../../common/constants'
 
 @ObjectType()
 export class Candidate {
@@ -11,9 +12,20 @@ export class Candidate {
 
   @Field()
   @prop({ required })
-  name: string
+  firstName: string
 
   @Field()
   @prop({ required })
-  idElection: string
+  lastName: string
+
+  @Field({ nullable })
+  @prop()
+  about?: string
+
+  @Field({ nullable })
+  @prop()
+  image?: string
+
+  @prop({ required })
+  election: Ref<Election>
 }
