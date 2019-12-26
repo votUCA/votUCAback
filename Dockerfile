@@ -8,6 +8,7 @@ FROM base AS dependencies
 RUN yarn install --production
 RUN cp -R node_modules prod_node_modules
 RUN yarn install
+RUN cp -R node_modules/graphql-voyager prod_node_modules/
 
 FROM dependencies AS source
 COPY --chown=node:node . .
