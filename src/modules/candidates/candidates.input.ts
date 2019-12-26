@@ -1,10 +1,17 @@
 import { Field, InputType } from 'type-graphql'
+import { nullable } from '../../common/constants'
 
 @InputType()
 export class CandidateInput {
   @Field()
-  name: string
+  firstName: string
 
   @Field()
-  idElection: string
+  lastName: string
+
+  @Field({ nullable })
+  about?: string
+
+  // @Field({ nullable })
+  // image?: string
 }

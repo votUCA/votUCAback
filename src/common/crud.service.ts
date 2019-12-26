@@ -23,7 +23,7 @@ export class CrudService<M, I> {
     return this.model.findOne(conditions)
   }
 
-  async create (data: I): Promise<DocumentType<M>> {
+  async create (data: I | I[]): Promise<DocumentType<M>> {
     return this.model.create(data)
   }
 
@@ -31,7 +31,7 @@ export class CrudService<M, I> {
     return this.model.findByIdAndDelete(ref)
   }
 
-  async update (ref: Ref<M> | string, data: I): Promise<DocumentType<M>> {
+  async update (ref: Ref<M> | string, data: any): Promise<DocumentType<M>> {
     return this.model.findByIdAndUpdate(ref, data)
   }
 }

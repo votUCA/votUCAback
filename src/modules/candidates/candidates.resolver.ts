@@ -1,8 +1,7 @@
 import { UseGuards } from '@nestjs/common'
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { Args, Query, Resolver } from '@nestjs/graphql'
 import { ID } from 'type-graphql'
 import { GqlAuthGuard } from '../auth/gql.guard'
-import { CandidateInput } from './candidates.input'
 import { CandidatesService } from './candidates.service'
 import { Candidate } from './candidates.type'
 
@@ -19,10 +18,5 @@ export class CandidatesResolver {
   @Query(() => Candidate)
   async candidate (@Args({ name: 'id', type: () => ID }) id: string) {
     return this.candidatesService.findById(id)
-  }
-
-  @Mutation(() => Candidate)
-  async createCandidate (@Args('input') input: CandidateInput) {
-    return this.candidatesService.create(input)
   }
 }
