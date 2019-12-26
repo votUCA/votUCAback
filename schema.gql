@@ -132,7 +132,7 @@ type Query {
   pendingElections: [Election!]!
   election(id: ID!): Election!
   census(id: ID!): Census!
-  censues(skip: Int = 0, limit: Int = 0): [Census!]!
+  censuses(skip: Int = 0, limit: Int = 0): [Census!]!
   polls: [Poll!]!
   poll(id: ID!): Poll!
 }

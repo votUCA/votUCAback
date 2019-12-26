@@ -13,7 +13,7 @@ export class CensusResolver {
   }
 
   @Query(() => [Census])
-  async censues (@Args({ type: () => Int, name: 'limit', defaultValue: 0 }) limit: number, @Args({ type: () => Int, name: 'skip', defaultValue: 0 }) skip: number) {
+  async censuses (@Args({ type: () => Int, name: 'limit', defaultValue: 0 }) limit: number, @Args({ type: () => Int, name: 'skip', defaultValue: 0 }) skip: number) {
     return this.censusService.findAll({ }, { skip, limit })
   }
 }
