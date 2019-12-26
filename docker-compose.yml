@@ -3,21 +3,11 @@ services:
   mongo:
     image: mongo:4.2.1-bionic
   mongo-seeder:
-    image: docker.pkg.github.com/votUCA/seeder/seeder:0.0.1
+    image: docker.pkg.github.com/votUCA/seeder/seeder:0.0.3
     environment:
       - DB_NAME=${DB_NAME}
       - DB_PORT=${DB_PORT}
       - DB_HOST=mongo
-    links:
-      - mongo
-    depends_on:
-      - mongo
-  app:
-    image: docker.pkg.github.com/votUCA/votUCAback/api:0.0.3
-    env_file:
-      - .env
-    ports:
-      - '${PORT}:${PORT}'
     links:
       - mongo
     depends_on:
