@@ -126,8 +126,14 @@ type Query {
   me: User!
   candidates: [Candidate!]!
   candidate(id: ID!): Candidate!
-  electoralprocesses: [ElectoralProcess!]!
-  electoralprocess(id: ID!): ElectoralProcess!
+  electoralProcesses: [ElectoralProcess!]!
+  electoralProcess(id: ID!): ElectoralProcess!
+
+  """Devuelve aquellos procesos electorales que aún no han sido iniciados"""
+  futureElectoralProcesses: [ElectoralProcess!]!
+
+  """Devuelve aquellos procesos electorales que han sido finalizados"""
+  pastElectoralProcesses: [ElectoralProcess!]!
   elections: [Election!]!
   pendingElections: [Election!]!
   election(id: ID!): Election!
