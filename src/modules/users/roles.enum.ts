@@ -1,13 +1,11 @@
 import { registerEnumType } from 'type-graphql'
 
-export const Roles = {
-  ADMIN: 'ADMIN',
-  SECRETARY: 'SECRETARY'
+export enum Role {
+  ADMIN = 'ADMIN',
+  SECRETARY = 'SECRETARY'
 }
 
-export type RoleType = keyof typeof Roles
-
-registerEnumType(Roles, {
+registerEnumType(Role, {
   name: 'Role',
   description: 'All possible roles on app'
 })

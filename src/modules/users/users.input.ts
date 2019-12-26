@@ -1,5 +1,5 @@
 import { Field, InputType } from 'type-graphql'
-import { RoleType, Roles } from './roles.enum'
+import { Role } from './roles.enum'
 import { Validate } from 'class-validator'
 import { UID } from '../../common/validators'
 
@@ -18,6 +18,6 @@ export class UserInput {
   @Field()
   lastName: string
 
-  @Field(() => [Roles], { defaultValue: [] })
-  roles?: [RoleType]
+  @Field(() => [Role], { defaultValue: [] })
+  roles?: [Role]
 }

@@ -9,4 +9,3 @@ dist
 *.launch
 .settings/
 *.sublime-workspace
-schema.gql

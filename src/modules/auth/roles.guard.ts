@@ -1,7 +1,6 @@
-import { GqlExecutionContext } from '@nestjs/graphql'
-import { ExecutionContext, CanActivate, Injectable } from '@nestjs/common'
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
-import { User } from '../users/users.type'
+import { GqlExecutionContext } from '@nestjs/graphql'
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -13,9 +12,8 @@ export class RolesGuard implements CanActivate {
       return true
     }
     const ctx = GqlExecutionContext.create(context)
-    console.log(ctx)
     const { req } = ctx.getContext()
-    const user: User = req.user
+    const user = req.user
     const hasRole = () =>
       user.roles.some(role => !!roles.find(item => item === role))
 
