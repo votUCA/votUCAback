@@ -11,7 +11,7 @@ import { ID } from 'type-graphql'
 import { GqlAuthGuard } from '../auth/gql.guard'
 import { CensusService } from '../census/census.service'
 import { FileService } from '../files/files.service'
-import { PollInput, VotePollInput } from './poll.input'
+import { PollInput, VotePollInput, UpdatePollInput } from './poll.input'
 import { PollsService } from './poll.service'
 import { Poll, PollResultsArgs } from './poll.type'
 import { Census } from '../census/census.type'
@@ -53,7 +53,7 @@ export class PollResolver {
       console.log(res)
       return res
     }
-    throw new UnauthorizedException('Election is not finished')
+    throw new UnauthorizedException('Poll is not finished')
   }
 
   @Mutation(() => Poll)
@@ -119,5 +119,10 @@ export class PollResolver {
       { $inc: { votes: 1 } }
     )
     return true
+  }
+
+  @Mutation(() => Poll)
+  async modifyPoll (@Args({ name: 'id', type: () => ID }) id: string, @Args('input') data: UpdatePollInput) {
+    return this.pollsService.update(id, data)
   }
 }

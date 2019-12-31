@@ -17,7 +17,7 @@ import { CensusService } from '../census/census.service'
 import { Census } from '../census/census.type'
 import { FileService } from '../files/files.service'
 import { User } from '../users/users.type'
-import { ElectionInput, VoteElectionInput } from './election.input'
+import { ElectionInput, VoteElectionInput, UpdateElectionInput } from './election.input'
 import { ElectionResultsService } from './election.results.service'
 import { ElectionsService } from './election.service'
 import { Election, ElectionResultsArgs } from './election.type'
@@ -144,5 +144,10 @@ export class ElectionResolver {
       { $inc: { votes: 1 } }
     )
     return true
+  }
+
+  @Mutation(() => Election)
+  async modifyElection (@Args({ name: 'id', type: () => ID }) id: string, @Args('input') data: UpdateElectionInput) {
+    return this.electionsService.update(id, data)
   }
 }

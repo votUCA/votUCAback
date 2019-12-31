@@ -78,12 +78,15 @@ type LoginPayload {
 }
 
 type Mutation {
+  modifyUser(input: UserUpdateInput!, id: ID!): User!
   login(input: LoginInput!): LoginPayload!
   createElection(input: ElectionInput!): Election!
   voteOnElection(input: VoteElectionInput!): Boolean!
+  modifyElection(input: UpdateElectionInput!, id: ID!): Election!
   uploadFile(file: Upload!): File!
   createPoll(input: PollInput!): Poll!
   voteOnPoll(input: VotePollInput!): Boolean!
+  modifyPoll(input: UpdatePollInput!, id: ID!): Poll!
 }
 
 type Poll {
@@ -148,6 +151,23 @@ enum Role {
   SECRETARY
 }
 
+input UpdateElectionInput {
+  start: DateTime
+  end: DateTime
+  description: String
+  censuses: [CensusInput!]
+  candidates: [CandidateInput!]
+}
+
+input UpdatePollInput {
+  start: DateTime
+  end: DateTime
+  description: String
+  censuses: [CensusInput!]
+  question: String
+  options: [String!]
+}
+
 """The `Upload` scalar type represents a file upload."""
 scalar Upload
 
@@ -157,6 +177,21 @@ type User {
   firstName: String!
   lastName: String!
   roles: [Role!]!
+}
+
+input UserInput {
+  uid: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+  roles: [Role!] = []
+}
+
+input UserUpdateInput {
+  password: String
+  firstName: String
+  lastName: String
+  roles: [Role!]
 }
 
 input VoteElectionInput {

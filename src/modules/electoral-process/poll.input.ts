@@ -1,5 +1,5 @@
 import { InputType, Field, ID } from 'type-graphql'
-import { ElectoralProcessInput } from './electoral-process.abstract'
+import { ElectoralProcessInput, UpdateElectoralProcessInput } from './electoral-process.abstract'
 
 @InputType()
 export class PollInput extends ElectoralProcessInput {
@@ -8,6 +8,15 @@ export class PollInput extends ElectoralProcessInput {
 
   @Field(() => [String])
   options: string[]
+}
+
+@InputType()
+export class UpdatePollInput extends UpdateElectoralProcessInput {
+  @Field({ nullable: true })
+  question?: string
+
+  @Field(() => [String], { nullable: true })
+  options?: string[]
 }
 
 @InputType()

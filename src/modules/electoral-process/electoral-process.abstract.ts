@@ -41,3 +41,18 @@ export class ElectoralProcessInput {
   @Field(() => [CensusInput])
   censuses: CensusInput[]
 }
+
+@InputType({ isAbstract })
+export class UpdateElectoralProcessInput {
+  @Field({ nullable: true })
+  start?: Date
+
+  @Field({ nullable: true })
+  end?: Date
+
+  @Field({ nullable: true })
+  description?: string
+
+  @Field(() => [CensusInput], { nullable: true })
+  censuses?: CensusInput[]
+}
