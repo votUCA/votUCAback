@@ -20,7 +20,7 @@ import { User } from '../users/users.type'
 import { ElectionInput, VoteElectionInput } from './election.input'
 import { ElectionResultsService } from './election.results.service'
 import { ElectionsService } from './election.service'
-import { Election } from './election.type'
+import { Election, ElectionResultsArgs } from './election.type'
 import { ElectionResults } from './electoral-process.results.type'
 
 @Resolver(() => Election)
@@ -28,7 +28,7 @@ import { ElectionResults } from './electoral-process.results.type'
 export class ElectionResolver {
   constructor (
     private readonly electionsService: ElectionsService,
-    private readonly electioResultsService: ElectionResultsService,
+    private readonly electionResultsService: ElectionResultsService,
     private readonly candidatesService: CandidatesService,
     private readonly filesService: FileService,
     private readonly censusService: CensusService
@@ -81,7 +81,7 @@ export class ElectionResolver {
 
     for (const census of censusesOnDB) {
       for (const candidate of candidatesOnDB) {
-        await this.electioResultsService.create({
+        await this.electionResultsService.create({
           candidate: candidate.id,
           census: census.id,
           election: election.id
@@ -97,9 +97,11 @@ export class ElectionResolver {
   }
 
   @ResolveProperty(() => [ElectionResults])
-  async results (@Parent() election: Election) {
+  async results (@Parent() election: Election, @Args() { location, group }: ElectionResultsArgs) {
     if (election.end < new Date()) {
-      return this.electioResultsService.findAll({ election: election.id })
+      const res = await this.electionResultsService.groupResults(election.id, group, location)
+      console.log(res)
+      return res
     }
     throw new UnauthorizedException('Election is not finished')
   }
@@ -133,7 +135,7 @@ export class ElectionResolver {
         'voters.$.hasVoted': true
       }
     })
-    await this.electioResultsService.findOneAndUpdate(
+    await this.electionResultsService.findOneAndUpdate(
       {
         candidate: mongoose.Types.ObjectId(candidate),
         election: mongoose.Types.ObjectId(election),

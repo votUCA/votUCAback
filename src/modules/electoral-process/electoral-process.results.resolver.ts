@@ -17,18 +17,6 @@ export class ElectionResultsResolver {
   async candidate (@Parent() { candidate }: ElectionResults) {
     return this.candidatesService.findById(candidate)
   }
-
-  @ResolveProperty(() => String)
-  async group (@Parent() results: ElectionResults) {
-    const census = await this.censusService.findById(results.census)
-    return census.group
-  }
-
-  @ResolveProperty(() => String)
-  async location (@Parent() results: ElectionResults) {
-    const census = await this.censusService.findById(results.census)
-    return census.location
-  }
 }
 
 @Resolver(() => PollResults)

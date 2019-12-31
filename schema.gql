@@ -43,7 +43,7 @@ type Election {
   end: DateTime!
   description: String!
   candidates: [Candidate!]!
-  results: [ElectionResults!]!
+  results(group: Boolean = false, location: Boolean = false): [ElectionResults!]!
   censuses: [Census!]!
 }
 
@@ -56,11 +56,10 @@ input ElectionInput {
 }
 
 type ElectionResults {
-  id: ID!
   votes: Int!
+  group: String
+  location: String
   candidate: Candidate!
-  group: String!
-  location: String!
 }
 
 union ElectoralProcess = Election | Poll
@@ -115,9 +114,9 @@ type PollOption {
 type PollResults {
   id: ID!
   votes: Int!
+  group: String
+  location: String
   option: PollOption!
-  group: String!
-  location: String!
 }
 
 type Query {
