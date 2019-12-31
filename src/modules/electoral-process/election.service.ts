@@ -30,8 +30,9 @@ export class ElectionsService extends CrudService<
       },
       {
         $match: {
-          'censuses.voters.uid': uid,
-          'censuses.voters.hasVoted': false,
+          'censuses.voters': {
+            $elemMatch: { uid, hasVoted: false }
+          },
           end: { $gte: new Date() }
         }
       }

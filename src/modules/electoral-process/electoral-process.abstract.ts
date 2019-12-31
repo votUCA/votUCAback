@@ -25,6 +25,10 @@ export class ElectoralProcess {
 
   @arrayProp({ required, itemsRef: Census })
   censuses: Ref<Census>[]
+
+  @Field()
+  @prop({ required })
+  rectifyVote: boolean
 }
 
 @InputType({ isAbstract })
@@ -37,6 +41,9 @@ export class ElectoralProcessInput {
 
   @Field()
   description: string
+
+  @Field()
+  rectifyVote: boolean
 
   @Field(() => [CensusInput])
   censuses: CensusInput[]

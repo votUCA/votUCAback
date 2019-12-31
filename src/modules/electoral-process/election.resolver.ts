@@ -20,8 +20,9 @@ import { User } from '../users/users.type'
 import { ElectionInput, VoteElectionInput, UpdateElectionInput } from './election.input'
 import { ElectionResultsService } from './election.results.service'
 import { ElectionsService } from './election.service'
-import { Election, ElectionResultsArgs } from './election.type'
+import { Election, ElectionVote, ElectionResultsArgs } from './election.type'
 import { ElectionResults } from './electoral-process.results.type'
+import { ElectionVotesService } from './election.votes.service'
 
 @Resolver(() => Election)
 @UseGuards(GqlAuthGuard)
@@ -31,12 +32,20 @@ export class ElectionResolver {
     private readonly electionResultsService: ElectionResultsService,
     private readonly candidatesService: CandidatesService,
     private readonly filesService: FileService,
-    private readonly censusService: CensusService
+    private readonly censusService: CensusService,
+    private readonly electionVotesService: ElectionVotesService
   ) {}
 
   @Query(() => [Election])
   async elections () {
     return this.electionsService.findAll()
+  }
+
+  @Query(() => [ElectionVote])
+  async userVotesOnElection (@Args({ name: 'electionId', type: () => String }) electionId: string,
+                             @CurrentUser() user: User) {
+    const election = await this.electionsService.findById(electionId)
+    return this.electionVotesService.findUserVotes(user, election)
   }
 
   @Query(() => [Election])
@@ -113,29 +122,59 @@ export class ElectionResolver {
 
   @Mutation(() => Boolean)
   async voteOnElection (
-    @Args('input') { election, candidate }: VoteElectionInput,
+    @Args('input') { election, candidate, rectifiedVote }: VoteElectionInput,
     @CurrentUser() user: User
   ) {
-    const { censuses } = await this.electionsService.findById(election)
+    let hasVoted = true
+
+    const rectify = rectifiedVote !== undefined && rectifiedVote.length > 0
+
+    const currentElection = await this.electionsService.findById(election)
     const match = {
-      _id: { $in: censuses },
+      _id: { $in: currentElection.censuses },
       'voters.uid': user.uid
     }
     const voter = await this.censusService.findVoter(match)
     if (!voter) {
       throw new UnauthorizedException(
-        'Apprently user is not allowed to vote in this election'
+        'Apparently user is not allowed to vote in this election'
       )
     }
-    if (voter.hasVoted) {
+
+    const votes = await this.electionVotesService.findAll({ user: user, election: election })
+
+    if (!rectify) {
+      hasVoted = votes.length > 0
+    } else {
+      hasVoted = !currentElection.rectifyVote
+
+      if (!hasVoted) {
+        const oldVote = await this.electionVotesService.findById(rectifiedVote)
+
+        if (oldVote) {
+          await this.electioResultsService.findOneAndUpdate(
+            {
+              election: mongoose.Types.ObjectId(election),
+              candidate: oldVote.candidate,
+              census: voter.census
+            },
+            { $inc: { votes: -1 } }
+          )
+
+          await this.electionVotesService.delete(rectifiedVote)
+        } else {
+          throw new UnauthorizedException('Vote to be rectified not found')
+        }
+      } else {
+        throw new UnauthorizedException("The election doesn't accept rectify")
+      }
+    }
+
+    if (hasVoted) {
       throw new UnauthorizedException('User has already Voted')
     }
-    await this.censusService.findOneAndUpdate(match, {
-      $set: {
-        'voters.$.hasVoted': true
-      }
-    })
-    await this.electionResultsService.findOneAndUpdate(
+
+    await this.electioResultsService.findOneAndUpdate(
       {
         candidate: mongoose.Types.ObjectId(candidate),
         election: mongoose.Types.ObjectId(election),
@@ -143,6 +182,13 @@ export class ElectionResolver {
       },
       { $inc: { votes: 1 } }
     )
+
+    await this.electionVotesService.create({
+      election: mongoose.Types.ObjectId(election),
+      candidate: mongoose.Types.ObjectId(candidate),
+      user: user
+    })
+
     return true
   }
 

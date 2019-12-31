@@ -1,7 +1,8 @@
-import { arrayProp, prop } from '@typegoose/typegoose'
+import { arrayProp, prop, Ref } from '@typegoose/typegoose'
 import { Field, ID, ObjectType, ArgsType } from 'type-graphql'
 import { required } from '../../common/constants'
 import { ElectoralProcess } from './electoral-process.abstract'
+import { User } from '../users/users.type'
 
 @ObjectType()
 export class PollOption {
@@ -24,6 +25,30 @@ export class Poll extends ElectoralProcess {
   @Field(() => [PollOption])
   @arrayProp({ items: PollOption, required })
   options: PollOption[]
+
+  @Field()
+  @prop({ required })
+  numVotesAllowed: number
+}
+
+@ObjectType()
+export class PollVote {
+  @Field(() => ID)
+  get id (this: any) {
+    return this._id || this._doc._id
+  }
+
+  @Field(() => String)
+  @prop({ required, ref: 'User' })
+  user: Ref<User>
+
+  @Field(() => String)
+  @prop({ required, ref: 'Poll' })
+  poll: Ref<Poll>
+
+  @Field(() => String)
+  @prop({ required, ref: 'PollOption' })
+  option: Ref<PollOption>
 }
 
 @ArgsType()

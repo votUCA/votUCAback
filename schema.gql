@@ -42,6 +42,7 @@ type Election {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   candidates: [Candidate!]!
   results(group: Boolean = false, location: Boolean = false): [ElectionResults!]!
   censuses: [Census!]!
@@ -51,6 +52,7 @@ input ElectionInput {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   censuses: [CensusInput!]!
   candidates: [CandidateInput!]!
 }
@@ -60,6 +62,13 @@ type ElectionResults {
   group: String
   location: String
   candidate: Candidate!
+}
+
+type ElectionVote {
+  id: ID!
+  user: ID!
+  election: ID!
+  candidate: ID!
 }
 
 union ElectoralProcess = Election | Poll
@@ -94,8 +103,10 @@ type Poll {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   question: String!
   options: [PollOption!]!
+  numVotesAllowed: Float!
   censuses: [Census!]!
   results(group: Boolean = false, location: Boolean = false): [PollResults!]!
 }
@@ -104,9 +115,11 @@ input PollInput {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   censuses: [CensusInput!]!
   question: String!
   options: [String!]!
+  numVotesAllowed: Float!
 }
 
 type PollOption {
@@ -120,6 +133,13 @@ type PollResults {
   group: String
   location: String
   option: PollOption!
+}
+
+type PollVote {
+  id: ID!
+  user: String!
+  poll: String!
+  option: String!
 }
 
 type Query {
@@ -137,12 +157,14 @@ type Query {
   """Devuelve aquellos procesos electorales que han sido finalizados"""
   pastElectoralProcesses: [ElectoralProcess!]!
   elections: [Election!]!
+  userVotesOnElection(electionId: String!): [ElectionVote!]!
   pendingElections: [Election!]!
   election(id: ID!): Election!
   census(id: ID!): Census!
-  censuses: [Census!]!
+  censuses(skip: Int = 0, limit: Int = 0): [Census!]!
   polls: [Poll!]!
   poll(id: ID!): Poll!
+  userVotesOnPoll(pollId: String!): [PollVote!]!
 }
 
 """All possible roles on app"""
@@ -197,11 +219,13 @@ input UserUpdateInput {
 input VoteElectionInput {
   candidate: ID!
   election: ID!
+  rectifiedVote: ID
 }
 
 input VotePollInput {
   option: ID!
   poll: ID!
+  rectifiedVote: ID
 }
 
 type Voter {
