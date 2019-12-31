@@ -42,6 +42,7 @@ type Election {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   candidates: [Candidate!]!
   results: [ElectionResults!]!
   censuses: [Census!]!
@@ -51,6 +52,7 @@ input ElectionInput {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   censuses: [CensusInput!]!
   candidates: [CandidateInput!]!
 }
@@ -61,6 +63,13 @@ type ElectionResults {
   candidate: Candidate!
   group: String!
   location: String!
+}
+
+type ElectionVote {
+  id: ID!
+  user: ID!
+  election: ID!
+  candidate: ID!
 }
 
 union ElectoralProcess = Election | Poll
@@ -92,8 +101,10 @@ type Poll {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   question: String!
   options: [PollOption!]!
+  numVotesAllowed: Float!
   censuses: [Census!]!
   results: [PollResults!]!
 }
@@ -102,9 +113,11 @@ input PollInput {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   censuses: [CensusInput!]!
   question: String!
   options: [String!]!
+  numVotesAllowed: Float!
 }
 
 type PollOption {
@@ -118,6 +131,13 @@ type PollResults {
   option: PollOption!
   group: String!
   location: String!
+}
+
+type PollVote {
+  id: ID!
+  user: String!
+  poll: String!
+  option: String!
 }
 
 type Query {
@@ -135,12 +155,14 @@ type Query {
   """Devuelve aquellos procesos electorales que han sido finalizados"""
   pastElectoralProcesses: [ElectoralProcess!]!
   elections: [Election!]!
+  userVotesOnElection(electionId: String!): [ElectionVote!]!
   pendingElections: [Election!]!
   election(id: ID!): Election!
   census(id: ID!): Census!
   censuses(skip: Int = 0, limit: Int = 0): [Census!]!
   polls: [Poll!]!
   poll(id: ID!): Poll!
+  userVotesOnPoll(pollId: String!): [PollVote!]!
 }
 
 """All possible roles on app"""
@@ -163,11 +185,13 @@ type User {
 input VoteElectionInput {
   candidate: ID!
   election: ID!
+  rectifiedVote: ID
 }
 
 input VotePollInput {
   option: ID!
   poll: ID!
+  rectifiedVote: ID
 }
 
 type Voter {
