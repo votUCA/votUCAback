@@ -8,6 +8,9 @@ export class PollInput extends ElectoralProcessInput {
 
   @Field(() => [String])
   options: string[]
+
+  @Field()
+  numVotesAllowed: number
 }
 
 @InputType()
@@ -17,4 +20,8 @@ export class VotePollInput {
 
   @Field(() => ID)
   poll: string
+
+  // Rellenar si rectifica voto
+  @Field(() => ID)
+  rectifiedVote: string
 }

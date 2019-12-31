@@ -20,6 +20,7 @@ import { PollResultsService } from './poll.results.service'
 import { CurrentUser } from '../auth/current-user.decorator'
 import { User } from '../users/users.type'
 import { mongoose } from '@typegoose/typegoose'
+import { PollVoteService } from './poll.votes.service'
 
 @Resolver(() => Poll)
 @UseGuards(GqlAuthGuard)
@@ -28,7 +29,8 @@ export class PollResolver {
     private readonly pollsService: PollsService,
     private readonly filesService: FileService,
     private readonly censusService: CensusService,
-    private readonly pollResultsService: PollResultsService
+    private readonly pollResultsService: PollResultsService,
+    private readonly pollVoteService: PollVoteService
   ) {}
 
   @Query(() => [Poll])
@@ -86,12 +88,16 @@ export class PollResolver {
 
   @Mutation(() => Boolean)
   async voteOnPoll (
-    @Args('input') { poll, option }: VotePollInput,
+    @Args('input') { poll, option, rectifiedVote }: VotePollInput,
     @CurrentUser() user: User
   ) {
-    const { censuses } = await this.pollsService.findById(poll)
+    let hasVoted = true
+
+    const rectify = rectifiedVote.length > 0
+
+    const currentPoll = await this.pollsService.findById(poll)
     const match = {
-      _id: { $in: censuses },
+      _id: { $in: currentPoll.censuses },
       'voters.uid': user.uid
     }
     const voter = await this.censusService.findVoter(match)
@@ -100,14 +106,40 @@ export class PollResolver {
         'Apprently user is not allowed to vote in this election'
       )
     }
-    if (voter.hasVoted) {
+
+    const votes = await this.pollVoteService.findAll({ user: user, poll: poll })
+
+    if (!rectify) {
+      hasVoted = votes.length >= currentPoll.numVotesAllowed
+    } else {
+      hasVoted = !currentPoll.rectifyVote
+
+      if (!hasVoted) {
+        const oldVote = await this.pollVoteService.findById(rectifiedVote)
+
+        if (oldVote) {
+          await this.pollResultsService.findOneAndUpdate(
+            {
+              poll: mongoose.Types.ObjectId(poll),
+              option: oldVote.option,
+              census: voter.census
+            },
+            { $inc: { votes: -1 } }
+          )
+
+          await this.pollVoteService.delete(rectifiedVote)
+        } else {
+          throw new UnauthorizedException('Vote to be rectified not found')
+        }
+      } else {
+        throw new UnauthorizedException("The poll doesn't accept rectify")
+      }
+    }
+
+    if (hasVoted) {
       throw new UnauthorizedException('User has already Voted')
     }
-    await this.censusService.findOneAndUpdate(match, {
-      $set: {
-        'voters.$.hasVoted': true
-      }
-    })
+
     await this.pollResultsService.findOneAndUpdate(
       {
         poll: mongoose.Types.ObjectId(poll),
@@ -116,6 +148,13 @@ export class PollResolver {
       },
       { $inc: { votes: 1 } }
     )
+
+    await this.pollVoteService.create({
+      poll: mongoose.Types.ObjectId(poll),
+      option: mongoose.Types.ObjectId(option),
+      user: user
+    })
+
     return true
   }
 }

@@ -42,6 +42,7 @@ type Election {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   candidates: [Candidate!]!
   results: [ElectionResults!]!
   censuses: [Census!]!
@@ -51,6 +52,7 @@ input ElectionInput {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   censuses: [CensusInput!]!
   candidates: [CandidateInput!]!
 }
@@ -61,6 +63,10 @@ type ElectionResults {
   candidate: Candidate!
   group: String!
   location: String!
+}
+
+type ElectionVote {
+  id: ID!
 }
 
 union ElectoralProcess = Election | Poll
@@ -92,8 +98,10 @@ type Poll {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   question: String!
   options: [PollOption!]!
+  numVotesAllowed: Float!
   censuses: [Census!]!
   results: [PollResults!]!
 }
@@ -102,9 +110,11 @@ input PollInput {
   start: DateTime!
   end: DateTime!
   description: String!
+  rectifyVote: Boolean!
   censuses: [CensusInput!]!
   question: String!
   options: [String!]!
+  numVotesAllowed: Float!
 }
 
 type PollOption {
@@ -118,6 +128,10 @@ type PollResults {
   option: PollOption!
   group: String!
   location: String!
+}
+
+type PollVote {
+  id: ID!
 }
 
 type Query {
@@ -168,6 +182,7 @@ input VoteElectionInput {
 input VotePollInput {
   option: ID!
   poll: ID!
+  rectifiedVote: ID!
 }
 
 type Voter {
