@@ -11,9 +11,9 @@ import { ID } from 'type-graphql'
 import { GqlAuthGuard } from '../auth/gql.guard'
 import { CensusService } from '../census/census.service'
 import { FileService } from '../files/files.service'
-import { PollInput, VotePollInput } from './poll.input'
+import { PollInput, VotePollInput, UpdatePollInput } from './poll.input'
 import { PollsService } from './poll.service'
-import { Poll, PollVote } from './poll.type'
+import { Poll, PollResultsArgs, PollVote } from './poll.type'
 import { Census } from '../census/census.type'
 import { PollResults } from './electoral-process.results.type'
 import { PollResultsService } from './poll.results.service'
@@ -56,11 +56,13 @@ export class PollResolver {
   }
 
   @ResolveProperty(() => [PollResults])
-  async results (@Parent() poll: Poll) {
+  async results (@Parent() poll: Poll, @Args() { location, group }: PollResultsArgs) {
     if (poll.end < new Date()) {
-      return this.pollResultsService.findAll({ poll: poll.id })
+      const res = await this.pollResultsService.groupResults(poll.id, group, location)
+      console.log(res)
+      return res
     }
-    throw new UnauthorizedException('Election is open')
+    throw new UnauthorizedException('Poll is not finished')
   }
 
   @Mutation(() => Poll)
@@ -163,5 +165,10 @@ export class PollResolver {
     })
 
     return true
+  }
+
+  @Mutation(() => Poll)
+  async modifyPoll (@Args({ name: 'id', type: () => ID }) id: string, @Args('input') data: UpdatePollInput) {
+    return this.pollsService.update(id, data)
   }
 }

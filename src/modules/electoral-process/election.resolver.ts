@@ -17,10 +17,10 @@ import { CensusService } from '../census/census.service'
 import { Census } from '../census/census.type'
 import { FileService } from '../files/files.service'
 import { User } from '../users/users.type'
-import { ElectionInput, VoteElectionInput } from './election.input'
+import { ElectionInput, VoteElectionInput, UpdateElectionInput } from './election.input'
 import { ElectionResultsService } from './election.results.service'
 import { ElectionsService } from './election.service'
-import { Election, ElectionVote } from './election.type'
+import { Election, ElectionVote, ElectionResultsArgs } from './election.type'
 import { ElectionResults } from './electoral-process.results.type'
 import { ElectionVotesService } from './election.votes.service'
 
@@ -29,7 +29,7 @@ import { ElectionVotesService } from './election.votes.service'
 export class ElectionResolver {
   constructor (
     private readonly electionsService: ElectionsService,
-    private readonly electioResultsService: ElectionResultsService,
+    private readonly electionResultsService: ElectionResultsService,
     private readonly candidatesService: CandidatesService,
     private readonly filesService: FileService,
     private readonly censusService: CensusService,
@@ -90,7 +90,7 @@ export class ElectionResolver {
 
     for (const census of censusesOnDB) {
       for (const candidate of candidatesOnDB) {
-        await this.electioResultsService.create({
+        await this.electionResultsService.create({
           candidate: candidate.id,
           census: census.id,
           election: election.id
@@ -106,9 +106,11 @@ export class ElectionResolver {
   }
 
   @ResolveProperty(() => [ElectionResults])
-  async results (@Parent() election: Election) {
+  async results (@Parent() election: Election, @Args() { location, group }: ElectionResultsArgs) {
     if (election.end < new Date()) {
-      return this.electioResultsService.findAll({ election: election.id })
+      const res = await this.electionResultsService.groupResults(election.id, group, location)
+      console.log(res)
+      return res
     }
     throw new UnauthorizedException('Election is not finished')
   }
@@ -188,5 +190,10 @@ export class ElectionResolver {
     })
 
     return true
+  }
+
+  @Mutation(() => Election)
+  async modifyElection (@Args({ name: 'id', type: () => ID }) id: string, @Args('input') data: UpdateElectionInput) {
+    return this.electionsService.update(id, data)
   }
 }

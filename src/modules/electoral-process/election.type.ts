@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType } from 'type-graphql'
+import { Field, ID, ObjectType, ArgsType } from 'type-graphql'
 import { ElectoralProcess } from './electoral-process.abstract'
 import { prop, Ref } from '@typegoose/typegoose'
 import { required } from '../../common/constants'
@@ -7,6 +7,15 @@ import { User } from '../users/users.type'
 
 @ObjectType()
 export class Election extends ElectoralProcess {}
+
+@ArgsType()
+export class ElectionResultsArgs {
+    @Field({ defaultValue: false })
+    group: boolean
+
+    @Field({ defaultValue: false })
+    location: boolean
+}
 
 @ObjectType()
 export class ElectionVote {

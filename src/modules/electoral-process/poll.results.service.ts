@@ -25,6 +25,49 @@ export class PollResultsService extends CrudService<
     super(pollResultModel)
   }
 
+  async groupResults (idPoll: string, group: boolean, location: boolean) {
+    const groupby = { option: '$option' }
+    if (group) {
+      groupby.group = '$census.group'
+    }
+    if (location) {
+      groupby.location = '$census.location'
+    }
+    return this.pollResultModel.aggregate([
+      {
+        $match: {
+          poll: idPoll
+        }
+      }, {
+        $lookup: {
+          from: 'census',
+          localField: 'census',
+          foreignField: '_id',
+          as: 'census'
+        }
+      }, {
+        $unwind: {
+          path: '$census'
+        }
+      }, {
+        $group: {
+          _id: groupby,
+          votes: {
+            $sum: '$votes'
+          }
+        }
+      }, {
+        $project: {
+          votes: 1,
+          _id: 0,
+          option: '$_id.option',
+          group: '$_id.group',
+          location: '$_id.location'
+        }
+      }
+    ])
+  }
+
   async findOneAndUpdate (conditions: any, update: any) {
     return this.pollResultModel.findOneAndUpdate(conditions, update)
   }

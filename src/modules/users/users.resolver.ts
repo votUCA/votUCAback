@@ -8,6 +8,7 @@ import { LoginPayload } from './login.payload'
 import { UsersService } from './users.service'
 import { User } from './users.type'
 import { AuthService } from '../auth/auth.service'
+import { UserUpdateInput } from './users.input'
 
 @Resolver(() => User)
 @UseGuards(GqlAuthGuard)
@@ -27,6 +28,11 @@ export class UsersResolver {
   @Query(() => User)
   async me (@CurrentUser() user: User) {
     return user
+  }
+
+  @Mutation(() => User)
+  async modifyUser (@Args({ name: 'id', type: () => ID }) id: string, @Args('input') data: UserUpdateInput) {
+    return this.usersService.update(id, data)
   }
 }
 
