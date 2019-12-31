@@ -13,7 +13,7 @@ import { CensusService } from '../census/census.service'
 import { FileService } from '../files/files.service'
 import { PollInput, VotePollInput } from './poll.input'
 import { PollsService } from './poll.service'
-import { Poll } from './poll.type'
+import { Poll, PollVote } from './poll.type'
 import { Census } from '../census/census.type'
 import { PollResults } from './electoral-process.results.type'
 import { PollResultsService } from './poll.results.service'
@@ -46,6 +46,13 @@ export class PollResolver {
   @ResolveProperty(() => [Census])
   async censuses (@Parent() poll: Poll) {
     return this.censusService.findAll({ _id: { $in: poll.censuses } })
+  }
+
+  @Query(() => [PollVote])
+  async userVotesOnPoll (@Args({ name: 'pollId', type: () => String }) pollId: string,
+                             @CurrentUser() user: User) {
+    const election = await this.pollsService.findById(pollId)
+    return this.pollVoteService.findUserVotes(user, election)
   }
 
   @ResolveProperty(() => [PollResults])
@@ -93,7 +100,7 @@ export class PollResolver {
   ) {
     let hasVoted = true
 
-    const rectify = rectifiedVote.length > 0
+    const rectify = rectifiedVote !== undefined && rectifiedVote.length > 0
 
     const currentPoll = await this.pollsService.findById(poll)
     const match = {
@@ -107,7 +114,7 @@ export class PollResolver {
       )
     }
 
-    const votes = await this.pollVoteService.findAll({ user: user, poll: poll })
+    const votes = await this.pollVoteService.findUserVotes(user, currentPoll)
 
     if (!rectify) {
       hasVoted = votes.length >= currentPoll.numVotesAllowed

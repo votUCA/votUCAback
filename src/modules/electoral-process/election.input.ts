@@ -1,6 +1,7 @@
 import { Field, InputType, ID } from 'type-graphql'
 import { CandidateInput } from '../candidates/candidates.input'
 import { ElectoralProcessInput } from './electoral-process.abstract'
+import { nullable } from '../../common/constants'
 
 @InputType()
 export class ElectionInput extends ElectoralProcessInput {
@@ -15,4 +16,8 @@ export class VoteElectionInput {
 
   @Field(() => ID)
   election: string
+
+  // Rellenar si rectifica voto
+  @Field(() => ID, { nullable })
+  rectifiedVote?: string
 }

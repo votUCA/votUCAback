@@ -26,4 +26,8 @@ export class PollVoteService extends CrudService<
   async findOneAndUpdate (conditions: any, update: any) {
     return this.pollVoteModel.findOneAndUpdate(conditions, update)
   }
+
+  async findUserVotes (user: User, poll: Poll) {
+    return this.findAll({ user: user, poll: poll })
+  }
 }

@@ -38,12 +38,15 @@ export class PollVote {
     return this._id || this._doc._id
   }
 
+  @Field(() => String)
   @prop({ required, ref: 'User' })
   user: Ref<User>
 
+  @Field(() => String)
   @prop({ required, ref: 'Poll' })
   poll: Ref<Poll>
 
+  @Field(() => String)
   @prop({ required, ref: 'PollOption' })
   option: Ref<PollOption>
 }

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ElectoralProcessResolver } from './electoral-process.resolver'
 import { TypegooseModule } from 'nestjs-typegoose'
-import { Election } from './election.type'
+import { Election, ElectionVote } from './election.type'
 import { ElectionResolver } from './election.resolver'
 import { ElectionsService } from './election.service'
 import { CandidatesModule } from '../candidates/candidates.module'
@@ -18,10 +18,11 @@ import { PollsService } from './poll.service'
 import { Poll, PollVote } from './poll.type'
 import { PollResultsService } from './poll.results.service'
 import { PollVoteService } from './poll.votes.service'
+import { ElectionVotesService } from './election.votes.service'
 
 @Module({
   imports: [
-    TypegooseModule.forFeature([Election, ElectionResults, Poll, PollResults, PollVote]),
+    TypegooseModule.forFeature([Election, ElectionResults, ElectionVote, Poll, PollResults, PollVote]),
     CandidatesModule,
     FilesModule,
     CensusModule
@@ -32,6 +33,7 @@ import { PollVoteService } from './poll.votes.service'
     ElectionResultsResolver,
     ElectionsService,
     ElectionResultsService,
+    ElectionVotesService,
     PollResolver,
     PollsService,
     PollResultsResolver,

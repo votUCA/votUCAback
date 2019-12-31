@@ -67,6 +67,9 @@ type ElectionResults {
 
 type ElectionVote {
   id: ID!
+  user: ID!
+  election: ID!
+  candidate: ID!
 }
 
 union ElectoralProcess = Election | Poll
@@ -132,6 +135,9 @@ type PollResults {
 
 type PollVote {
   id: ID!
+  user: String!
+  poll: String!
+  option: String!
 }
 
 type Query {
@@ -149,12 +155,14 @@ type Query {
   """Devuelve aquellos procesos electorales que han sido finalizados"""
   pastElectoralProcesses: [ElectoralProcess!]!
   elections: [Election!]!
+  userVotesOnElection(electionId: String!): [ElectionVote!]!
   pendingElections: [Election!]!
   election(id: ID!): Election!
   census(id: ID!): Census!
   censuses(skip: Int = 0, limit: Int = 0): [Census!]!
   polls: [Poll!]!
   poll(id: ID!): Poll!
+  userVotesOnPoll(pollId: String!): [PollVote!]!
 }
 
 """All possible roles on app"""
@@ -177,12 +185,13 @@ type User {
 input VoteElectionInput {
   candidate: ID!
   election: ID!
+  rectifiedVote: ID
 }
 
 input VotePollInput {
   option: ID!
   poll: ID!
-  rectifiedVote: ID!
+  rectifiedVote: ID
 }
 
 type Voter {
