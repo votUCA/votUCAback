@@ -94,7 +94,7 @@ type Poll {
   question: String!
   options: [PollOption!]!
   censuses: [Census!]!
-  results: [PollResults!]!
+  results(group: Boolean = false, location: Boolean = false): [PollResults!]!
 }
 
 input PollInput {

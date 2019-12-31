@@ -13,7 +13,7 @@ import { CensusService } from '../census/census.service'
 import { FileService } from '../files/files.service'
 import { PollInput, VotePollInput } from './poll.input'
 import { PollsService } from './poll.service'
-import { Poll } from './poll.type'
+import { Poll, PollResultsArgs } from './poll.type'
 import { Census } from '../census/census.type'
 import { PollResults } from './electoral-process.results.type'
 import { PollResultsService } from './poll.results.service'
@@ -47,11 +47,13 @@ export class PollResolver {
   }
 
   @ResolveProperty(() => [PollResults])
-  async results (@Parent() poll: Poll) {
+  async results (@Parent() poll: Poll, @Args() { location, group }: PollResultsArgs) {
     if (poll.end < new Date()) {
-      return this.pollResultsService.findAll({ poll: poll.id })
+      const res = await this.pollResultsService.groupResults(poll.id, group, location)
+      console.log(res)
+      return res
     }
-    throw new UnauthorizedException('Election is open')
+    throw new UnauthorizedException('Election is not finished')
   }
 
   @Mutation(() => Poll)
