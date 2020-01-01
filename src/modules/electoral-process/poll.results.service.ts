@@ -28,10 +28,14 @@ export class PollResultsService extends CrudService<
   async groupResults (idPoll: string, group: boolean, location: boolean) {
     const groupby = { option: '$option' }
     if (group) {
-      groupby.group = '$census.group'
+      /*eslint-disable*/
+      groupby['group'] = '$census.group'
+      /* eslint-enable */
     }
     if (location) {
-      groupby.location = '$census.location'
+      /*eslint-disable*/
+      groupby['location'] = '$census.location'
+      /* eslint-enable */
     }
     return this.pollResultModel.aggregate([
       {

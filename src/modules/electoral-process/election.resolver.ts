@@ -152,7 +152,7 @@ export class ElectionResolver {
         const oldVote = await this.electionVotesService.findById(rectifiedVote)
 
         if (oldVote) {
-          await this.electioResultsService.findOneAndUpdate(
+          await this.electionResultsService.findOneAndUpdate(
             {
               election: mongoose.Types.ObjectId(election),
               candidate: oldVote.candidate,
@@ -174,7 +174,7 @@ export class ElectionResolver {
       throw new UnauthorizedException('User has already Voted')
     }
 
-    await this.electioResultsService.findOneAndUpdate(
+    await this.electionResultsService.findOneAndUpdate(
       {
         candidate: mongoose.Types.ObjectId(candidate),
         election: mongoose.Types.ObjectId(election),
