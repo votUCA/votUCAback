@@ -146,8 +146,6 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
   me: User!
-  candidates: [Candidate!]!
-  candidate(id: ID!): Candidate!
   electoralProcesses: [ElectoralProcess!]!
   electoralProcess(id: ID!): ElectoralProcess!
 

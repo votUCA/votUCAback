@@ -29,41 +29,41 @@ export class ElectionResultsService extends CrudService<
   }
 
   async groupResults (idElection: string, group: boolean, location: boolean) {
-    const groupby = { candidate: '$candidate' }
+    const groupby: { [key: string]: string } = { candidate: '$candidate' }
     if (group) {
-      /*eslint-disable*/
-      groupby['group'] = '$census.group'
-      /* eslint-enable */
+      groupby.group = '$census.group'
     }
     if (location) {
-      /*eslint-disable*/
-      groupby['location'] = '$census.location'
-      /* eslint-enable */
+      groupby.location = '$census.location'
     }
     return this.electionResultModel.aggregate([
       {
         $match: {
           election: idElection
         }
-      }, {
+      },
+      {
         $lookup: {
           from: 'census',
           localField: 'census',
           foreignField: '_id',
           as: 'census'
         }
-      }, {
+      },
+      {
         $unwind: {
           path: '$census'
         }
-      }, {
+      },
+      {
         $group: {
           _id: groupby,
           votes: {
             $sum: '$votes'
           }
         }
-      }, {
+      },
+      {
         $project: {
           votes: 1,
           _id: 0,
