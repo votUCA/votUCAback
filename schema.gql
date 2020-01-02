@@ -44,7 +44,7 @@ type Election {
   description: String!
   rectifyVote: Boolean!
   candidates: [Candidate!]!
-  results(group: Boolean = false, location: Boolean = false): [ElectionResults!]!
+  results(group: Boolean = false, location: Boolean = false, genre: Boolean = false): [ElectionResults!]!
   censuses: [Census!]!
 }
 
@@ -61,6 +61,7 @@ type ElectionResults {
   votes: Int!
   group: String
   location: String
+  genre: Genre
   candidate: Candidate!
 }
 
@@ -75,6 +76,12 @@ union ElectoralProcess = Election | Poll
 
 type File {
   name: String!
+}
+
+enum Genre {
+  MALE
+  FEMALE
+  OTHER
 }
 
 input LoginInput {
@@ -107,8 +114,9 @@ type Poll {
   question: String!
   options: [PollOption!]!
   numVotesAllowed: Float!
+  realTime: Boolean!
   censuses: [Census!]!
-  results(group: Boolean = false, location: Boolean = false): [PollResults!]!
+  results(group: Boolean = false, location: Boolean = false, genre: Boolean = false): [PollResults!]!
 }
 
 input PollInput {
@@ -120,6 +128,7 @@ input PollInput {
   question: String!
   options: [String!]!
   numVotesAllowed: Float!
+  realTime: Boolean!
 }
 
 type PollOption {
@@ -132,6 +141,7 @@ type PollResults {
   votes: Int!
   group: String
   location: String
+  genre: Genre
   option: PollOption!
 }
 
@@ -199,6 +209,7 @@ type User {
   firstName: String!
   lastName: String!
   roles: [Role!]!
+  genre: Genre!
 }
 
 input UserInput {

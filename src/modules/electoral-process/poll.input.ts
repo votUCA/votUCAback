@@ -12,6 +12,9 @@ export class PollInput extends ElectoralProcessInput {
 
   @Field()
   numVotesAllowed: number
+
+  @Field()
+  realTime: boolean
 }
 
 @InputType()
