@@ -43,25 +43,29 @@ export class PollResultsService extends CrudService<
         $match: {
           poll: idPoll
         }
-      }, {
+      },
+      {
         $lookup: {
           from: 'census',
           localField: 'census',
           foreignField: '_id',
           as: 'census'
         }
-      }, {
+      },
+      {
         $unwind: {
           path: '$census'
         }
-      }, {
+      },
+      {
         $group: {
           _id: groupby,
           votes: {
             $sum: '$votes'
           }
         }
-      }, {
+      },
+      {
         $project: {
           votes: 1,
           _id: 0,

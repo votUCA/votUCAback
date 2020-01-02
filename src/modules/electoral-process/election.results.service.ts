@@ -28,7 +28,6 @@ export class ElectionResultsService extends CrudService<
   ) {
     super(electionResultModel)
   }
-
   async groupResults (idElection: string, group: boolean, location: boolean, genre: boolean) {
     const groupby: {[key: string]: string} = { candidate: '$candidate' }
     if (group) {
@@ -45,25 +44,29 @@ export class ElectionResultsService extends CrudService<
         $match: {
           election: idElection
         }
-      }, {
+      },
+      {
         $lookup: {
           from: 'census',
           localField: 'census',
           foreignField: '_id',
           as: 'census'
         }
-      }, {
+      },
+      {
         $unwind: {
           path: '$census'
         }
-      }, {
+      },
+      {
         $group: {
           _id: groupby,
           votes: {
             $sum: '$votes'
           }
         }
-      }, {
+      },
+      {
         $project: {
           votes: 1,
           _id: 0,
