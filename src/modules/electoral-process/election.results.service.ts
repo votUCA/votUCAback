@@ -28,6 +28,7 @@ export class ElectionResultsService extends CrudService<
   ) {
     super(electionResultModel)
   }
+
   async groupResults (idElection: string, group: boolean, location: boolean, genre: boolean) {
     const groupby: {[key: string]: string} = { candidate: '$candidate' }
     if (group) {
