@@ -11,6 +11,7 @@ interface PollResultsInput {
   poll: Ref<Poll> | string
   option: Ref<PollOption> | string
   census: Ref<Census> | string
+  genre: string
 }
 
 @Injectable()
@@ -25,14 +26,18 @@ export class PollResultsService extends CrudService<
     super(pollResultModel)
   }
 
-  async groupResults (idPoll: string, group: boolean, location: boolean) {
-    const groupby: { [key: string]: string } = { option: '$option' }
+  async groupResults (idPoll: string, group: boolean, location: boolean, genre: boolean) {
+    const groupby: {[key: string]: string} = { option: '$option' }
     if (group) {
       groupby.group = '$census.group'
     }
     if (location) {
       groupby.location = '$census.location'
     }
+    if (genre) {
+      groupby.genre = '$genre'
+    }
+
     return this.pollResultModel.aggregate([
       {
         $match: {
@@ -66,7 +71,8 @@ export class PollResultsService extends CrudService<
           _id: 0,
           option: '$_id.option',
           group: '$_id.group',
-          location: '$_id.location'
+          location: '$_id.location',
+          genre: '$_id.genre'
         }
       }
     ])

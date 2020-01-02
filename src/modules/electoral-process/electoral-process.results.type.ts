@@ -5,6 +5,7 @@ import { required, nullable } from '../../common/constants'
 import { Candidate } from '../candidates/candidates.type'
 import { Census } from '../census/census.type'
 import { Poll, PollOption } from './poll.type'
+import { Genre } from '../users/users.type'
 
 @ObjectType()
 export class ElectionResults {
@@ -30,6 +31,10 @@ export class ElectionResults {
 
   @Field({ nullable })
   location?: string
+
+  @Field(() => Genre, { nullable })
+  @prop({ required, enum: Object.keys(Genre), type: String })
+  genre: Genre
 }
 
 @ObjectType()
@@ -57,4 +62,8 @@ export class PollResults {
 
   @Field({ nullable })
   location?: string
+
+  @Field(() => Genre, { nullable })
+  @prop({ required, enum: Object.keys(Genre), type: String })
+  genre: Genre
 }

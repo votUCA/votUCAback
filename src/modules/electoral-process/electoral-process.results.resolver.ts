@@ -22,24 +22,11 @@ export class ElectionResultsResolver {
 @Resolver(() => PollResults)
 export class PollResultsResolver {
   constructor (
-    private readonly censusService: CensusService,
     private readonly pollService: PollsService
   ) {}
 
   @ResolveProperty(() => PollOption)
   async option (@Parent() { option }: PollResults) {
     return this.pollService.findOption(option)
-  }
-
-  @ResolveProperty(() => String)
-  async group (@Parent() results: PollResults) {
-    const census = await this.censusService.findById(results.census)
-    return census.group
-  }
-
-  @ResolveProperty(() => String)
-  async location (@Parent() results: PollResults) {
-    const census = await this.censusService.findById(results.census)
-    return census.location
   }
 }

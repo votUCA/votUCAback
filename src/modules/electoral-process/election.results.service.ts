@@ -12,6 +12,7 @@ interface ElectionResultsInput {
   election: Ref<Election> | string
   candidate: Ref<Candidate> | string
   census: Ref<Census> | string
+  genre: string
 }
 
 @Injectable()
@@ -27,14 +28,16 @@ export class ElectionResultsService extends CrudService<
   ) {
     super(electionResultModel)
   }
-
-  async groupResults (idElection: string, group: boolean, location: boolean) {
-    const groupby: { [key: string]: string } = { candidate: '$candidate' }
+  async groupResults (idElection: string, group: boolean, location: boolean, genre: boolean) {
+    const groupby: {[key: string]: string} = { candidate: '$candidate' }
     if (group) {
       groupby.group = '$census.group'
     }
     if (location) {
       groupby.location = '$census.location'
+    }
+    if (genre) {
+      groupby.genre = '$genre'
     }
     return this.electionResultModel.aggregate([
       {
@@ -69,7 +72,8 @@ export class ElectionResultsService extends CrudService<
           _id: 0,
           candidate: '$_id.candidate',
           group: '$_id.group',
-          location: '$_id.location'
+          location: '$_id.location',
+          genre: '$_id.genre'
         }
       }
     ])
