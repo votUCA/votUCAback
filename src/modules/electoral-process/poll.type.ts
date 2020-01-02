@@ -29,6 +29,10 @@ export class Poll extends ElectoralProcess {
   @Field()
   @prop({ required })
   numVotesAllowed: number
+
+  @Field(() => Boolean)
+  @prop({ required })
+  realTime: boolean
 }
 
 @ObjectType()
@@ -58,4 +62,7 @@ export class PollResultsArgs {
 
     @Field({ defaultValue: false })
     location: boolean
+
+    @Field({ defaultValue: false })
+    genre: boolean
 }

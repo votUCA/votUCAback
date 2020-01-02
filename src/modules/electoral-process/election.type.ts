@@ -15,6 +15,9 @@ export class ElectionResultsArgs {
 
     @Field({ defaultValue: false })
     location: boolean
+
+    @Field({ defaultValue: false })
+    genre: boolean
 }
 
 @ObjectType()

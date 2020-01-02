@@ -1,7 +1,10 @@
 import { prop, arrayProp } from '@typegoose/typegoose'
-import { Field, ID, ObjectType } from 'type-graphql'
+import { Field, ID, ObjectType, registerEnumType } from 'type-graphql'
 import { required } from '../../common/constants'
 import { Role } from './roles.enum'
+
+export enum Genre{MALE = 'MALE', FEMALE = 'FEMALE', OTHER = 'OTHER'}
+registerEnumType(Genre, { name: 'Genre' })
 
 @ObjectType()
 export class User {
@@ -28,4 +31,8 @@ export class User {
   @arrayProp({ enum: Object.keys(Role), default: [], type: String })
   @Field(() => Role)
   roles?: [Role]
+
+  @Field(() => Genre)
+  @prop({ required, enum: Object.keys(Genre), type: String })
+  genre: Genre
 }

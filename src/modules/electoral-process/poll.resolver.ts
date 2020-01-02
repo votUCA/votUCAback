@@ -18,7 +18,7 @@ import { Census } from '../census/census.type'
 import { PollResults } from './electoral-process.results.type'
 import { PollResultsService } from './poll.results.service'
 import { CurrentUser } from '../auth/current-user.decorator'
-import { User } from '../users/users.type'
+import { User, Genre } from '../users/users.type'
 import { mongoose } from '@typegoose/typegoose'
 import { PollVoteService } from './poll.votes.service'
 
@@ -56,9 +56,9 @@ export class PollResolver {
   }
 
   @ResolveProperty(() => [PollResults])
-  async results (@Parent() poll: Poll, @Args() { location, group }: PollResultsArgs) {
-    if (poll.end < new Date()) {
-      const res = await this.pollResultsService.groupResults(poll.id, group, location)
+  async results (@Parent() poll: Poll, @Args() { location, group, genre }: PollResultsArgs) {
+    if (poll.realTime || poll.end < new Date()) {
+      const res = await this.pollResultsService.groupResults(poll.id, group, location, genre)
       console.log(res)
       return res
     }
@@ -85,11 +85,14 @@ export class PollResolver {
 
     for (const census of censusesOnDB) {
       for (const option of poll.options) {
-        await this.pollResultsService.create({
-          option: option.id,
-          census: census.id,
-          poll: poll.id
-        })
+        for (const genre of Object.keys(Genre)) {
+          await this.pollResultsService.create({
+            option: option.id,
+            census: census.id,
+            poll: poll.id,
+            genre: genre
+          })
+        }
       }
     }
     return poll
@@ -131,7 +134,8 @@ export class PollResolver {
             {
               poll: mongoose.Types.ObjectId(poll),
               option: oldVote.option,
-              census: voter.census
+              census: voter.census,
+              genre: user.genre
             },
             { $inc: { votes: -1 } }
           )
@@ -153,7 +157,8 @@ export class PollResolver {
       {
         poll: mongoose.Types.ObjectId(poll),
         option: mongoose.Types.ObjectId(option),
-        census: voter.census
+        census: voter.census,
+        genre: user.genre
       },
       { $inc: { votes: 1 } }
     )
