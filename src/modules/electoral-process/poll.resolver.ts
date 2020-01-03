@@ -15,12 +15,15 @@ import { CensusService } from '../census/census.service'
 import { Census } from '../census/census.type'
 import { FileService } from '../files/files.service'
 import { Genre, User } from '../users/users.type'
-import { PollResults } from './electoral-process.results.type'
+import {
+  PollResults,
+  ResultsFilter,
+  resultsFilterDefault,
+} from './electoral-process.results.type'
 import { PollInput, UpdatePollInput, VotePollInput } from './poll.input'
 import { PollResultsService } from './poll.results.service'
 import { PollsService } from './poll.service'
-import { Poll, PollResultsArgs } from './poll.type'
-import { PollVoteService } from './poll.votes.service'
+import { Poll } from './poll.type'
 
 @Resolver(() => Poll)
 @UseGuards(GqlAuthGuard)
@@ -29,8 +32,7 @@ export class PollResolver {
     private readonly pollsService: PollsService,
     private readonly filesService: FileService,
     private readonly censusService: CensusService,
-    private readonly pollResultsService: PollResultsService,
-    private readonly pollVoteService: PollVoteService
+    private readonly pollResultsService: PollResultsService
   ) {}
 
   @Query(() => [Poll])
@@ -51,15 +53,15 @@ export class PollResolver {
   @ResolveProperty(() => [PollResults])
   async results(
     @Parent() poll: Poll,
-    @Args() { location, group, genre }: PollResultsArgs
+    @Args({
+      name: 'filter',
+      type: () => ResultsFilter,
+      defaultValue: resultsFilterDefault,
+    })
+    filter: ResultsFilter
   ): Promise<PollResults[]> {
     if (poll.isRealTime || poll.end < new Date()) {
-      return this.pollResultsService.groupResults(
-        poll.id,
-        group,
-        location,
-        genre
-      )
+      return this.pollResultsService.groupResults(poll.id, filter)
     }
     throw new UnauthorizedException('Poll is not finished')
   }

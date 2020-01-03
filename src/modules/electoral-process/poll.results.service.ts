@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { ReturnModelType, Ref } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { CrudService } from '../../common/crud.service'
-import { PollResults } from './electoral-process.results.type'
+import { PollResults, ResultsFilter } from './electoral-process.results.type'
 import { Poll, PollOption } from './poll.type'
 import { Census } from '../census/census.type'
 
@@ -28,9 +28,7 @@ export class PollResultsService extends CrudService<
 
   async groupResults(
     idPoll: string,
-    group: boolean,
-    location: boolean,
-    genre: boolean
+    { group, location, genre }: ResultsFilter
   ): Promise<PollResults[]> {
     const groupby: { [key: string]: string } = { option: '$option' }
     if (group) {

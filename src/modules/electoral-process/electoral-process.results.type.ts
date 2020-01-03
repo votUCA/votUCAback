@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID, Int } from 'type-graphql'
+import { ObjectType, Field, ID, Int, InputType } from 'type-graphql'
 import { prop, Ref } from '@typegoose/typegoose'
 import { Election } from './election.type'
 import { required, nullable } from '../../common/constants'
@@ -66,4 +66,22 @@ export class PollResults {
   @Field(() => Genre, { nullable })
   @prop({ required, enum: Object.keys(Genre), type: String })
   genre: Genre
+}
+
+@InputType()
+export class ResultsFilter {
+  @Field()
+  group: boolean
+
+  @Field()
+  location: boolean
+
+  @Field()
+  genre: boolean
+}
+
+export const resultsFilterDefault: ResultsFilter = {
+  group: false,
+  location: false,
+  genre: false,
 }

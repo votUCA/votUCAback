@@ -24,9 +24,12 @@ import {
 } from './election.input'
 import { ElectionResultsService } from './election.results.service'
 import { ElectionsService } from './election.service'
-import { Election, ElectionResultsArgs } from './election.type'
-import { ElectionVotesService } from './election.votes.service'
-import { ElectionResults } from './electoral-process.results.type'
+import { Election } from './election.type'
+import {
+  ElectionResults,
+  ResultsFilter,
+  resultsFilterDefault,
+} from './electoral-process.results.type'
 
 @Resolver(() => Election)
 @UseGuards(GqlAuthGuard)
@@ -36,8 +39,7 @@ export class ElectionResolver {
     private readonly electionResultsService: ElectionResultsService,
     private readonly candidatesService: CandidatesService,
     private readonly filesService: FileService,
-    private readonly censusService: CensusService,
-    private readonly electionVotesService: ElectionVotesService
+    private readonly censusService: CensusService
   ) {}
 
   @Query(() => [Election])
@@ -112,15 +114,15 @@ export class ElectionResolver {
   @ResolveProperty(() => [ElectionResults])
   async results(
     @Parent() election: Election,
-    @Args() { location, group, genre }: ElectionResultsArgs
+    @Args({
+      name: 'filter',
+      type: () => ResultsFilter,
+      defaultValue: resultsFilterDefault,
+    })
+    filter: ResultsFilter
   ): Promise<ElectionResults[]> {
     if (election.end < new Date()) {
-      return this.electionResultsService.groupResults(
-        election.id,
-        group,
-        location,
-        genre
-      )
+      return this.electionResultsService.groupResults(election.id, filter)
     }
     throw new UnauthorizedException('Election is not finished')
   }

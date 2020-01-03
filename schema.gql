@@ -44,7 +44,7 @@ type Election {
   description: String!
   isVoteRectify: Boolean!
   candidates: [Candidate!]!
-  results(group: Boolean = false, location: Boolean = false, genre: Boolean = false): [ElectionResults!]!
+  results(filter: ResultsFilter = {group: false, location: false, genre: false}): [ElectionResults!]!
   censuses: [Census!]!
 }
 
@@ -115,7 +115,7 @@ type Poll {
   options: [PollOption!]!
   isRealTime: Boolean!
   censuses: [Census!]!
-  results(group: Boolean = false, location: Boolean = false, genre: Boolean = false): [PollResults!]!
+  results(filter: ResultsFilter = {group: false, location: false, genre: false}): [PollResults!]!
 }
 
 input PollInput {
@@ -169,6 +169,12 @@ type Query {
   censuses(skip: Int = 0, limit: Int = 0): [Census!]!
   polls: [Poll!]!
   poll(id: ID!): Poll!
+}
+
+input ResultsFilter {
+  group: Boolean!
+  location: Boolean!
+  genre: Boolean!
 }
 
 """All possible roles on app"""

@@ -1,8 +1,8 @@
 import { arrayProp, prop, Ref } from '@typegoose/typegoose'
-import { Field, ID, ObjectType, ArgsType } from 'type-graphql'
+import { Field, ID, ObjectType } from 'type-graphql'
 import { required } from '../../common/constants'
-import { ElectoralProcess } from './electoral-process.abstract'
 import { User } from '../users/users.type'
+import { ElectoralProcess } from './electoral-process.abstract'
 
 @ObjectType()
 export class PollOption {
@@ -49,16 +49,4 @@ export class PollVote {
   @Field(() => String)
   @prop({ required, ref: 'PollOption' })
   option: Ref<PollOption>
-}
-
-@ArgsType()
-export class PollResultsArgs {
-  @Field({ defaultValue: false })
-  group: boolean
-
-  @Field({ defaultValue: false })
-  location: boolean
-
-  @Field({ defaultValue: false })
-  genre: boolean
 }
