@@ -13,21 +13,21 @@ type PollDTO = Omit<ElectoralProcessInput, 'censuses'> & {
 
 @Injectable()
 export class PollsService extends CrudService<Poll, PollDTO> {
-  constructor (
+  constructor(
     @InjectModel(Poll)
     private readonly pollModel: ReturnModelType<typeof Poll>
   ) {
     super(pollModel)
   }
 
-  async findOption (id: Ref<PollOption>): Promise<PollOption> {
+  async findOption(id: Ref<PollOption>): Promise<PollOption> {
     const {
-      options: [option]
+      options: [option],
     } = await this.pollModel.findOne({ 'options._id': id }, { 'options.$': 1 })
     return option
   }
 
-  async findOneAndUpdate (conditions: any, update: any) {
+  async findOneAndUpdate(conditions: any, update: any): Promise<Poll> {
     return this.pollModel.findOneAndUpdate(conditions, update)
   }
 }

@@ -6,6 +6,6 @@ import { Candidate } from './candidates.type'
 @Module({
   imports: [TypegooseModule.forFeature([Candidate])],
   providers: [CandidatesService],
-  exports: [CandidatesService]
+  exports: [CandidatesService],
 })
 export class CandidatesModule {}

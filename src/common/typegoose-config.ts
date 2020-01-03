@@ -1,17 +1,17 @@
 import { Inject } from '@nestjs/common'
 import {
   TypegooseModuleOptions,
-  TypegooseOptionsFactory
+  TypegooseOptionsFactory,
 } from 'nestjs-typegoose'
-import { ConfigService } from '../modules/config/config.service'
 import { mongoose } from '@typegoose/typegoose'
+import { ConfigService } from '../modules/config/config.service'
 
 export class TypegooseConfigService implements TypegooseOptionsFactory {
-  constructor (
+  constructor(
     @Inject(ConfigService) private readonly configService: ConfigService
   ) {}
 
-  createTypegooseOptions ():
+  createTypegooseOptions():
     | Promise<TypegooseModuleOptions>
     | TypegooseModuleOptions {
     mongoose.set('useFindAndModify', false)
@@ -19,7 +19,7 @@ export class TypegooseConfigService implements TypegooseOptionsFactory {
       uri: this.configService.mongodbUri,
       useNewUrlParser: true,
       useCreateIndex: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     }
   }
 }

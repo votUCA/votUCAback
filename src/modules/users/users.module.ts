@@ -8,6 +8,6 @@ import { User } from './users.type'
 @Module({
   imports: [forwardRef(() => AuthModule), TypegooseModule.forFeature([User])],
   providers: [UsersService, UsersResolver, UnprotectedUsersResolver],
-  exports: [UsersService]
+  exports: [UsersService],
 })
 export class UsersModule {}

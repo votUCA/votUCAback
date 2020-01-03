@@ -3,13 +3,17 @@ import { Field, ID, ObjectType, registerEnumType } from 'type-graphql'
 import { required } from '../../common/constants'
 import { Role } from './roles.enum'
 
-export enum Genre{MALE = 'MALE', FEMALE = 'FEMALE', OTHER = 'OTHER'}
+export enum Genre {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+  OTHER = 'OTHER',
+}
 registerEnumType(Genre, { name: 'Genre' })
 
 @ObjectType()
 export class User {
   @Field(() => ID)
-  get id (this: any) {
+  get id(this: any): string {
     return this._id || this._doc._id
   }
 

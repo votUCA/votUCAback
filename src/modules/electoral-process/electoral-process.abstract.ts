@@ -7,7 +7,7 @@ import { Census } from '../census/census.type'
 @ObjectType({ isAbstract })
 export class ElectoralProcess {
   @Field(() => ID)
-  get id (this: any) {
+  get id(this: any): string {
     return this._id || this._doc._id
   }
 
@@ -28,7 +28,7 @@ export class ElectoralProcess {
 
   @Field()
   @prop({ required })
-  rectifyVote: boolean
+  isVoteRectify: boolean
 }
 
 @InputType({ isAbstract })
@@ -43,7 +43,7 @@ export class ElectoralProcessInput {
   description: string
 
   @Field()
-  rectifyVote: boolean
+  isVoteRectify: boolean
 
   @Field(() => [CensusInput])
   censuses: CensusInput[]

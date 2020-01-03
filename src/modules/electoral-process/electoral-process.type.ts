@@ -10,5 +10,5 @@ export const ElectoralProcess = createUnionType({
       return Poll
     }
     return Election
-  }
+  },
 })

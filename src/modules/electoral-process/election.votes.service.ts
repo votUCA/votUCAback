@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { ReturnModelType, Ref } from '@typegoose/typegoose'
+import { ReturnModelType, Ref, DocumentType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { CrudService } from '../../common/crud.service'
 import { Election, ElectionVote } from './election.type'
@@ -18,20 +18,17 @@ export class ElectionVotesService extends CrudService<
   ElectionVote,
   ElectionVoteInput
 > {
-  constructor (
+  constructor(
     @InjectModel(ElectionVote)
-    private readonly electionVoteModel: ReturnModelType<
-      typeof ElectionVote
-    >
+    private readonly electionVoteModel: ReturnModelType<typeof ElectionVote>
   ) {
     super(electionVoteModel)
   }
 
-  async findOneAndUpdate (conditions: any, update: any) {
+  async findOneAndUpdate(
+    conditions: any,
+    update: any
+  ): Promise<DocumentType<ElectionVote>> {
     return this.electionVoteModel.findOneAndUpdate(conditions, update)
-  }
-
-  async findUserVotes (user: User, election: Election) {
-    return this.findAll({ user: user, election: election })
   }
 }

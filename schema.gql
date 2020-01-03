@@ -42,7 +42,7 @@ type Election {
   start: DateTime!
   end: DateTime!
   description: String!
-  rectifyVote: Boolean!
+  isVoteRectify: Boolean!
   candidates: [Candidate!]!
   results(group: Boolean = false, location: Boolean = false, genre: Boolean = false): [ElectionResults!]!
   censuses: [Census!]!
@@ -52,7 +52,7 @@ input ElectionInput {
   start: DateTime!
   end: DateTime!
   description: String!
-  rectifyVote: Boolean!
+  isVoteRectify: Boolean!
   censuses: [CensusInput!]!
   candidates: [CandidateInput!]!
 }
@@ -110,11 +110,10 @@ type Poll {
   start: DateTime!
   end: DateTime!
   description: String!
-  rectifyVote: Boolean!
+  isVoteRectify: Boolean!
   question: String!
   options: [PollOption!]!
-  numVotesAllowed: Float!
-  realTime: Boolean!
+  isRealTime: Boolean!
   censuses: [Census!]!
   results(group: Boolean = false, location: Boolean = false, genre: Boolean = false): [PollResults!]!
 }
@@ -123,12 +122,11 @@ input PollInput {
   start: DateTime!
   end: DateTime!
   description: String!
-  rectifyVote: Boolean!
+  isVoteRectify: Boolean!
   censuses: [CensusInput!]!
   question: String!
   options: [String!]!
-  numVotesAllowed: Float!
-  realTime: Boolean!
+  isRealTime: Boolean!
 }
 
 type PollOption {
@@ -165,14 +163,12 @@ type Query {
   """Devuelve aquellos procesos electorales que han sido finalizados"""
   pastElectoralProcesses: [ElectoralProcess!]!
   elections: [Election!]!
-  userVotesOnElection(electionId: String!): [ElectionVote!]!
   pendingElections: [Election!]!
   election(id: ID!): Election!
   census(id: ID!): Census!
   censuses(skip: Int = 0, limit: Int = 0): [Census!]!
   polls: [Poll!]!
   poll(id: ID!): Poll!
-  userVotesOnPoll(pollId: String!): [PollVote!]!
 }
 
 """All possible roles on app"""
@@ -234,7 +230,6 @@ input VoteElectionInput {
 input VotePollInput {
   option: ID!
   poll: ID!
-  rectifiedVote: ID
 }
 
 type Voter {

@@ -19,15 +19,20 @@ export class PollResultsService extends CrudService<
   PollResults,
   PollResultsInput
 > {
-  constructor (
+  constructor(
     @InjectModel(PollResults)
     private readonly pollResultModel: ReturnModelType<typeof PollResults>
   ) {
     super(pollResultModel)
   }
 
-  async groupResults (idPoll: string, group: boolean, location: boolean, genre: boolean) {
-    const groupby: {[key: string]: string} = { option: '$option' }
+  async groupResults(
+    idPoll: string,
+    group: boolean,
+    location: boolean,
+    genre: boolean
+  ): Promise<PollResults[]> {
+    const groupby: { [key: string]: string } = { option: '$option' }
     if (group) {
       groupby.group = '$census.group'
     }
@@ -41,29 +46,29 @@ export class PollResultsService extends CrudService<
     return this.pollResultModel.aggregate([
       {
         $match: {
-          poll: idPoll
-        }
+          poll: idPoll,
+        },
       },
       {
         $lookup: {
           from: 'census',
           localField: 'census',
           foreignField: '_id',
-          as: 'census'
-        }
+          as: 'census',
+        },
       },
       {
         $unwind: {
-          path: '$census'
-        }
+          path: '$census',
+        },
       },
       {
         $group: {
           _id: groupby,
           votes: {
-            $sum: '$votes'
-          }
-        }
+            $sum: '$votes',
+          },
+        },
       },
       {
         $project: {
@@ -72,13 +77,13 @@ export class PollResultsService extends CrudService<
           option: '$_id.option',
           group: '$_id.group',
           location: '$_id.location',
-          genre: '$_id.genre'
-        }
-      }
+          genre: '$_id.genre',
+        },
+      },
     ])
   }
 
-  async findOneAndUpdate (conditions: any, update: any) {
+  async findOneAndUpdate(conditions: any, update: any): Promise<PollResults> {
     return this.pollResultModel.findOneAndUpdate(conditions, update)
   }
 }

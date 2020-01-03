@@ -9,7 +9,7 @@ import { Genre } from '../users/users.type'
 
 @ObjectType()
 export class ElectionResults {
-  get id (this: any) {
+  get id(this: any): string {
     return this._id || this._doc._id
   }
 
@@ -40,7 +40,7 @@ export class ElectionResults {
 @ObjectType()
 export class PollResults {
   @Field(() => ID)
-  get id (this: any) {
+  get id(this: any): string {
     return this._id || this._doc._id
   }
 

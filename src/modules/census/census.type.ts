@@ -23,7 +23,7 @@ export class Voter {
 @ObjectType()
 export class Census {
   @Field(() => ID)
-  get id (this: any) {
+  get id(this: any): string {
     return this._id || this._doc._id
   }
 

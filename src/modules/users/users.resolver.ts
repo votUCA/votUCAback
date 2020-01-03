@@ -13,40 +13,43 @@ import { UserUpdateInput } from './users.input'
 @Resolver(() => User)
 @UseGuards(GqlAuthGuard)
 export class UsersResolver {
-  constructor (private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) {}
 
   @Query(() => [User])
-  async users () {
+  async users(): Promise<User[]> {
     return this.usersService.findAll()
   }
 
   @Query(() => User)
-  async user (@Args({ name: 'id', type: () => ID }) id: string) {
+  async user(@Args({ name: 'id', type: () => ID }) id: string): Promise<User> {
     return this.usersService.findById(id)
   }
 
   @Query(() => User)
-  async me (@CurrentUser() user: User) {
+  async me(@CurrentUser() user: User): Promise<User> {
     return user
   }
 
   @Mutation(() => User)
-  async modifyUser (@Args({ name: 'id', type: () => ID }) id: string, @Args('input') data: UserUpdateInput) {
+  async modifyUser(
+    @Args({ name: 'id', type: () => ID }) id: string,
+    @Args('input') data: UserUpdateInput
+  ): Promise<User> {
     return this.usersService.update(id, data)
   }
 }
 
 @Resolver(() => User)
 export class UnprotectedUsersResolver {
-  constructor (
+  constructor(
     private readonly authService: AuthService,
     private readonly userService: UsersService
   ) {}
 
   @Mutation(() => LoginPayload)
-  async login (
+  async login(
     @Args('input')
-      input: LoginInput
+    input: LoginInput
   ): Promise<LoginPayload> {
     const tokenPayload = await this.userService.authenticate(input)
     const accessToken = await this.authService.createToken(tokenPayload)

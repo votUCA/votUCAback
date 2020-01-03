@@ -7,7 +7,7 @@ import { User } from '../users/users.type'
 @ObjectType()
 export class PollOption {
   @Field(() => ID)
-  get id (this: any) {
+  get id(this: any): string {
     return this._id || this._doc._id
   }
 
@@ -26,19 +26,15 @@ export class Poll extends ElectoralProcess {
   @arrayProp({ items: PollOption, required })
   options: PollOption[]
 
-  @Field()
-  @prop({ required })
-  numVotesAllowed: number
-
   @Field(() => Boolean)
   @prop({ required })
-  realTime: boolean
+  isRealTime: boolean
 }
 
 @ObjectType()
 export class PollVote {
   @Field(() => ID)
-  get id (this: any) {
+  get id(this: any): string {
     return this._id || this._doc._id
   }
 
@@ -57,12 +53,12 @@ export class PollVote {
 
 @ArgsType()
 export class PollResultsArgs {
-    @Field({ defaultValue: false })
-    group: boolean
+  @Field({ defaultValue: false })
+  group: boolean
 
-    @Field({ defaultValue: false })
-    location: boolean
+  @Field({ defaultValue: false })
+  location: boolean
 
-    @Field({ defaultValue: false })
-    genre: boolean
+  @Field({ defaultValue: false })
+  genre: boolean
 }

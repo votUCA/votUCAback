@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { ReturnModelType, Ref } from '@typegoose/typegoose'
+import { ReturnModelType, Ref, DocumentType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { CrudService } from '../../common/crud.service'
 import { ElectionResults } from './electoral-process.results.type'
@@ -20,7 +20,7 @@ export class ElectionResultsService extends CrudService<
   ElectionResults,
   ElectionResultsInput
 > {
-  constructor (
+  constructor(
     @InjectModel(ElectionResults)
     private readonly electionResultModel: ReturnModelType<
       typeof ElectionResults
@@ -28,8 +28,14 @@ export class ElectionResultsService extends CrudService<
   ) {
     super(electionResultModel)
   }
-  async groupResults (idElection: string, group: boolean, location: boolean, genre: boolean) {
-    const groupby: {[key: string]: string} = { candidate: '$candidate' }
+
+  async groupResults(
+    idElection: string,
+    group: boolean,
+    location: boolean,
+    genre: boolean
+  ): Promise<ElectionResults[]> {
+    const groupby: { [key: string]: string } = { candidate: '$candidate' }
     if (group) {
       groupby.group = '$census.group'
     }
@@ -42,29 +48,29 @@ export class ElectionResultsService extends CrudService<
     return this.electionResultModel.aggregate([
       {
         $match: {
-          election: idElection
-        }
+          election: idElection,
+        },
       },
       {
         $lookup: {
           from: 'census',
           localField: 'census',
           foreignField: '_id',
-          as: 'census'
-        }
+          as: 'census',
+        },
       },
       {
         $unwind: {
-          path: '$census'
-        }
+          path: '$census',
+        },
       },
       {
         $group: {
           _id: groupby,
           votes: {
-            $sum: '$votes'
-          }
-        }
+            $sum: '$votes',
+          },
+        },
       },
       {
         $project: {
@@ -73,13 +79,16 @@ export class ElectionResultsService extends CrudService<
           candidate: '$_id.candidate',
           group: '$_id.group',
           location: '$_id.location',
-          genre: '$_id.genre'
-        }
-      }
+          genre: '$_id.genre',
+        },
+      },
     ])
   }
 
-  async findOneAndUpdate (conditions: any, update: any) {
+  async findOneAndUpdate(
+    conditions: any,
+    update: any
+  ): Promise<DocumentType<ElectionResults>> {
     return this.electionResultModel.findOneAndUpdate(conditions, update)
   }
 }

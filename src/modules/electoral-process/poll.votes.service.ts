@@ -12,22 +12,15 @@ interface PollVoteInput {
 }
 
 @Injectable()
-export class PollVoteService extends CrudService<
-  PollVote,
-  PollVoteInput
-> {
-  constructor (
+export class PollVoteService extends CrudService<PollVote, PollVoteInput> {
+  constructor(
     @InjectModel(PollVote)
     private readonly pollVoteModel: ReturnModelType<typeof PollVote>
   ) {
     super(pollVoteModel)
   }
 
-  async findOneAndUpdate (conditions: any, update: any) {
+  async findOneAndUpdate(conditions: any, update: any): Promise<PollVote> {
     return this.pollVoteModel.findOneAndUpdate(conditions, update)
-  }
-
-  async findUserVotes (user: User, poll: Poll) {
-    return this.findAll({ user: user, poll: poll })
   }
 }

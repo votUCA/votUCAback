@@ -1,6 +1,6 @@
 import { Field, InputType } from 'type-graphql'
-import { Role } from './roles.enum'
 import { Validate } from 'class-validator'
+import { Role } from './roles.enum'
 import { UID } from '../../common/validators'
 
 @InputType()

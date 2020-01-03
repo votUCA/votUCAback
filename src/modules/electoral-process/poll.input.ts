@@ -1,6 +1,8 @@
-import { InputType, Field, ID } from 'type-graphql'
-import { ElectoralProcessInput, UpdateElectoralProcessInput } from './electoral-process.abstract'
-import { nullable } from '../../common/constants'
+import { Field, ID, InputType } from 'type-graphql'
+import {
+  ElectoralProcessInput,
+  UpdateElectoralProcessInput,
+} from './electoral-process.abstract'
 
 @InputType()
 export class PollInput extends ElectoralProcessInput {
@@ -11,10 +13,7 @@ export class PollInput extends ElectoralProcessInput {
   options: string[]
 
   @Field()
-  numVotesAllowed: number
-
-  @Field()
-  realTime: boolean
+  isRealTime: boolean
 }
 
 @InputType()
@@ -33,8 +32,4 @@ export class VotePollInput {
 
   @Field(() => ID)
   poll: string
-
-  // Rellenar si rectifica voto
-  @Field(() => ID, { nullable })
-  rectifiedVote?: string
 }

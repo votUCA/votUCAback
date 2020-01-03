@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core'
 import { AppModule } from './modules/app.module'
 import { ConfigService } from './modules/config/config.service'
 
-async function bootstrap () {
+async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule)
   const config: ConfigService = app.get(ConfigService)
   if (config.debug) {
@@ -11,7 +11,7 @@ async function bootstrap () {
     app.use(
       '/voyager',
       voyager.express({
-        endpointUrl: '/graphql'
+        endpointUrl: '/graphql',
       })
     )
   }
