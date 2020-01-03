@@ -27,6 +27,7 @@ import { ElectionVotesService } from './election.votes.service'
 @Resolver(() => Election)
 @UseGuards(GqlAuthGuard)
 export class ElectionResolver {
+  usersService: any
   constructor (
     private readonly electionsService: ElectionsService,
     private readonly electionResultsService: ElectionResultsService,
@@ -198,5 +199,10 @@ export class ElectionResolver {
   @Mutation(() => Election)
   async modifyElection (@Args({ name: 'id', type: () => ID }) id: string, @Args('input') data: UpdateElectionInput) {
     return this.electionsService.update(id, data)
+  }
+
+  @ResolveProperty(() => [User])
+  async delegates (@Parent() election: Election) {
+    return this.usersService.findAll({ _id: { $in: election.delegates } })
   }
 }

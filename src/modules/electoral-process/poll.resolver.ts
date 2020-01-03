@@ -21,6 +21,7 @@ import { CurrentUser } from '../auth/current-user.decorator'
 import { User, Genre } from '../users/users.type'
 import { mongoose } from '@typegoose/typegoose'
 import { PollVoteService } from './poll.votes.service'
+import { UsersService } from '../users/users.service'
 
 @Resolver(() => Poll)
 @UseGuards(GqlAuthGuard)
@@ -30,7 +31,8 @@ export class PollResolver {
     private readonly filesService: FileService,
     private readonly censusService: CensusService,
     private readonly pollResultsService: PollResultsService,
-    private readonly pollVoteService: PollVoteService
+    private readonly pollVoteService: PollVoteService,
+    private readonly userService: UsersService
   ) {}
 
   @Query(() => [Poll])
@@ -175,5 +177,10 @@ export class PollResolver {
   @Mutation(() => Poll)
   async modifyPoll (@Args({ name: 'id', type: () => ID }) id: string, @Args('input') data: UpdatePollInput) {
     return this.pollsService.update(id, data)
+  }
+
+  @ResolveProperty(() => [User])
+  async delegates (@Parent() poll: Poll) {
+    return this.userService.findAll({ _id: { $in: poll.delegates } })
   }
 }

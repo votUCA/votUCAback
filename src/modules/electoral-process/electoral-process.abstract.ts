@@ -3,6 +3,8 @@ import { Field, ID, InputType, ObjectType } from 'type-graphql'
 import { isAbstract, required } from '../../common/constants'
 import { CensusInput } from '../census/census.input'
 import { Census } from '../census/census.type'
+import { User } from '../users/users.type'
+import { UserInput } from '../users/users.input'
 
 @ObjectType({ isAbstract })
 export class ElectoralProcess {
@@ -29,6 +31,9 @@ export class ElectoralProcess {
   @Field()
   @prop({ required })
   rectifyVote: boolean
+
+  @arrayProp({ required, itemsRef: User })
+  delegates: Ref<User>[]
 }
 
 @InputType({ isAbstract })
@@ -47,6 +52,9 @@ export class ElectoralProcessInput {
 
   @Field(() => [CensusInput])
   censuses: CensusInput[]
+
+  @Field(() => [UserInput])
+  delegates: UserInput[]
 }
 
 @InputType({ isAbstract })
@@ -62,4 +70,7 @@ export class UpdateElectoralProcessInput {
 
   @Field(() => [CensusInput], { nullable: true })
   censuses?: CensusInput[]
+
+  @Field(() => [UserInput], { nullable: true })
+  delegates?: UserInput[]
 }

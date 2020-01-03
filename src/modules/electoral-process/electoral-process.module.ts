@@ -19,13 +19,15 @@ import { Poll, PollVote } from './poll.type'
 import { PollResultsService } from './poll.results.service'
 import { PollVoteService } from './poll.votes.service'
 import { ElectionVotesService } from './election.votes.service'
+import { UsersModule } from '../users/users.module'
 
 @Module({
   imports: [
     TypegooseModule.forFeature([Election, ElectionResults, ElectionVote, Poll, PollResults, PollVote]),
     CandidatesModule,
     FilesModule,
-    CensusModule
+    CensusModule,
+    UsersModule
   ],
   providers: [
     ElectoralProcessResolver,
