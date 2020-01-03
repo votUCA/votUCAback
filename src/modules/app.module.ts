@@ -12,6 +12,7 @@ import { ElectoralProcessModule } from './electoral-process/electoral-process.mo
 import { FilesModule } from './files/files.module'
 import { UsersModule } from './users/users.module'
 import { CensusModule } from './census/census.module'
+import { CollegiateBodiesModule } from './collegiate-bodies/collegiate-bodies.module'
 
 @Module({
   imports: [
@@ -37,7 +38,8 @@ import { CensusModule } from './census/census.module'
     FilesModule,
     ElectoralProcessModule,
     CandidatesModule,
-    CensusModule
+    CensusModule,
+    CollegiateBodiesModule
   ],
   providers: [UploadScalar]
 })

@@ -3,6 +3,7 @@ import { Field, ID, ObjectType, ArgsType } from 'type-graphql'
 import { required } from '../../common/constants'
 import { ElectoralProcess } from './electoral-process.abstract'
 import { User } from '../users/users.type'
+import { CollegiateBody } from '../collegiate-bodies/collegiate-bodies.type'
 
 @ObjectType()
 export class PollOption {
@@ -33,6 +34,10 @@ export class Poll extends ElectoralProcess {
   @Field(() => Boolean)
   @prop({ required })
   realTime: boolean
+
+  @Field(() => String)
+  @prop({ required })
+  collegiateBody: Ref<CollegiateBody>
 }
 
 @ObjectType()

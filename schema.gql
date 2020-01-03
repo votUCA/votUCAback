@@ -32,6 +32,21 @@ input CensusInput {
   file: String!
 }
 
+type CollegiateBody {
+  id: ID!
+  name: String!
+  collegiates: [String!]!
+}
+
+input CollegiateBodyInput {
+  name: String!
+}
+
+input CollegiateBodyUserAssignInput {
+  collegiateBodyId: String!
+  userId: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -103,6 +118,8 @@ type Mutation {
   createPoll(input: PollInput!): Poll!
   voteOnPoll(input: VotePollInput!): Boolean!
   modifyPoll(input: UpdatePollInput!, id: ID!): Poll!
+  assignUserToCollegiateBody(input: CollegiateBodyUserAssignInput!): CollegiateBody!
+  createCollegiateBody(input: CollegiateBodyInput!): CollegiateBody!
 }
 
 type Poll {
@@ -115,6 +132,7 @@ type Poll {
   options: [PollOption!]!
   numVotesAllowed: Float!
   realTime: Boolean!
+  collegiateBody: String!
   censuses: [Census!]!
   results(group: Boolean = false, location: Boolean = false, genre: Boolean = false): [PollResults!]!
 }
@@ -173,6 +191,9 @@ type Query {
   polls: [Poll!]!
   poll(id: ID!): Poll!
   userVotesOnPoll(pollId: String!): [PollVote!]!
+  collegiateBody(id: ID!): CollegiateBody!
+  collegiateBodies(skip: Int = 0, limit: Int = 0): [CollegiateBody!]!
+  userCollegiateBodies(excludeUser: Boolean!, userId: ID!): [CollegiateBody!]!
 }
 
 """All possible roles on app"""
