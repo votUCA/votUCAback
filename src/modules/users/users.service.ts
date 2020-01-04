@@ -20,6 +20,10 @@ export class UsersService extends CrudService<User, UserInput> {
     return this.userModel.findOne({ uid })
   }
 
+  async removeById(uid: string): Promise<User> {
+    return this.userModel.findOneAndRemove({ uid })
+  }
+
   async create({ password, ...rest }: UserInput): Promise<DocumentType<User>> {
     const encrypted = await bcrypt.hash(password, 10)
     return this.userModel.create({ password: encrypted, ...rest })

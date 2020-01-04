@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common'
-import { Args, Query, Resolver } from '@nestjs/graphql'
+import { Args, Query, Mutation, Resolver } from '@nestjs/graphql'
 import { ID } from 'type-graphql'
 import { DocumentType } from '@typegoose/typegoose'
 import { GqlAuthGuard } from '../auth/gql.guard'
@@ -56,5 +56,14 @@ export class ElectoralProcessResolver {
     const polls = await this.pollsService.findAll(query)
 
     return [...elections, ...polls]
+  }
+
+  @Mutation(() => [ElectoralProcess])
+  async removeElectoralProcesses(
+    @Args({ name: 'id', type: () => ID }) id: string
+  ): Promise<Election | Poll> {
+    const election = await this.electionsService.removeById(id)
+    const poll = await this.pollsService.removeById(id)
+    return election || poll
   }
 }

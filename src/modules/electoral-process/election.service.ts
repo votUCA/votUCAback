@@ -18,6 +18,10 @@ export class ElectionsService extends CrudService<
     super(electionModel)
   }
 
+  async removeById(uid: string): Promise<Election> {
+    return this.electionModel.findOneAndRemove({ uid })
+  }
+
   async pendingElectionsOfVoter(uid: string): Promise<Election[]> {
     return this.electionModel.aggregate([
       {

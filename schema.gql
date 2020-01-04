@@ -95,7 +95,9 @@ type LoginPayload {
 
 type Mutation {
   modifyUser(input: UserUpdateInput!, id: ID!): User!
+  removeUser(id: ID!): User!
   login(input: LoginInput!): LoginPayload!
+  removeElectoralProcesses(id: ID!): [ElectoralProcess!]!
   createElection(input: ElectionInput!): Election!
   voteOnElection(input: VoteElectionInput!): Boolean!
   modifyElection(input: UpdateElectionInput!, id: ID!): Election!

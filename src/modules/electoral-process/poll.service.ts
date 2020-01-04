@@ -30,4 +30,8 @@ export class PollsService extends CrudService<Poll, PollDTO> {
   async findOneAndUpdate(conditions: any, update: any): Promise<Poll> {
     return this.pollModel.findOneAndUpdate(conditions, update)
   }
+
+  async removeById(uid: string): Promise<Poll> {
+    return this.pollModel.findOneAndRemove({ uid })
+  }
 }

@@ -37,6 +37,13 @@ export class UsersResolver {
   ): Promise<User> {
     return this.usersService.update(id, data)
   }
+
+  @Mutation(() => User)
+  async removeUser(
+    @Args({ name: 'id', type: () => ID }) id: string
+  ): Promise<User> {
+    return this.usersService.removeById(id)
+  }
 }
 
 @Resolver(() => User)
