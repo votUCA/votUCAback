@@ -8,6 +8,7 @@ import { ElectoralProcess } from './electoral-process.type'
 import { PollsService } from './poll.service'
 import { Election } from './election.type'
 import { Poll } from './poll.type'
+import { ElectoralProcessFilter } from './electoral-process.abstract'
 
 @Resolver()
 @UseGuards(GqlAuthGuard)
@@ -18,9 +19,23 @@ export class ElectoralProcessResolver {
   ) {}
 
   @Query(() => [ElectoralProcess])
-  async electoralProcesses(): Promise<(Election | Poll)[]> {
-    const elections = await this.electionsService.findAll()
-    const polls = await this.pollsService.findAll()
+  async electoralProcesses(
+    @Args({
+      name: 'filter',
+      type: () => ElectoralProcessFilter,
+      defaultValue: { open: false, finished: false },
+    })
+    { open, finished }: ElectoralProcessFilter
+  ): Promise<(Election | Poll)[]> {
+    let query = {}
+    if (open) {
+      query = { start: { $gt: new Date() } }
+    }
+    if (finished) {
+      query = { end: { $lte: new Date() } }
+    }
+    const elections = await this.electionsService.findAll(query)
+    const polls = await this.pollsService.findAll(query)
 
     return [...elections, ...polls]
   }
@@ -32,29 +47,5 @@ export class ElectoralProcessResolver {
     const election = await this.electionsService.findById(id)
     const poll = await this.pollsService.findById(id)
     return election || poll
-  }
-
-  @Query(() => [ElectoralProcess], {
-    description:
-      'Devuelve aquellos procesos electorales que aún no han sido iniciados',
-  })
-  async futureElectoralProcesses(): Promise<(Election | Poll)[]> {
-    const query = { start: { $gt: new Date() } }
-    const elections = await this.electionsService.findAll(query)
-    const polls = await this.pollsService.findAll(query)
-
-    return [...elections, ...polls]
-  }
-
-  @Query(() => [ElectoralProcess], {
-    description:
-      'Devuelve aquellos procesos electorales que han sido finalizados',
-  })
-  async pastElectoralProcesses(): Promise<(Election | Poll)[]> {
-    const query = { end: { $lte: new Date() } }
-    const elections = await this.electionsService.findAll(query)
-    const polls = await this.pollsService.findAll(query)
-
-    return [...elections, ...polls]
   }
 }

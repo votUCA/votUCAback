@@ -74,6 +74,11 @@ type ElectionVote {
 
 union ElectoralProcess = Election | Poll
 
+input ElectoralProcessFilter {
+  open: Boolean!
+  finished: Boolean!
+}
+
 type File {
   name: String!
 }
@@ -154,14 +159,8 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
   me: User!
-  electoralProcesses: [ElectoralProcess!]!
+  electoralProcesses(filter: ElectoralProcessFilter = {open: false, finished: false}): [ElectoralProcess!]!
   electoralProcess(id: ID!): ElectoralProcess!
-
-  """Devuelve aquellos procesos electorales que aún no han sido iniciados"""
-  futureElectoralProcesses: [ElectoralProcess!]!
-
-  """Devuelve aquellos procesos electorales que han sido finalizados"""
-  pastElectoralProcesses: [ElectoralProcess!]!
   elections: [Election!]!
   pendingElections: [Election!]!
   election(id: ID!): Election!

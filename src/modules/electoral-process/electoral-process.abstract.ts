@@ -63,3 +63,12 @@ export class UpdateElectoralProcessInput {
   @Field(() => [CensusInput], { nullable: true })
   censuses?: CensusInput[]
 }
+
+@InputType()
+export class ElectoralProcessFilter {
+  @Field()
+  open: boolean
+
+  @Field()
+  finished: boolean
+}
