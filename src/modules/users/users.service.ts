@@ -2,11 +2,11 @@ import { BadRequestException, Injectable } from '@nestjs/common'
 import { ReturnModelType, DocumentType } from '@typegoose/typegoose'
 import * as bcrypt from 'bcryptjs'
 import { InjectModel } from 'nestjs-typegoose'
-import { JwtPayload } from 'modules/auth/jwt.payload'
 import { CrudService } from '../../common/crud.service'
 import { LoginInput } from './login.input'
 import { UserInput } from './users.input'
 import { User } from './users.type'
+import { JwtPayload } from '../auth/jwt.payload'
 
 @Injectable()
 export class UsersService extends CrudService<User, UserInput> {

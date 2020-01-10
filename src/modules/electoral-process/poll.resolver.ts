@@ -14,6 +14,7 @@ import { GqlAuthGuard } from '../auth/gql.guard'
 import { CensusService } from '../census/census.service'
 import { Census } from '../census/census.type'
 import { FileService } from '../files/files.service'
+import { UsersService } from '../users/users.service'
 import { Genre, User } from '../users/users.type'
 import {
   PollResults,
@@ -32,7 +33,8 @@ export class PollResolver {
     private readonly pollsService: PollsService,
     private readonly filesService: FileService,
     private readonly censusService: CensusService,
-    private readonly pollResultsService: PollResultsService
+    private readonly pollResultsService: PollResultsService,
+    private readonly userService: UsersService
   ) {}
 
   @Query(() => [Poll])
@@ -149,5 +151,10 @@ export class PollResolver {
     @Args('input') data: UpdatePollInput
   ): Promise<Poll> {
     return this.pollsService.update(id, data)
+  }
+
+  @ResolveProperty(() => [User])
+  async delegates(@Parent() poll: Poll): Promise<User[]> {
+    return this.userService.findAll({ _id: { $in: poll.delegates } })
   }
 }

@@ -30,6 +30,7 @@ import {
   ResultsFilter,
   resultsFilterDefault,
 } from './electoral-process.results.type'
+import { UsersService } from '../users/users.service'
 
 @Resolver(() => Election)
 @UseGuards(GqlAuthGuard)
@@ -39,7 +40,8 @@ export class ElectionResolver {
     private readonly electionResultsService: ElectionResultsService,
     private readonly candidatesService: CandidatesService,
     private readonly filesService: FileService,
-    private readonly censusService: CensusService
+    private readonly censusService: CensusService,
+    private readonly usersService: UsersService
   ) {}
 
   @Query(() => [Election])
@@ -173,5 +175,10 @@ export class ElectionResolver {
     @Args('input') data: UpdateElectionInput
   ): Promise<DocumentType<Election>> {
     return this.electionsService.update(id, data)
+  }
+
+  @ResolveProperty(() => [User])
+  async delegates(@Parent() election: Election): Promise<User[]> {
+    return this.usersService.findAll({ _id: { $in: election.delegates } })
   }
 }

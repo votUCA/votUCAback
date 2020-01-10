@@ -19,6 +19,7 @@ import { Poll, PollVote } from './poll.type'
 import { PollResultsService } from './poll.results.service'
 import { PollVoteService } from './poll.votes.service'
 import { ElectionVotesService } from './election.votes.service'
+import { UsersModule } from '../users/users.module'
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ElectionVotesService } from './election.votes.service'
     CandidatesModule,
     FilesModule,
     CensusModule,
+    UsersModule,
   ],
   providers: [
     ElectoralProcessResolver,
