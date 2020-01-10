@@ -37,6 +37,10 @@ type ColegiateBody {
   name: String!
 }
 
+input ColegiateBodyInput {
+  name: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -51,6 +55,7 @@ type Election {
   candidates: [Candidate!]!
   results(filter: ResultsFilter = {group: false, location: false, genre: false}): [ElectionResults!]!
   censuses: [Census!]!
+  delegates: [User!]!
 }
 
 input ElectionInput {
@@ -59,6 +64,7 @@ input ElectionInput {
   description: String!
   isVoteRectify: Boolean!
   censuses: [CensusInput!]!
+  delegates: [UserInput!]!
   candidates: [CandidateInput!]!
 }
 
@@ -121,6 +127,7 @@ type Poll {
   isRealTime: Boolean!
   censuses: [Census!]!
   results(filter: ResultsFilter = {group: false, location: false, genre: false}): [PollResults!]!
+  delegates: [User!]!
 }
 
 input PollInput {
@@ -129,6 +136,7 @@ input PollInput {
   description: String!
   isVoteRectify: Boolean!
   censuses: [CensusInput!]!
+  delegates: [UserInput!]!
   question: String!
   options: [String!]!
   isRealTime: Boolean!
@@ -159,6 +167,8 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
   me: User!
+  colegiateBody(id: ID!): ColegiateBody!
+  collegiateBodies: [ColegiateBody!]!
   electoralProcesses(open: Boolean = false, finished: Boolean = false): [ElectoralProcess!]!
   electoralProcess(id: ID!): ElectoralProcess!
   pendingElectoralProcesses: [ElectoralProcess!]!
@@ -170,8 +180,6 @@ type Query {
   polls: [Poll!]!
   poll(id: ID!): Poll!
   pendingPolls: [Poll!]!
-  colegiateBody(id: ID!): ColegiateBody!
-  collegiateBodies: [ColegiateBody!]!
 }
 
 input ResultsFilter {
@@ -191,6 +199,7 @@ input UpdateElectionInput {
   end: DateTime
   description: String
   censuses: [CensusInput!]
+  delegates: [UserInput!]
   candidates: [CandidateInput!]
 }
 
@@ -199,6 +208,7 @@ input UpdatePollInput {
   end: DateTime
   description: String
   censuses: [CensusInput!]
+  delegates: [UserInput!]
   question: String
   options: [String!]
 }
@@ -213,6 +223,7 @@ type User {
   lastName: String!
   roles: [Role!]!
   genre: Genre!
+  colegiateBody: ColegiateBody!
 }
 
 input UserInput {
@@ -221,6 +232,7 @@ input UserInput {
   firstName: String!
   lastName: String!
   roles: [Role!] = []
+  collegiateBody: ColegiateBodyInput!
 }
 
 input UserUpdateInput {
@@ -228,6 +240,7 @@ input UserUpdateInput {
   firstName: String
   lastName: String
   roles: [Role!]
+  colegiateBody: ColegiateBodyInput
 }
 
 input VoteElectionInput {
