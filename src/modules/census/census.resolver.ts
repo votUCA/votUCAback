@@ -1,17 +1,19 @@
 import { Args, Query, Resolver } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
 import { ID, Int } from 'type-graphql'
-import { DocumentType } from '@typegoose/typegoose'
 import { CensusService } from './census.service'
 import { Census } from './census.type'
+import { GqlAuthGuard } from '../auth/gql.guard'
 
 @Resolver(() => Census)
+@UseGuards(GqlAuthGuard)
 export class CensusResolver {
   constructor(private readonly censusService: CensusService) {}
 
   @Query(() => Census)
   async census(
     @Args({ type: () => ID, name: 'id' }) id: string
-  ): Promise<DocumentType<Census>> {
+  ): Promise<Census> {
     return this.censusService.findById(id)
   }
 

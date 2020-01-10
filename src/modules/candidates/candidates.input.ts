@@ -1,4 +1,4 @@
-import { Field, InputType } from 'type-graphql'
+import { ArgsType, Field, ID, InputType } from 'type-graphql'
 import { nullable } from '../../common/constants'
 
 @InputType()
@@ -11,4 +11,13 @@ export class CandidateInput {
 
   @Field({ nullable })
   about?: string
+}
+
+@ArgsType()
+export class CandidateDeleteArgs {
+  @Field(() => ID)
+  id: string
+
+  @Field(() => ID)
+  election: string
 }

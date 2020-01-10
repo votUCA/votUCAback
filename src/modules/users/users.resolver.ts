@@ -11,13 +11,13 @@ import { ID } from 'type-graphql'
 import { AuthService } from '../auth/auth.service'
 import { CurrentUser } from '../auth/current-user.decorator'
 import { GqlAuthGuard } from '../auth/gql.guard'
+import { ColegiateBodyService } from '../colegiate-bodies/colegiate-bodies.service'
+import { ColegiateBody } from '../colegiate-bodies/colegiate-bodies.type'
 import { LoginInput } from './login.input'
 import { LoginPayload } from './login.payload'
 import { UserUpdateInput } from './users.input'
 import { UsersService } from './users.service'
 import { User } from './users.type'
-import { ColegiateBodyService } from '../colegiate-bodies/colegiate-bodies.service'
-import { ColegiateBody } from '../colegiate-bodies/colegiate-bodies.type'
 
 @Resolver(() => User)
 @UseGuards(GqlAuthGuard)
@@ -53,6 +53,13 @@ export class UsersResolver {
   @ResolveProperty(() => ColegiateBody)
   async colegiateBody(@Parent() user: User): Promise<ColegiateBody> {
     return this.colegiateBodyService.findById(user.colegiateBody)
+  }
+
+  @Mutation(() => User)
+  async deleteUser(
+    @Args({ name: 'id', type: () => ID }) id: string
+  ): Promise<User> {
+    return this.usersService.delete(id)
   }
 }
 

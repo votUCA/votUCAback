@@ -16,6 +16,7 @@ import { Candidate } from '../candidates/candidates.type'
 import { CensusService } from '../census/census.service'
 import { Census } from '../census/census.type'
 import { FileService } from '../files/files.service'
+import { UsersService } from '../users/users.service'
 import { Genre, User } from '../users/users.type'
 import {
   ElectionInput,
@@ -30,7 +31,6 @@ import {
   ResultsFilter,
   resultsFilterDefault,
 } from './electoral-process.results.type'
-import { UsersService } from '../users/users.service'
 
 @Resolver(() => Election)
 @UseGuards(GqlAuthGuard)
@@ -180,5 +180,16 @@ export class ElectionResolver {
   @ResolveProperty(() => [User])
   async delegates(@Parent() election: Election): Promise<User[]> {
     return this.usersService.findAll({ _id: { $in: election.delegates } })
+  }
+
+  @Mutation(() => Boolean)
+  async deleteElection(
+    @Args({ name: 'id', type: () => ID }) id: string
+  ): Promise<boolean> {
+    const election = await this.electionsService.delete(id)
+    await this.candidatesService.deleteByElection(election.id)
+    await this.censusService.deleteAllIn(election.censuses)
+    await this.electionResultsService.deleteByElection(election.id)
+    return true
   }
 }

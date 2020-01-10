@@ -157,4 +157,14 @@ export class PollResolver {
   async delegates(@Parent() poll: Poll): Promise<User[]> {
     return this.userService.findAll({ _id: { $in: poll.delegates } })
   }
+
+  @Mutation(() => Boolean)
+  async deletePoll(
+    @Args({ name: 'id', type: () => ID }) id: string
+  ): Promise<boolean> {
+    const poll = await this.pollsService.delete(id)
+    await this.censusService.deleteAllIn(poll.censuses)
+    await this.pollResultsService.deleteByPoll(poll.id)
+    return true
+  }
 }

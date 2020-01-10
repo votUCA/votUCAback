@@ -53,7 +53,9 @@ type Election {
   description: String!
   isVoteRectify: Boolean!
   candidates: [Candidate!]!
-  results(filter: ResultsFilter = {group: false, location: false, genre: false}): [ElectionResults!]!
+  results(
+    filter: ResultsFilter = { group: false, location: false, genre: false }
+  ): [ElectionResults!]!
   censuses: [Census!]!
   delegates: [User!]!
 }
@@ -106,14 +108,18 @@ type LoginPayload {
 
 type Mutation {
   modifyUser(input: UserUpdateInput!, id: ID!): User!
+  deleteUser(id: ID!): User!
   login(input: LoginInput!): LoginPayload!
+  deleteCandidate(id: ID!, election: ID!): Candidate!
   createElection(input: ElectionInput!): Election!
   voteOnElection(input: VoteElectionInput!): Boolean!
   modifyElection(input: UpdateElectionInput!, id: ID!): Election!
+  deleteElection(id: ID!): Boolean!
   uploadFile(file: Upload!): File!
   createPoll(input: PollInput!): Poll!
   voteOnPoll(input: VotePollInput!): Boolean!
   modifyPoll(input: UpdatePollInput!, id: ID!): Poll!
+  deletePoll(id: ID!): Boolean!
 }
 
 type Poll {
@@ -126,7 +132,9 @@ type Poll {
   options: [PollOption!]!
   isRealTime: Boolean!
   censuses: [Census!]!
-  results(filter: ResultsFilter = {group: false, location: false, genre: false}): [PollResults!]!
+  results(
+    filter: ResultsFilter = { group: false, location: false, genre: false }
+  ): [PollResults!]!
   delegates: [User!]!
 }
 
@@ -169,7 +177,10 @@ type Query {
   me: User!
   colegiateBody(id: ID!): ColegiateBody!
   collegiateBodies: [ColegiateBody!]!
-  electoralProcesses(open: Boolean = false, finished: Boolean = false): [ElectoralProcess!]!
+  electoralProcesses(
+    open: Boolean = false
+    finished: Boolean = false
+  ): [ElectoralProcess!]!
   electoralProcess(id: ID!): ElectoralProcess!
   pendingElectoralProcesses: [ElectoralProcess!]!
   elections: [Election!]!
@@ -188,7 +199,9 @@ input ResultsFilter {
   genre: Boolean!
 }
 
-"""All possible roles on app"""
+"""
+All possible roles on app
+"""
 enum Role {
   ADMIN
   SECRETARY
@@ -213,7 +226,9 @@ input UpdatePollInput {
   options: [String!]
 }
 
-"""The `Upload` scalar type represents a file upload."""
+"""
+The `Upload` scalar type represents a file upload.
+"""
 scalar Upload
 
 type User {
