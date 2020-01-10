@@ -106,14 +106,18 @@ type LoginPayload {
 
 type Mutation {
   modifyUser(input: UserUpdateInput!, id: ID!): User!
+  deleteUser(id: ID!): User!
   login(input: LoginInput!): LoginPayload!
+  deleteCandidate(id: ID!, election: ID!): Candidate!
   createElection(input: ElectionInput!): Election!
   voteOnElection(input: VoteElectionInput!): Boolean!
   modifyElection(input: UpdateElectionInput!, id: ID!): Election!
+  deleteElection(id: ID!): Election!
   uploadFile(file: Upload!): File!
   createPoll(input: PollInput!): Poll!
   voteOnPoll(input: VotePollInput!): Boolean!
   modifyPoll(input: UpdatePollInput!, id: ID!): Poll!
+  deletePoll(id: ID!): Poll!
 }
 
 type Poll {
