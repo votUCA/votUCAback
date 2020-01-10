@@ -5,6 +5,7 @@ import { CrudService } from '../../common/crud.service'
 import { PollResults, ResultsFilter } from './electoral-process.results.type'
 import { Poll, PollOption } from './poll.type'
 import { Census } from '../census/census.type'
+import { DeleteMany } from '../../common/delete-many'
 
 interface PollResultsInput {
   votes?: number
@@ -83,5 +84,9 @@ export class PollResultsService extends CrudService<
 
   async findOneAndUpdate(conditions: any, update: any): Promise<PollResults> {
     return this.pollResultModel.findOneAndUpdate(conditions, update)
+  }
+
+  async deleteByPoll(poll: string | Ref<Poll>): Promise<DeleteMany> {
+    return this.pollResultModel.deleteMany({ poll })
   }
 }

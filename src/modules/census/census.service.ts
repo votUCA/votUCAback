@@ -1,9 +1,16 @@
 import { Injectable } from '@nestjs/common'
-import { ReturnModelType, mongoose, DocumentType } from '@typegoose/typegoose'
+import {
+  ReturnModelType,
+  mongoose,
+  DocumentType,
+  Ref,
+} from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { CrudService } from '../../common/crud.service'
 import { Census, Voter } from './census.type'
 import { CensusInput } from './census.input'
+import { DeleteMany } from '../../common/delete-many'
+
 @Injectable()
 export class CensusService extends CrudService<Census, CensusInput> {
   constructor(
@@ -54,5 +61,9 @@ export class CensusService extends CrudService<Census, CensusInput> {
       },
     ])
     return voter
+  }
+
+  async deleteAllIn(list: Ref<Census>[]): Promise<DeleteMany> {
+    return this.censusModel.deleteMany({ _id: { $in: list } })
   }
 }

@@ -1,14 +1,15 @@
 import { Injectable } from '@nestjs/common'
-import { ReturnModelType, Ref, DocumentType } from '@typegoose/typegoose'
+import { DocumentType, Ref, ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { CrudService } from '../../common/crud.service'
+import { DeleteMany } from '../../common/delete-many'
+import { Candidate } from '../candidates/candidates.type'
+import { Census } from '../census/census.type'
+import { Election } from './election.type'
 import {
   ElectionResults,
   ResultsFilter,
 } from './electoral-process.results.type'
-import { Election } from './election.type'
-import { Candidate } from '../candidates/candidates.type'
-import { Census } from '../census/census.type'
 
 interface ElectionResultsInput {
   votes?: number
@@ -91,5 +92,11 @@ export class ElectionResultsService extends CrudService<
     update: any
   ): Promise<DocumentType<ElectionResults>> {
     return this.electionResultModel.findOneAndUpdate(conditions, update)
+  }
+
+  async deleteByElection(
+    election: string | Ref<Election>
+  ): Promise<DeleteMany> {
+    return this.electionResultModel.deleteMany({ election })
   }
 }
