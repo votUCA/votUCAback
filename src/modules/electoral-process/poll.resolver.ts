@@ -158,10 +158,13 @@ export class PollResolver {
     return this.userService.findAll({ _id: { $in: poll.delegates } })
   }
 
-  @Mutation(() => Poll)
+  @Mutation(() => Boolean)
   async deletePoll(
     @Args({ name: 'id', type: () => ID }) id: string
-  ): Promise<Poll> {
-    return this.pollsService.delete(id)
+  ): Promise<boolean> {
+    const poll = await this.pollsService.delete(id)
+    await this.censusService.deleteAllIn(poll.censuses)
+    await this.pollResultsService.deleteByPoll(poll.id)
+    return true
   }
 }

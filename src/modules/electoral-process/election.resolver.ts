@@ -182,10 +182,14 @@ export class ElectionResolver {
     return this.usersService.findAll({ _id: { $in: election.delegates } })
   }
 
-  @Mutation(() => Election)
+  @Mutation(() => Boolean)
   async deleteElection(
     @Args({ name: 'id', type: () => ID }) id: string
-  ): Promise<Election> {
-    return this.electionsService.delete(id)
+  ): Promise<boolean> {
+    const election = await this.electionsService.delete(id)
+    await this.candidatesService.deleteByElection(election.id)
+    await this.censusService.deleteAllIn(election.censuses)
+    await this.electionResultsService.deleteByElection(election.id)
+    return true
   }
 }
