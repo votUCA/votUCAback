@@ -32,6 +32,11 @@ input CensusInput {
   file: String!
 }
 
+type ColegiateBody {
+  id: ID!
+  name: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -161,6 +166,7 @@ type Query {
   me: User!
   electoralProcesses(filter: ElectoralProcessFilter = {open: false, finished: false}): [ElectoralProcess!]!
   electoralProcess(id: ID!): ElectoralProcess!
+  pendingElectoralProcesses: [ElectoralProcess!]!
   elections: [Election!]!
   pendingElections: [Election!]!
   election(id: ID!): Election!
@@ -168,6 +174,9 @@ type Query {
   censuses(skip: Int = 0, limit: Int = 0): [Census!]!
   polls: [Poll!]!
   poll(id: ID!): Poll!
+  pendingPolls: [Poll!]!
+  colegiateBody(id: ID!): ColegiateBody!
+  collegiateBodies: [ColegiateBody!]!
 }
 
 input ResultsFilter {

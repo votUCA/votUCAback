@@ -45,6 +45,11 @@ export class PollResolver {
     return this.pollsService.findById(id)
   }
 
+  @Query(() => [Poll])
+  async pendingPolls(@CurrentUser() user: User): Promise<Poll[]> {
+    return this.pollsService.pendingPollsOfVoter(user.uid)
+  }
+
   @ResolveProperty(() => [Census])
   async censuses(@Parent() poll: Poll): Promise<Census[]> {
     return this.censusService.findAll({ _id: { $in: poll.censuses } })

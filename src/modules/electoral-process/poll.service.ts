@@ -30,4 +30,25 @@ export class PollsService extends CrudService<Poll, PollDTO> {
   async findOneAndUpdate(conditions: any, update: any): Promise<Poll> {
     return this.pollModel.findOneAndUpdate(conditions, update)
   }
+
+  async pendingPollsOfVoter(uid: string): Promise<Poll[]> {
+    return this.pollModel.aggregate([
+      {
+        $lookup: {
+          from: 'census',
+          localField: 'censuses',
+          foreignField: '_id',
+          as: 'censuses',
+        },
+      },
+      {
+        $match: {
+          'censuses.voters': {
+            $elemMatch: { uid, hasVoted: false },
+          },
+          end: { $gte: new Date() },
+        },
+      },
+    ])
+  }
 }

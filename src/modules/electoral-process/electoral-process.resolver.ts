@@ -2,6 +2,8 @@ import { UseGuards } from '@nestjs/common'
 import { Args, Query, Resolver } from '@nestjs/graphql'
 import { ID } from 'type-graphql'
 import { DocumentType } from '@typegoose/typegoose'
+import { CurrentUser } from 'modules/auth/current-user.decorator'
+import { User } from 'modules/users/users.type'
 import { GqlAuthGuard } from '../auth/gql.guard'
 import { ElectionsService } from './election.service'
 import { ElectoralProcess } from './electoral-process.type'
@@ -47,5 +49,16 @@ export class ElectoralProcessResolver {
     const election = await this.electionsService.findById(id)
     const poll = await this.pollsService.findById(id)
     return election || poll
+  }
+
+  @Query(() => [ElectoralProcess])
+  async pendingElectoralProcesses(
+    @CurrentUser() user: User
+  ): Promise<(Election | Poll)[]> {
+    const peding = await Promise.all([
+      this.electionsService.pendingElectionsOfVoter(user.uid),
+      this.pollsService.pendingPollsOfVoter(user.uid),
+    ])
+    return peding.flat()
   }
 }
