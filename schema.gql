@@ -79,11 +79,6 @@ type ElectionVote {
 
 union ElectoralProcess = Election | Poll
 
-input ElectoralProcessFilter {
-  open: Boolean!
-  finished: Boolean!
-}
-
 type File {
   name: String!
 }
@@ -164,7 +159,7 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
   me: User!
-  electoralProcesses(filter: ElectoralProcessFilter = {open: false, finished: false}): [ElectoralProcess!]!
+  electoralProcesses(open: Boolean = false, finished: Boolean = false): [ElectoralProcess!]!
   electoralProcess(id: ID!): ElectoralProcess!
   pendingElectoralProcesses: [ElectoralProcess!]!
   elections: [Election!]!

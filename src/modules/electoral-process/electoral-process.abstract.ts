@@ -1,5 +1,5 @@
 import { prop, arrayProp, Ref } from '@typegoose/typegoose'
-import { Field, ID, InputType, ObjectType } from 'type-graphql'
+import { Field, ID, InputType, ObjectType, ArgsType } from 'type-graphql'
 import { isAbstract, required } from '../../common/constants'
 import { CensusInput } from '../census/census.input'
 import { Census } from '../census/census.type'
@@ -64,11 +64,11 @@ export class UpdateElectoralProcessInput {
   censuses?: CensusInput[]
 }
 
-@InputType()
+@ArgsType()
 export class ElectoralProcessFilter {
-  @Field()
+  @Field({ defaultValue: false })
   open: boolean
 
-  @Field()
+  @Field({ defaultValue: false })
   finished: boolean
 }

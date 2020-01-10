@@ -1,16 +1,15 @@
 import { UseGuards } from '@nestjs/common'
 import { Args, Query, Resolver } from '@nestjs/graphql'
 import { ID } from 'type-graphql'
-import { DocumentType } from '@typegoose/typegoose'
-import { CurrentUser } from 'modules/auth/current-user.decorator'
-import { User } from 'modules/users/users.type'
+import { CurrentUser } from '../auth/current-user.decorator'
 import { GqlAuthGuard } from '../auth/gql.guard'
+import { User } from '../users/users.type'
 import { ElectionsService } from './election.service'
+import { Election } from './election.type'
+import { ElectoralProcessFilter } from './electoral-process.abstract'
 import { ElectoralProcess } from './electoral-process.type'
 import { PollsService } from './poll.service'
-import { Election } from './election.type'
 import { Poll } from './poll.type'
-import { ElectoralProcessFilter } from './electoral-process.abstract'
 
 @Resolver()
 @UseGuards(GqlAuthGuard)
@@ -22,12 +21,7 @@ export class ElectoralProcessResolver {
 
   @Query(() => [ElectoralProcess])
   async electoralProcesses(
-    @Args({
-      name: 'filter',
-      type: () => ElectoralProcessFilter,
-      defaultValue: { open: false, finished: false },
-    })
-    { open, finished }: ElectoralProcessFilter
+    @Args() { open, finished }: ElectoralProcessFilter
   ): Promise<(Election | Poll)[]> {
     let query = {}
     if (open) {
@@ -45,7 +39,7 @@ export class ElectoralProcessResolver {
   @Query(() => ElectoralProcess)
   async electoralProcess(
     @Args({ name: 'id', type: () => ID }) id: string
-  ): Promise<DocumentType<Election | Poll>> {
+  ): Promise<Election | Poll> {
     const election = await this.electionsService.findById(id)
     const poll = await this.pollsService.findById(id)
     return election || poll
@@ -55,10 +49,10 @@ export class ElectoralProcessResolver {
   async pendingElectoralProcesses(
     @CurrentUser() user: User
   ): Promise<(Election | Poll)[]> {
-    const peding = await Promise.all([
+    const pending = await Promise.all<Election[], Poll[]>([
       this.electionsService.pendingElectionsOfVoter(user.uid),
       this.pollsService.pendingPollsOfVoter(user.uid),
     ])
-    return peding.flat()
+    return pending.flat()
   }
 }
