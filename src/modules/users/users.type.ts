@@ -2,15 +2,19 @@ import { prop, arrayProp, Ref } from '@typegoose/typegoose'
 import { Field, ID, ObjectType, registerEnumType } from 'type-graphql'
 import { required } from '../../common/constants'
 import { Role } from './roles.enum'
-import { CollegiateBody } from '../collegiate-bodies/collegiate-bodies.type'
+import { ColegiateBody } from '../colegiate-bodies/colegiate-bodies.type'
 
-export enum Genre{MALE = 'MALE', FEMALE = 'FEMALE', OTHER = 'OTHER'}
+export enum Genre {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+  OTHER = 'OTHER',
+}
 registerEnumType(Genre, { name: 'Genre' })
 
 @ObjectType()
 export class User {
   @Field(() => ID)
-  get id (this: any) {
+  get id(this: any): string {
     return this._id || this._doc._id
   }
 
@@ -37,7 +41,6 @@ export class User {
   @prop({ required, enum: Object.keys(Genre), type: String })
   genre: Genre
 
-  @Field(() => ID)
-  @prop({ required, ref: 'CollegiateBody' })
-  collegiateBody: Ref<CollegiateBody>
+  @prop({ required, ref: ColegiateBody })
+  colegiateBody: Ref<ColegiateBody>
 }

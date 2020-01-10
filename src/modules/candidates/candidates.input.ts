@@ -11,7 +11,4 @@ export class CandidateInput {
 
   @Field({ nullable })
   about?: string
-
-  // @Field({ nullable })
-  // image?: string
 }

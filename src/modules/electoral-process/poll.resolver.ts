@@ -1,80 +1,88 @@
-import { UseGuards, UnauthorizedException } from '@nestjs/common'
+import { UnauthorizedException, UseGuards } from '@nestjs/common'
 import {
   Args,
   Mutation,
+  Parent,
   Query,
-  Resolver,
   ResolveProperty,
-  Parent
+  Resolver,
 } from '@nestjs/graphql'
+import { mongoose } from '@typegoose/typegoose'
 import { ID } from 'type-graphql'
+import { CurrentUser } from '../auth/current-user.decorator'
 import { GqlAuthGuard } from '../auth/gql.guard'
 import { CensusService } from '../census/census.service'
-import { FileService } from '../files/files.service'
-import { PollInput, VotePollInput, UpdatePollInput } from './poll.input'
-import { PollsService } from './poll.service'
-import { Poll, PollResultsArgs, PollVote } from './poll.type'
 import { Census } from '../census/census.type'
-import { PollResults } from './electoral-process.results.type'
-import { PollResultsService } from './poll.results.service'
-import { CurrentUser } from '../auth/current-user.decorator'
-import { User, Genre } from '../users/users.type'
-import { mongoose } from '@typegoose/typegoose'
-import { PollVoteService } from './poll.votes.service'
+import { FileService } from '../files/files.service'
 import { UsersService } from '../users/users.service'
+import { Genre, User } from '../users/users.type'
+import {
+  PollResults,
+  ResultsFilter,
+  resultsFilterDefault,
+} from './electoral-process.results.type'
+import { PollInput, UpdatePollInput, VotePollInput } from './poll.input'
+import { PollResultsService } from './poll.results.service'
+import { PollsService } from './poll.service'
+import { Poll } from './poll.type'
 
 @Resolver(() => Poll)
 @UseGuards(GqlAuthGuard)
 export class PollResolver {
-  constructor (
+  constructor(
     private readonly pollsService: PollsService,
     private readonly filesService: FileService,
     private readonly censusService: CensusService,
     private readonly pollResultsService: PollResultsService,
-    private readonly pollVoteService: PollVoteService,
     private readonly userService: UsersService
   ) {}
 
   @Query(() => [Poll])
-  async polls () {
+  async polls(): Promise<Poll[]> {
     return this.pollsService.findAll()
   }
 
   @Query(() => Poll)
-  async poll (@Args({ name: 'id', type: () => ID }) id: string) {
+  async poll(@Args({ name: 'id', type: () => ID }) id: string): Promise<Poll> {
     return this.pollsService.findById(id)
   }
 
+  @Query(() => [Poll])
+  async pendingPolls(@CurrentUser() user: User): Promise<Poll[]> {
+    return this.pollsService.pendingPollsOfVoter(user.uid)
+  }
+
   @ResolveProperty(() => [Census])
-  async censuses (@Parent() poll: Poll) {
+  async censuses(@Parent() poll: Poll): Promise<Census[]> {
     return this.censusService.findAll({ _id: { $in: poll.censuses } })
   }
 
-  @Query(() => [PollVote])
-  async userVotesOnPoll (@Args({ name: 'pollId', type: () => String }) pollId: string,
-                             @CurrentUser() user: User) {
-    const election = await this.pollsService.findById(pollId)
-    return this.pollVoteService.findUserVotes(user, election)
-  }
-
   @ResolveProperty(() => [PollResults])
-  async results (@Parent() poll: Poll, @Args() { location, group, genre }: PollResultsArgs) {
-    if (poll.realTime || poll.end < new Date()) {
-      const res = await this.pollResultsService.groupResults(poll.id, group, location, genre)
-      console.log(res)
-      return res
+  async results(
+    @Parent() poll: Poll,
+    @Args({
+      name: 'filter',
+      type: () => ResultsFilter,
+      defaultValue: resultsFilterDefault,
+    })
+    filter: ResultsFilter
+  ): Promise<PollResults[]> {
+    if (poll.isRealTime || poll.end < new Date()) {
+      return this.pollResultsService.groupResults(poll.id, filter)
     }
     throw new UnauthorizedException('Poll is not finished')
   }
 
   @Mutation(() => Poll)
-  async createPoll (@Args('input') { options, censuses, ...rest }: PollInput) {
+  async createPoll(
+    @Args('input') { options, censuses, ...args }: PollInput
+  ): Promise<Poll> {
     const censusesOnDB = await Promise.all(
-      censuses.map(async ({ file, ...rest }) => {
+      censuses.map(async ({ file, ...fileRest }) => {
         const voters = await this.filesService.readCSV(file)
         return this.censusService.create({
           voters,
-          ...rest
+          ...fileRest,
         })
       })
     )
@@ -82,17 +90,18 @@ export class PollResolver {
     const poll = await this.pollsService.create({
       censuses: censusesOnDB.map(({ id: census }) => census),
       options: options.map(text => ({ text })),
-      ...rest
+      ...args,
     })
 
     for (const census of censusesOnDB) {
       for (const option of poll.options) {
         for (const genre of Object.keys(Genre)) {
+          // eslint-disable-next-line no-await-in-loop
           await this.pollResultsService.create({
             option: option.id,
             census: census.id,
             poll: poll.id,
-            genre: genre
+            genre,
           })
         }
       }
@@ -101,18 +110,14 @@ export class PollResolver {
   }
 
   @Mutation(() => Boolean)
-  async voteOnPoll (
-    @Args('input') { poll, option, rectifiedVote }: VotePollInput,
+  async voteOnPoll(
+    @Args('input') { poll, option }: VotePollInput,
     @CurrentUser() user: User
-  ) {
-    let hasVoted = true
-
-    const rectify = rectifiedVote !== undefined && rectifiedVote.length > 0
-
-    const currentPoll = await this.pollsService.findById(poll)
+  ): Promise<boolean> {
+    const { censuses } = await this.pollsService.findById(poll)
     const match = {
-      _id: { $in: currentPoll.censuses },
-      'voters.uid': user.uid
+      _id: { $in: censuses },
+      'voters.uid': user.uid,
     }
     const voter = await this.censusService.findVoter(match)
     if (!voter) {
@@ -120,67 +125,36 @@ export class PollResolver {
         'Apprently user is not allowed to vote in this election'
       )
     }
-
-    const votes = await this.pollVoteService.findUserVotes(user, currentPoll)
-
-    if (!rectify) {
-      hasVoted = votes.length >= currentPoll.numVotesAllowed
-    } else {
-      hasVoted = !currentPoll.rectifyVote
-
-      if (!hasVoted) {
-        const oldVote = await this.pollVoteService.findById(rectifiedVote)
-
-        if (oldVote) {
-          await this.pollResultsService.findOneAndUpdate(
-            {
-              poll: mongoose.Types.ObjectId(poll),
-              option: oldVote.option,
-              census: voter.census,
-              genre: user.genre
-            },
-            { $inc: { votes: -1 } }
-          )
-
-          await this.pollVoteService.delete(rectifiedVote)
-        } else {
-          throw new UnauthorizedException('Vote to be rectified not found')
-        }
-      } else {
-        throw new UnauthorizedException("The poll doesn't accept rectify")
-      }
-    }
-
-    if (hasVoted) {
+    if (voter.hasVoted) {
       throw new UnauthorizedException('User has already Voted')
     }
-
+    await this.censusService.findOneAndUpdate(match, {
+      $set: {
+        'voters.$.hasVoted': true,
+      },
+    })
     await this.pollResultsService.findOneAndUpdate(
       {
         poll: mongoose.Types.ObjectId(poll),
         option: mongoose.Types.ObjectId(option),
         census: voter.census,
-        genre: user.genre
+        genre: user.genre,
       },
       { $inc: { votes: 1 } }
     )
-
-    await this.pollVoteService.create({
-      poll: mongoose.Types.ObjectId(poll),
-      option: mongoose.Types.ObjectId(option),
-      user: user
-    })
-
     return true
   }
 
   @Mutation(() => Poll)
-  async modifyPoll (@Args({ name: 'id', type: () => ID }) id: string, @Args('input') data: UpdatePollInput) {
+  async modifyPoll(
+    @Args({ name: 'id', type: () => ID }) id: string,
+    @Args('input') data: UpdatePollInput
+  ): Promise<Poll> {
     return this.pollsService.update(id, data)
   }
 
   @ResolveProperty(() => [User])
-  async delegates (@Parent() poll: Poll) {
+  async delegates(@Parent() poll: Poll): Promise<User[]> {
     return this.userService.findAll({ _id: { $in: poll.delegates } })
   }
 }

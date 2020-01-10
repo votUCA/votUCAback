@@ -11,31 +11,31 @@ export class ElectionsService extends CrudService<
   Election,
   Omit<ElectoralProcessInput, 'censuses'> & { censuses: Omit<Census, 'id'>[] }
 > {
-  constructor (
+  constructor(
     @InjectModel(Election)
     private readonly electionModel: ReturnModelType<typeof Election>
   ) {
     super(electionModel)
   }
 
-  async pendingElectionsOfVoter (uid: string) {
+  async pendingElectionsOfVoter(uid: string): Promise<Election[]> {
     return this.electionModel.aggregate([
       {
         $lookup: {
           from: 'census',
           localField: 'censuses',
           foreignField: '_id',
-          as: 'censuses'
-        }
+          as: 'censuses',
+        },
       },
       {
         $match: {
           'censuses.voters': {
-            $elemMatch: { uid, hasVoted: false }
+            $elemMatch: { uid, hasVoted: false },
           },
-          end: { $gte: new Date() }
-        }
-      }
+          end: { $gte: new Date() },
+        },
+      },
     ])
   }
 }

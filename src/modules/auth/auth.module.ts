@@ -12,13 +12,13 @@ import { JwtStrategy } from './jwt.strategy'
     JwtModule.registerAsync({
       useFactory: async (configService: ConfigService) => ({
         secret: configService.jwtSecret,
-        signOptions: { expiresIn: '7d' }
+        signOptions: { expiresIn: '7d' },
       }),
-      inject: [ConfigService]
+      inject: [ConfigService],
     }),
-    forwardRef(() => UsersModule)
+    forwardRef(() => UsersModule),
   ],
   providers: [AuthService, JwtStrategy],
-  exports: [AuthService]
+  exports: [AuthService],
 })
 export class AuthModule {}

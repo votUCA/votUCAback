@@ -4,15 +4,16 @@ import { GraphQLUpload } from 'graphql-upload'
 @Scalar('Upload')
 export class UploadScalar implements CustomScalar<object, string> {
   description = 'Upload custom scalar type'
-  parseValue (value) {
+
+  parseValue(value: any): any {
     return GraphQLUpload.parseValue(value)
   }
 
-  serialize (value: any) {
+  serialize(value: any): any {
     return GraphQLUpload.serialize(value)
   }
 
-  parseLiteral (ast) {
+  parseLiteral(ast: any): any {
     return GraphQLUpload.parseLiteral(ast, ast.value)
   }
 }

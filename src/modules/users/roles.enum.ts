@@ -2,10 +2,10 @@ import { registerEnumType } from 'type-graphql'
 
 export enum Role {
   ADMIN = 'ADMIN',
-  SECRETARY = 'SECRETARY'
+  SECRETARY = 'SECRETARY',
 }
 
 registerEnumType(Role, {
   name: 'Role',
-  description: 'All possible roles on app'
+  description: 'All possible roles on app',
 })

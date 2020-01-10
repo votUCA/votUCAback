@@ -12,33 +12,35 @@ import { ElectoralProcessModule } from './electoral-process/electoral-process.mo
 import { FilesModule } from './files/files.module'
 import { UsersModule } from './users/users.module'
 import { CensusModule } from './census/census.module'
+import { ColegiateBodiesModule } from './colegiate-bodies/colegiate-bodies.module'
 
 @Module({
   imports: [
     ConfigModule,
     TypegooseModule.forRootAsync({
-      useClass: TypegooseConfigService
+      useClass: TypegooseConfigService,
     }),
     GraphQLModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
         autoSchemaFile: 'schema.gql',
-        context: ({ req }) => ({ req }),
+        context: ({ req }): object => ({ req }),
         debug: configService.debug,
         playground: configService.debug,
         uploads: {
           maxFileSize: _10_MB,
-          maxFiles: 5
-        }
+          maxFiles: 5,
+        },
       }),
-      inject: [ConfigService]
+      inject: [ConfigService],
     }),
     UsersModule,
     AuthModule,
     FilesModule,
     ElectoralProcessModule,
     CandidatesModule,
-    CensusModule
+    CensusModule,
+    ColegiateBodiesModule,
   ],
-  providers: [UploadScalar]
+  providers: [UploadScalar],
 })
 export class AppModule {}

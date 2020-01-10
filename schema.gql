@@ -32,6 +32,11 @@ input CensusInput {
   file: String!
 }
 
+type ColegiateBody {
+  id: ID!
+  name: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -42,9 +47,9 @@ type Election {
   start: DateTime!
   end: DateTime!
   description: String!
-  rectifyVote: Boolean!
+  isVoteRectify: Boolean!
   candidates: [Candidate!]!
-  results(group: Boolean = false, location: Boolean = false, genre: Boolean = false): [ElectionResults!]!
+  results(filter: ResultsFilter = {group: false, location: false, genre: false}): [ElectionResults!]!
   censuses: [Census!]!
 }
 
@@ -52,7 +57,7 @@ input ElectionInput {
   start: DateTime!
   end: DateTime!
   description: String!
-  rectifyVote: Boolean!
+  isVoteRectify: Boolean!
   censuses: [CensusInput!]!
   candidates: [CandidateInput!]!
 }
@@ -110,25 +115,23 @@ type Poll {
   start: DateTime!
   end: DateTime!
   description: String!
-  rectifyVote: Boolean!
+  isVoteRectify: Boolean!
   question: String!
   options: [PollOption!]!
-  numVotesAllowed: Float!
-  realTime: Boolean!
+  isRealTime: Boolean!
   censuses: [Census!]!
-  results(group: Boolean = false, location: Boolean = false, genre: Boolean = false): [PollResults!]!
+  results(filter: ResultsFilter = {group: false, location: false, genre: false}): [PollResults!]!
 }
 
 input PollInput {
   start: DateTime!
   end: DateTime!
   description: String!
-  rectifyVote: Boolean!
+  isVoteRectify: Boolean!
   censuses: [CensusInput!]!
   question: String!
   options: [String!]!
-  numVotesAllowed: Float!
-  realTime: Boolean!
+  isRealTime: Boolean!
 }
 
 type PollOption {
@@ -156,23 +159,25 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
   me: User!
-  electoralProcesses: [ElectoralProcess!]!
+  electoralProcesses(open: Boolean = false, finished: Boolean = false): [ElectoralProcess!]!
   electoralProcess(id: ID!): ElectoralProcess!
-
-  """Devuelve aquellos procesos electorales que aún no han sido iniciados"""
-  futureElectoralProcesses: [ElectoralProcess!]!
-
-  """Devuelve aquellos procesos electorales que han sido finalizados"""
-  pastElectoralProcesses: [ElectoralProcess!]!
+  pendingElectoralProcesses: [ElectoralProcess!]!
   elections: [Election!]!
-  userVotesOnElection(electionId: String!): [ElectionVote!]!
   pendingElections: [Election!]!
   election(id: ID!): Election!
   census(id: ID!): Census!
   censuses(skip: Int = 0, limit: Int = 0): [Census!]!
   polls: [Poll!]!
   poll(id: ID!): Poll!
-  userVotesOnPoll(pollId: String!): [PollVote!]!
+  pendingPolls: [Poll!]!
+  colegiateBody(id: ID!): ColegiateBody!
+  collegiateBodies: [ColegiateBody!]!
+}
+
+input ResultsFilter {
+  group: Boolean!
+  location: Boolean!
+  genre: Boolean!
 }
 
 """All possible roles on app"""
@@ -234,7 +239,6 @@ input VoteElectionInput {
 input VotePollInput {
   option: ID!
   poll: ID!
-  rectifiedVote: ID
 }
 
 type Voter {

@@ -19,12 +19,12 @@ type Env = Record<string, string>
 export class ConfigService {
   private readonly envConfig: Env & EnvConfig
 
-  constructor (filePath: string) {
+  constructor(filePath: string) {
     const config = dotenv.parse(fs.readFileSync(filePath))
-    this.envConfig = this.validateInput(config)
+    this.envConfig = ConfigService.validateInput(config)
   }
 
-  private validateInput (envConfig: Env): Env & EnvConfig {
+  private static validateInput(envConfig: Env): Env & EnvConfig {
     const envVarsSchema: Joi.ObjectSchema = Joi.object({
       NODE_ENV: Joi.string()
         .valid('development', 'production', 'test')
@@ -36,7 +36,7 @@ export class ConfigService {
         .required()
         .default('localhost'),
       JWT_SECRET: Joi.string().required(),
-      FILES_PATH: Joi.string().required()
+      FILES_PATH: Joi.string().required(),
     })
     const { error, value: validatedEnvConfig } = envVarsSchema.validate(
       envConfig
@@ -47,23 +47,23 @@ export class ConfigService {
     return validatedEnvConfig
   }
 
-  get (key: string): string {
+  get(key: string): string {
     return this.envConfig[key]
   }
 
-  get mongodbUri () {
+  get mongodbUri(): string {
     return `mongodb://${this.envConfig.DB_HOST}:${this.envConfig.DB_PORT}/${this.envConfig.DB_NAME}`
   }
 
-  get debug () {
+  get debug(): boolean {
     return this.envConfig.NODE_ENV === 'development'
   }
 
-  get jwtSecret () {
+  get jwtSecret(): string {
     return this.envConfig.JWT_SECRET
   }
 
-  get filesPath () {
+  get filesPath(): string {
     return this.envConfig.FILES_PATH
   }
 }
