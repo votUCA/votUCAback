@@ -66,14 +66,9 @@ export class ElectionResolver {
     @Args('input') { censuses, candidates, ...rest }: ElectionInput
   ): Promise<DocumentType<Election>> {
     const censusesOnDB = await Promise.all(
-      censuses.map(async ({ file, date, group, location }) => {
-        const voters = await this.filesService.readCSV(file)
-        return this.censusService.create({
-          voters,
-          date,
-          group,
-          location,
-        })
+      censuses.map(async census => {
+        const filePath = await this.filesService.createJSON(census)
+        return this.censusService.create({ ...census, filePath })
       })
     )
 

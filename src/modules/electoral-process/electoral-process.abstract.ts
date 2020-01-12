@@ -53,8 +53,8 @@ export class ElectoralProcessInput {
   @Field(() => [CensusInput])
   censuses: CensusInput[]
 
-  @Field(() => [UserInput])
-  delegates: UserInput[]
+  @Field(() => [ID])
+  delegates: string[]
 }
 
 @InputType({ isAbstract })
