@@ -78,11 +78,10 @@ export class PollResolver {
     @Args('input') { options, censuses, ...args }: PollInput
   ): Promise<Poll> {
     const censusesOnDB = await Promise.all(
-      censuses.map(async (census) => {
+      censuses.map(async census => {
         const filePath = await this.filesService.createJSON(census)
-        return this.censusService.create({...census, filePath})
-      }
-      )
+        return this.censusService.create({ ...census, filePath })
+      })
     )
 
     const poll = await this.pollsService.create({

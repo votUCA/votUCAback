@@ -4,7 +4,6 @@ import {
   InternalServerErrorException,
   OnModuleInit,
 } from '@nestjs/common'
-import * as csvParse from 'csv-parse'
 import * as fs from 'fs'
 import { FileUpload } from 'graphql-upload'
 import { join } from 'path'
@@ -27,12 +26,12 @@ export class FileService implements OnModuleInit {
     )
   }
 
-  async createJSON(censusInput: CensusInput){
+  async createJSON(censusInput: CensusInput): Promise<string> {
     const data = JSON.stringify(censusInput, null, 2)
     const name = `${uuid()}.json`
     return new Promise((resolve, reject) => {
       fs.writeFile(join(this.configService.filesPath, name), data, err => {
-        if(err){
+        if (err) {
           reject(err)
         }
         resolve(name)

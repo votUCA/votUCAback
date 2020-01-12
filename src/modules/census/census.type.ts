@@ -48,5 +48,5 @@ export class Census {
   voters: Voter[]
 
   @prop({ required })
-  filePath: string 
+  filePath: string
 }
