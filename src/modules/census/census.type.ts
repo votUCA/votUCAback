@@ -18,6 +18,10 @@ export class Voter {
   @Field()
   @prop({ required })
   uid: string
+
+  @Field()
+  @prop({ required })
+  dni: string
 }
 
 @ObjectType()
@@ -42,4 +46,7 @@ export class Census {
   @Field(() => [Voter])
   @arrayProp({ _id: false, items: Voter, required })
   voters: Voter[]
+
+  @prop({ required })
+  filePath: string 
 }

@@ -1,4 +1,5 @@
 import { Field, InputType } from 'type-graphql'
+import { User } from '../users/users.type'
 
 @InputType()
 export class CensusInput {
@@ -11,6 +12,20 @@ export class CensusInput {
   @Field()
   location: string
 
+  @Field(() => VoterInput)
+  voters: VoterInput[]
+}
+@InputType()
+export class VoterInput {
   @Field()
-  file: string
+  firstName: string
+
+  @Field()
+  lastName: string
+
+  @Field()
+  uid: string
+
+  @Field()
+  dni: string
 }
