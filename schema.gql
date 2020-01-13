@@ -37,10 +37,6 @@ type ColegiateBody {
   name: String!
 }
 
-input ColegiateBodyInput {
-  name: String!
-}
-
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -106,6 +102,7 @@ type LoginPayload {
 
 type Mutation {
   modifyUser(input: UserUpdateInput!, id: ID!): User!
+  createUser(input: UserInput!): User!
   deleteUser(id: ID!): User!
   login(input: LoginInput!): LoginPayload!
   deleteCandidate(id: ID!, election: ID!): Candidate!
@@ -196,6 +193,7 @@ input ResultsFilter {
 enum Role {
   ADMIN
   SECRETARY
+  VOTER
 }
 
 input UpdateElectionInput {
@@ -223,20 +221,23 @@ scalar Upload
 type User {
   id: ID!
   uid: String!
+  dni: String!
   firstName: String!
   lastName: String!
   roles: [Role!]!
   genre: Genre!
-  colegiateBody: ColegiateBody!
+  colegiateBody: ColegiateBody
 }
 
 input UserInput {
   uid: String!
+  dni: String!
   password: String!
   firstName: String!
   lastName: String!
   roles: [Role!] = []
-  collegiateBody: ColegiateBodyInput!
+  collegiateBody: ID
+  genre: Genre!
 }
 
 input UserUpdateInput {
@@ -244,7 +245,8 @@ input UserUpdateInput {
   firstName: String
   lastName: String
   roles: [Role!]
-  colegiateBody: ColegiateBodyInput
+  colegiateBody: ID
+  genre: Genre
 }
 
 input VoteElectionInput {
