@@ -115,7 +115,7 @@ export class PollResolver {
     )
 
     const poll = await this.pollsService.create({
-      secretary: mongoose.Types.ObjectId(user.id) as any,
+      secretary: mongoose.Types.ObjectId((user as any)._id) as any,
       censuses: censusesOnDB.map(({ id: census }) => census),
       options: options.map(text => ({ text })),
       ...args,

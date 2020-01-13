@@ -79,7 +79,7 @@ export class ElectionResolver {
 
     const election = await this.electionsService.create({
       ...rest,
-      secretary: mongoose.Types.ObjectId(user.id) as any,
+      secretary: mongoose.Types.ObjectId((user as any)._id) as any,
       censuses: censusesOnDB.map(census => census.id),
     })
 
