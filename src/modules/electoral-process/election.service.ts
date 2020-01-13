@@ -9,7 +9,10 @@ import { Census } from '../census/census.type'
 @Injectable()
 export class ElectionsService extends CrudService<
   Election,
-  Omit<ElectoralProcessInput, 'censuses'> & { censuses: Omit<Census, 'id'>[] }
+  Omit<ElectoralProcessInput, 'censuses'> & {
+    censuses: Omit<Census, 'id'>[]
+    secretary: string
+  }
 > {
   constructor(
     @InjectModel(Election)

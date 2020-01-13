@@ -9,6 +9,7 @@ import { Census } from '../census/census.type'
 type PollDTO = Omit<ElectoralProcessInput, 'censuses'> & {
   censuses: Omit<Census, 'id'>[]
   options: Omit<PollOption, 'id'>[]
+  secretary: string
 }
 
 @Injectable()

@@ -1,12 +1,28 @@
-import { prop, Ref } from '@typegoose/typegoose'
-import { Field, ID, ObjectType } from 'type-graphql'
+import { prop, Ref, arrayProp } from '@typegoose/typegoose'
+import { Field, ID, ObjectType, InputType } from 'type-graphql'
 import { required } from '../../common/constants'
 import { Candidate } from '../candidates/candidates.type'
 import { User } from '../users/users.type'
 import { ElectoralProcess } from './electoral-process.abstract'
 
 @ObjectType()
-export class Election extends ElectoralProcess {}
+@InputType('VoteWeightInput')
+export class VoteWeight {
+  @Field()
+  @prop({ required })
+  group: string
+
+  @Field()
+  @prop({ required })
+  weight: number
+}
+
+@ObjectType()
+export class Election extends ElectoralProcess {
+  @Field(() => [VoteWeight])
+  @arrayProp({ items: VoteWeight, default: [] })
+  voteWeights: VoteWeight[]
+}
 
 @ObjectType()
 export class ElectionVote {

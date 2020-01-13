@@ -1,5 +1,5 @@
 import { prop, arrayProp, Ref } from '@typegoose/typegoose'
-import { Field, ID, InputType, ObjectType, ArgsType } from 'type-graphql'
+import { Field, ID, InputType, ObjectType, ArgsType, Int } from 'type-graphql'
 import { isAbstract, required } from '../../common/constants'
 import { CensusInput } from '../census/census.input'
 import { Census } from '../census/census.type'
@@ -28,12 +28,15 @@ export class ElectoralProcess {
   @arrayProp({ required, itemsRef: Census })
   censuses: Ref<Census>[]
 
-  @Field()
-  @prop({ required })
-  isVoteRectify: boolean
-
   @arrayProp({ required, itemsRef: User })
   delegates: Ref<User>[]
+
+  @Field(() => Int)
+  @prop({ required })
+  maxVotes: number
+
+  @prop({ required, ref: User })
+  secretary: Ref<User>
 }
 
 @InputType({ isAbstract })
@@ -47,14 +50,14 @@ export class ElectoralProcessInput {
   @Field()
   description: string
 
-  @Field()
-  isVoteRectify: boolean
-
   @Field(() => [CensusInput])
   censuses: CensusInput[]
 
   @Field(() => [ID])
   delegates: string[]
+
+  @Field(() => Int, { defaultValue: 1 })
+  maxVotes: number
 }
 
 @InputType({ isAbstract })

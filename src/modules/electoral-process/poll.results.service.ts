@@ -82,8 +82,8 @@ export class PollResultsService extends CrudService<
     ])
   }
 
-  async findOneAndUpdate(conditions: any, update: any): Promise<PollResults> {
-    return this.pollResultModel.findOneAndUpdate(conditions, update)
+  async updateMany(conditions: any, update: any): Promise<any> {
+    return this.pollResultModel.updateMany(conditions, update)
   }
 
   async deleteByPoll(poll: string | Ref<Poll>): Promise<DeleteMany> {

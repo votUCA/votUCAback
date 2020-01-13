@@ -1,4 +1,8 @@
-import { UnauthorizedException, UseGuards } from '@nestjs/common'
+import {
+  UnauthorizedException,
+  UseGuards,
+  BadRequestException,
+} from '@nestjs/common'
 import {
   Args,
   Mutation,
@@ -63,6 +67,7 @@ export class ElectionResolver {
 
   @Mutation(() => Election)
   async createElection(
+    @CurrentUser() user: User,
     @Args('input') { censuses, candidates, ...rest }: ElectionInput
   ): Promise<DocumentType<Election>> {
     const censusesOnDB = await Promise.all(
@@ -74,6 +79,7 @@ export class ElectionResolver {
 
     const election = await this.electionsService.create({
       ...rest,
+      secretary: user.id,
       censuses: censusesOnDB.map(census => census.id),
     })
 
@@ -131,10 +137,17 @@ export class ElectionResolver {
 
   @Mutation(() => Boolean)
   async voteOnElection(
-    @Args('input') { election, candidate }: VoteElectionInput,
+    @Args('input') { election, candidates }: VoteElectionInput,
     @CurrentUser() user: User
   ): Promise<boolean> {
-    const { censuses } = await this.electionsService.findById(election)
+    const { censuses, maxVotes } = await this.electionsService.findById(
+      election
+    )
+    if (candidates.length > maxVotes) {
+      throw new BadRequestException(
+        'Number of candidates is higher than allowed number'
+      )
+    }
     const match = {
       _id: { $in: censuses },
       'voters.uid': user.uid,
@@ -153,9 +166,9 @@ export class ElectionResolver {
         'voters.$.hasVoted': true,
       },
     })
-    await this.electionResultsService.findOneAndUpdate(
+    await this.electionResultsService.updateMany(
       {
-        candidate: mongoose.Types.ObjectId(candidate),
+        candidate: { $in: candidates },
         election: mongoose.Types.ObjectId(election),
         census: voter.census,
       },

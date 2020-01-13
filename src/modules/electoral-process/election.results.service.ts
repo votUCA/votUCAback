@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { DocumentType, Ref, ReturnModelType } from '@typegoose/typegoose'
+import { Ref, ReturnModelType } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { CrudService } from '../../common/crud.service'
 import { DeleteMany } from '../../common/delete-many'
@@ -87,11 +87,8 @@ export class ElectionResultsService extends CrudService<
     ])
   }
 
-  async findOneAndUpdate(
-    conditions: any,
-    update: any
-  ): Promise<DocumentType<ElectionResults>> {
-    return this.electionResultModel.findOneAndUpdate(conditions, update)
+  async updateMany(conditions: any, update: any): Promise<any> {
+    return this.electionResultModel.updateMany(conditions, update)
   }
 
   async deleteByElection(

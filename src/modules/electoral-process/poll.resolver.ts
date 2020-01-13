@@ -1,4 +1,8 @@
-import { UnauthorizedException, UseGuards } from '@nestjs/common'
+import {
+  UnauthorizedException,
+  UseGuards,
+  BadRequestException,
+} from '@nestjs/common'
 import {
   Args,
   Mutation,
@@ -75,6 +79,7 @@ export class PollResolver {
 
   @Mutation(() => Poll)
   async createPoll(
+    @CurrentUser() user: User,
     @Args('input') { options, censuses, ...args }: PollInput
   ): Promise<Poll> {
     const censusesOnDB = await Promise.all(
@@ -85,6 +90,7 @@ export class PollResolver {
     )
 
     const poll = await this.pollsService.create({
+      secretary: user.id,
       censuses: censusesOnDB.map(({ id: census }) => census),
       options: options.map(text => ({ text })),
       ...args,
@@ -108,10 +114,15 @@ export class PollResolver {
 
   @Mutation(() => Boolean)
   async voteOnPoll(
-    @Args('input') { poll, option }: VotePollInput,
+    @Args('input') { poll, options }: VotePollInput,
     @CurrentUser() user: User
   ): Promise<boolean> {
-    const { censuses } = await this.pollsService.findById(poll)
+    const { censuses, maxVotes } = await this.pollsService.findById(poll)
+    if (options.length > maxVotes) {
+      throw new BadRequestException(
+        'Number of options is higher than allowed number'
+      )
+    }
     const match = {
       _id: { $in: censuses },
       'voters.uid': user.uid,
@@ -130,10 +141,10 @@ export class PollResolver {
         'voters.$.hasVoted': true,
       },
     })
-    await this.pollResultsService.findOneAndUpdate(
+    await this.pollResultsService.updateMany(
       {
         poll: mongoose.Types.ObjectId(poll),
-        option: mongoose.Types.ObjectId(option),
+        option: { $in: options.map(option => mongoose.Types.ObjectId(option)) },
         census: voter.census,
         genre: user.genre,
       },

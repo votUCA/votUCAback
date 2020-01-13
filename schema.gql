@@ -47,7 +47,8 @@ type Election {
   start: DateTime!
   end: DateTime!
   description: String!
-  isVoteRectify: Boolean!
+  maxVotes: Int!
+  voteWeights: [VoteWeight!]!
   candidates: [Candidate!]!
   results(filter: ResultsFilter = {group: false, location: false, genre: false}): [ElectionResults!]!
   censuses: [Census!]!
@@ -58,10 +59,11 @@ input ElectionInput {
   start: DateTime!
   end: DateTime!
   description: String!
-  isVoteRectify: Boolean!
   censuses: [CensusInput!]!
   delegates: [ID!]!
+  maxVotes: Int = 1
   candidates: [CandidateInput!]!
+  voteWeights: [VoteWeightInput!] = []
 }
 
 type ElectionResults {
@@ -122,7 +124,7 @@ type Poll {
   start: DateTime!
   end: DateTime!
   description: String!
-  isVoteRectify: Boolean!
+  maxVotes: Int!
   question: String!
   options: [PollOption!]!
   isRealTime: Boolean!
@@ -135,11 +137,11 @@ input PollInput {
   start: DateTime!
   end: DateTime!
   description: String!
-  isVoteRectify: Boolean!
   censuses: [CensusInput!]!
   delegates: [ID!]!
+  maxVotes: Int = 1
   question: String!
-  options: [String!]!
+  options: [String!] = ["A Favor", "En Contra", "Abstención"]
   isRealTime: Boolean!
 }
 
@@ -250,13 +252,12 @@ input UserUpdateInput {
 }
 
 input VoteElectionInput {
-  candidate: ID!
+  candidates: [ID!]!
   election: ID!
-  rectifiedVote: ID
 }
 
 input VotePollInput {
-  option: ID!
+  options: [ID!]!
   poll: ID!
 }
 
@@ -272,4 +273,14 @@ input VoterInput {
   lastName: String!
   uid: String!
   dni: String!
+}
+
+type VoteWeight {
+  group: String!
+  weight: Float!
+}
+
+input VoteWeightInput {
+  group: String!
+  weight: Float!
 }

@@ -9,7 +9,9 @@ export class PollInput extends ElectoralProcessInput {
   @Field()
   question: string
 
-  @Field(() => [String])
+  @Field(() => [String], {
+    defaultValue: ['A Favor', 'En Contra', 'Abstención'],
+  })
   options: string[]
 
   @Field()
@@ -27,8 +29,8 @@ export class UpdatePollInput extends UpdateElectoralProcessInput {
 
 @InputType()
 export class VotePollInput {
-  @Field(() => ID)
-  option: string
+  @Field(() => [ID])
+  options: string[]
 
   @Field(() => ID)
   poll: string
