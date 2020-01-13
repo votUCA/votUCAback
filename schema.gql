@@ -50,6 +50,7 @@ type Election {
   maxVotes: Int!
   voteWeights: [VoteWeight!]!
   candidates: [Candidate!]!
+  secretary: User!
   results(filter: ResultsFilter = {group: false, location: false, genre: false}): ResultsForElection!
   censuses: [Census!]!
   delegates: [User!]!
@@ -129,6 +130,7 @@ type Poll {
   options: [PollOption!]!
   isRealTime: Boolean!
   censuses: [Census!]!
+  secretary: User!
   results(filter: ResultsFilter = {group: false, location: false, genre: false}): ResultsForPoll!
   delegates: [User!]!
 }
