@@ -50,7 +50,7 @@ type Election {
   maxVotes: Int!
   voteWeights: [VoteWeight!]!
   candidates: [Candidate!]!
-  results(filter: ResultsFilter = {group: false, location: false, genre: false}): [ElectionResults!]!
+  results(filter: ResultsFilter = {group: false, location: false, genre: false}): ResultsForElection!
   censuses: [Census!]!
   delegates: [User!]!
 }
@@ -129,7 +129,7 @@ type Poll {
   options: [PollOption!]!
   isRealTime: Boolean!
   censuses: [Census!]!
-  results(filter: ResultsFilter = {group: false, location: false, genre: false}): [PollResults!]!
+  results(filter: ResultsFilter = {group: false, location: false, genre: false}): ResultsForPoll!
   delegates: [User!]!
 }
 
@@ -189,6 +189,30 @@ input ResultsFilter {
   group: Boolean!
   location: Boolean!
   genre: Boolean!
+}
+
+type ResultsForElection {
+  """Votantes habilitados"""
+  voters: Int!
+
+  """Votos Emitidos"""
+  votesCast: Int!
+
+  """Votos en blanco"""
+  whiteVotes: Int!
+  results: [ElectionResults!]!
+}
+
+type ResultsForPoll {
+  """Votantes habilitados"""
+  voters: Int!
+
+  """Votos Emitidos"""
+  votesCast: Int!
+
+  """Votos en blanco"""
+  whiteVotes: Int!
+  results: [PollResults!]!
 }
 
 """All possible roles on app"""

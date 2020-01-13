@@ -41,4 +41,49 @@ export class ElectionsService extends CrudService<
       },
     ])
   }
+
+  async votersAndWhiteVotes(
+    _id: string
+  ): Promise<{ whiteVotes: number; voters: number }> {
+    const [result] = await this.electionModel.aggregate([
+      {
+        $match: {
+          _id,
+        },
+      },
+      {
+        $lookup: {
+          from: 'census',
+          localField: 'censuses',
+          foreignField: '_id',
+          as: 'censuses',
+        },
+      },
+      {
+        $unwind: {
+          path: '$censuses',
+        },
+      },
+      {
+        $group: {
+          _id: {
+            whiteVotes: '$whiteVotes',
+          },
+          voters: {
+            $sum: {
+              $size: '$censuses.voters',
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          whiteVotes: '$_id.whiteVotes',
+          voters: '$voters',
+        },
+      },
+    ])
+    return result
+  }
 }

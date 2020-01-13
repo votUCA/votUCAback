@@ -1,7 +1,7 @@
 import {
+  BadRequestException,
   UnauthorizedException,
   UseGuards,
-  BadRequestException,
 } from '@nestjs/common'
 import {
   Args,
@@ -31,9 +31,9 @@ import { ElectionResultsService } from './election.results.service'
 import { ElectionsService } from './election.service'
 import { Election } from './election.type'
 import {
-  ElectionResults,
   ResultsFilter,
   resultsFilterDefault,
+  ResultsForElection,
 } from './electoral-process.results.type'
 
 @Resolver(() => Election)
@@ -114,7 +114,7 @@ export class ElectionResolver {
     return this.candidatesService.findAll({ election: election.id })
   }
 
-  @ResolveProperty(() => [ElectionResults])
+  @ResolveProperty(() => ResultsForElection)
   async results(
     @Parent() election: Election,
     @Args({
@@ -123,9 +123,29 @@ export class ElectionResolver {
       defaultValue: resultsFilterDefault,
     })
     filter: ResultsFilter
-  ): Promise<ElectionResults[]> {
+  ): Promise<ResultsForElection> {
     if (election.end < new Date()) {
-      return this.electionResultsService.groupResults(election.id, filter)
+      const {
+        voters,
+        whiteVotes,
+      } = await this.electionsService.votersAndWhiteVotes(election.id)
+
+      const results = await this.electionResultsService.groupResults(
+        election.id,
+        filter
+      )
+
+      const votesCast = results.reduce(
+        (prev, current) => prev + current.votes,
+        whiteVotes
+      )
+
+      return {
+        voters,
+        votesCast,
+        whiteVotes,
+        results,
+      }
     }
     throw new UnauthorizedException('Election is not finished')
   }
@@ -166,14 +186,24 @@ export class ElectionResolver {
         'voters.$.hasVoted': true,
       },
     })
-    await this.electionResultsService.updateMany(
-      {
-        candidate: { $in: candidates },
-        election: mongoose.Types.ObjectId(election),
-        census: voter.census,
-      },
-      { $inc: { votes: 1 } }
-    )
+    if (candidates.length > 0) {
+      await this.electionResultsService.updateMany(
+        {
+          candidate: {
+            $in: candidates.map(candidate =>
+              mongoose.Types.ObjectId(candidate)
+            ),
+          },
+          election: mongoose.Types.ObjectId(election),
+          census: voter.census,
+        },
+        { $inc: { votes: 1 } }
+      )
+    } else {
+      await this.electionsService.update(mongoose.Types.ObjectId(election), {
+        $inc: { whiteVotes: 1 },
+      })
+    }
     return true
   }
 

@@ -1,7 +1,7 @@
 import {
+  BadRequestException,
   UnauthorizedException,
   UseGuards,
-  BadRequestException,
 } from '@nestjs/common'
 import {
   Args,
@@ -21,9 +21,9 @@ import { FileService } from '../files/files.service'
 import { UsersService } from '../users/users.service'
 import { Genre, User } from '../users/users.type'
 import {
-  PollResults,
   ResultsFilter,
   resultsFilterDefault,
+  ResultsForPoll,
 } from './electoral-process.results.type'
 import { PollInput, UpdatePollInput, VotePollInput } from './poll.input'
 import { PollResultsService } from './poll.results.service'
@@ -61,7 +61,7 @@ export class PollResolver {
     return this.censusService.findAll({ _id: { $in: poll.censuses } })
   }
 
-  @ResolveProperty(() => [PollResults])
+  @ResolveProperty(() => ResultsForPoll)
   async results(
     @Parent() poll: Poll,
     @Args({
@@ -70,9 +70,29 @@ export class PollResolver {
       defaultValue: resultsFilterDefault,
     })
     filter: ResultsFilter
-  ): Promise<PollResults[]> {
+  ): Promise<ResultsForPoll> {
     if (poll.isRealTime || poll.end < new Date()) {
-      return this.pollResultsService.groupResults(poll.id, filter)
+      const {
+        voters,
+        whiteVotes,
+      } = await this.pollsService.votersAndWhiteVotes(poll.id)
+
+      const results = await this.pollResultsService.groupResults(
+        poll.id,
+        filter
+      )
+
+      const votesCast = results.reduce(
+        (prev, current) => prev + current.votes,
+        whiteVotes
+      )
+
+      return {
+        results,
+        voters,
+        whiteVotes,
+        votesCast,
+      }
     }
     throw new UnauthorizedException('Poll is not finished')
   }
@@ -141,15 +161,23 @@ export class PollResolver {
         'voters.$.hasVoted': true,
       },
     })
-    await this.pollResultsService.updateMany(
-      {
-        poll: mongoose.Types.ObjectId(poll),
-        option: { $in: options.map(option => mongoose.Types.ObjectId(option)) },
-        census: voter.census,
-        genre: user.genre,
-      },
-      { $inc: { votes: 1 } }
-    )
+    if (options.length > 0) {
+      await this.pollResultsService.updateMany(
+        {
+          poll: mongoose.Types.ObjectId(poll),
+          option: {
+            $in: options.map(option => mongoose.Types.ObjectId(option)),
+          },
+          census: voter.census,
+          genre: user.genre,
+        },
+        { $inc: { votes: 1 } }
+      )
+    } else {
+      await this.pollsService.update(mongoose.Types.ObjectId(poll), {
+        $inc: { whiteVotes: 1 },
+      })
+    }
     return true
   }
 

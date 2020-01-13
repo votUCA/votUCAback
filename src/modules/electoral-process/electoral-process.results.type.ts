@@ -85,3 +85,27 @@ export const resultsFilterDefault: ResultsFilter = {
   location: false,
   genre: false,
 }
+
+@ObjectType({ isAbstract: true })
+export class Results {
+  @Field(() => Int, { description: 'Votantes habilitados' })
+  voters: number
+
+  @Field(() => Int, { description: 'Votos Emitidos' })
+  votesCast: number
+
+  @Field(() => Int, { description: 'Votos en blanco' })
+  whiteVotes: number
+}
+
+@ObjectType()
+export class ResultsForPoll extends Results {
+  @Field(() => [PollResults])
+  results: PollResults[]
+}
+
+@ObjectType()
+export class ResultsForElection extends Results {
+  @Field(() => [ElectionResults])
+  results: ElectionResults[]
+}

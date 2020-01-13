@@ -35,6 +35,9 @@ export class ElectoralProcess {
   @prop({ required })
   maxVotes: number
 
+  @prop({ default: 0 })
+  whiteVotes?: number
+
   @prop({ required, ref: User })
   secretary: Ref<User>
 }
