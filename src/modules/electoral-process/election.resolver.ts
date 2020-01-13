@@ -79,7 +79,7 @@ export class ElectionResolver {
 
     const election = await this.electionsService.create({
       ...rest,
-      secretary: user.id,
+      secretary: mongoose.Types.ObjectId(user.id) as any,
       censuses: censusesOnDB.map(census => census.id),
     })
 
@@ -112,6 +112,11 @@ export class ElectionResolver {
   @ResolveProperty(() => [Candidate])
   async candidates(@Parent() election: Election): Promise<Candidate[]> {
     return this.candidatesService.findAll({ election: election.id })
+  }
+
+  @ResolveProperty(() => User)
+  async secretary(@Parent() election: Election): Promise<User> {
+    return this.usersService.findById(election.secretary)
   }
 
   @ResolveProperty(() => ResultsForElection)

@@ -61,6 +61,11 @@ export class PollResolver {
     return this.censusService.findAll({ _id: { $in: poll.censuses } })
   }
 
+  @ResolveProperty(() => User)
+  async secretary(@Parent() poll: Poll): Promise<User> {
+    return this.userService.findById(poll.secretary)
+  }
+
   @ResolveProperty(() => ResultsForPoll)
   async results(
     @Parent() poll: Poll,
@@ -110,7 +115,7 @@ export class PollResolver {
     )
 
     const poll = await this.pollsService.create({
-      secretary: user.id,
+      secretary: mongoose.Types.ObjectId(user.id) as any,
       censuses: censusesOnDB.map(({ id: census }) => census),
       options: options.map(text => ({ text })),
       ...args,
