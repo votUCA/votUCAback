@@ -22,6 +22,10 @@ export class User {
   @prop({ required })
   uid: string
 
+  @Field()
+  @prop({ required })
+  dni: string
+
   @prop({ required })
   password: string
 
@@ -41,6 +45,6 @@ export class User {
   @prop({ required, enum: Object.keys(Genre), type: String })
   genre: Genre
 
-  @prop({ required, ref: ColegiateBody })
+  @prop({ ref: ColegiateBody })
   colegiateBody: Ref<ColegiateBody>
 }
