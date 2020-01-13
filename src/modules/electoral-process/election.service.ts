@@ -1,17 +1,18 @@
 import { Injectable } from '@nestjs/common'
-import { ReturnModelType } from '@typegoose/typegoose'
+import { ReturnModelType, Ref } from '@typegoose/typegoose'
 import { InjectModel } from 'nestjs-typegoose'
 import { CrudService } from '../../common/crud.service'
 import { Election } from './election.type'
 import { ElectoralProcessInput } from './electoral-process.abstract'
 import { Census } from '../census/census.type'
+import { User } from '../users/users.type'
 
 @Injectable()
 export class ElectionsService extends CrudService<
   Election,
   Omit<ElectoralProcessInput, 'censuses'> & {
     censuses: Omit<Census, 'id'>[]
-    secretary: string
+    secretary: Ref<User>
   }
 > {
   constructor(

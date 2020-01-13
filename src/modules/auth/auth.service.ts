@@ -13,7 +13,7 @@ export class AuthService {
   async validateUser({ id, roles }: JwtPayload): Promise<any | null> {
     const user = await this.usersService.findById(id)
     if (id && user) {
-      return { ...user.toObject(), rolesName: roles }
+      return { ...user.toObject({ getters: true }), rolesName: roles }
     }
     return null
   }
