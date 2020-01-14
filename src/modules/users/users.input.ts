@@ -26,7 +26,7 @@ export class UserInput {
   roles: [Role]
 
   @Field(() => ID)
-  collegiateBody: string
+  colegiateBody: string
 
   @Field(() => Genre)
   genre: Genre

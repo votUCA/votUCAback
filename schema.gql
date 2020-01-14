@@ -260,7 +260,7 @@ type User {
   lastName: String!
   roles: [Role!]!
   genre: Genre!
-  colegiateBody: ColegiateBody
+  colegiateBody: ColegiateBody!
 }
 
 input UserInput {
@@ -270,7 +270,7 @@ input UserInput {
   firstName: String!
   lastName: String!
   roles: [Role!] = []
-  collegiateBody: ID!
+  colegiateBody: ID!
   genre: Genre!
 }
 
