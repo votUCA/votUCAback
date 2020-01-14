@@ -37,6 +37,10 @@ type ColegiateBody {
   name: String!
 }
 
+input ColegiateBodyInput {
+  name: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -108,6 +112,7 @@ type Mutation {
   createUser(input: UserInput!): User!
   deleteUser(id: ID!): User!
   login(input: LoginInput!): LoginPayload!
+  createColegiateBody(input: ColegiateBodyInput!): ColegiateBody!
   deleteCandidate(id: ID!, election: ID!): Candidate!
   createElection(input: ElectionInput!): Election!
   voteOnElection(input: VoteElectionInput!): Boolean!

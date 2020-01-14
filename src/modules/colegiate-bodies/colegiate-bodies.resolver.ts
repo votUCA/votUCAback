@@ -23,7 +23,7 @@ export class ColegiateBodyResolver {
     return this.colegiateBodyService.findAll()
   }
 
-  @Mutation()
+  @Mutation(() => ColegiateBody)
   async createColegiateBody(
     @Args('input') input: ColegiateBodyInput
   ): Promise<ColegiateBody> {
