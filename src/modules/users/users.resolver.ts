@@ -62,7 +62,7 @@ export class UsersResolver {
     return this.usersService.create(data)
   }
 
-  @ResolveProperty(() => ColegiateBody, { nullable: true })
+  @ResolveProperty(() => ColegiateBody)
   async colegiateBody(@Parent() user: User): Promise<ColegiateBody> {
     return this.colegiateBodyService.findById(user.colegiateBody)
   }

@@ -35,6 +35,7 @@ input CensusInput {
 type ColegiateBody {
   id: ID!
   name: String!
+  users: [User!]!
 }
 
 input ColegiateBodyInput {
@@ -269,7 +270,7 @@ input UserInput {
   firstName: String!
   lastName: String!
   roles: [Role!] = []
-  collegiateBody: ID
+  collegiateBody: ID!
   genre: Genre!
 }
 
