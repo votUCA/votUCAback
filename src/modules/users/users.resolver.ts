@@ -58,13 +58,11 @@ export class UsersResolver {
 
   @Mutation(() => User)
   @Roles(Role.ADMIN)
-  async createUser(
-    @Args('input') data: UserInput
-  ): Promise<User> {
+  async createUser(@Args('input') data: UserInput): Promise<User> {
     return this.usersService.create(data)
   }
 
-  @ResolveProperty(() => ColegiateBody, {nullable: true})
+  @ResolveProperty(() => ColegiateBody, { nullable: true })
   async colegiateBody(@Parent() user: User): Promise<ColegiateBody> {
     return this.colegiateBodyService.findById(user.colegiateBody)
   }

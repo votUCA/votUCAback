@@ -25,7 +25,9 @@ export class ElectoralProcessResolver {
   ): Promise<(Election | Poll)[]> {
     let query = {}
     if (open) {
-      query = { start: { $gt: new Date() } }
+      query = {
+        $and: [{ start: { $lte: new Date() } }, { end: { $gte: new Date() } }],
+      }
     }
     if (finished) {
       query = { end: { $lte: new Date() } }

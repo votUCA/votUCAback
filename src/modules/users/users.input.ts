@@ -1,8 +1,7 @@
-import { Field, InputType, ID } from 'type-graphql'
 import { Validate } from 'class-validator'
-import { nullable } from '../../common/constants'
-import { Role } from './roles.enum'
+import { Field, ID, InputType } from 'type-graphql'
 import { UID } from '../../common/validators'
+import { Role } from './roles.enum'
 import { Genre } from './users.type'
 
 @InputType()
@@ -26,8 +25,8 @@ export class UserInput {
   @Field(() => [Role], { defaultValue: [] })
   roles: [Role]
 
-  @Field(() => ID, { nullable })
-  collegiateBody?: string
+  @Field(() => ID)
+  collegiateBody: string
 
   @Field(() => Genre)
   genre: Genre
