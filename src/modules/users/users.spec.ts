@@ -1,10 +1,11 @@
 import { INestApplication } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
 import { GraphQLModule } from '@nestjs/graphql'
+import { TypegooseModule } from 'nestjs-typegoose'
 import { UsersModule } from './users.module'
 import { GqlAuthGuard } from '../auth/gql.guard'
 import { ConfigModule } from '../config/config.module'
-import { gqlRequest } from '../../utils'
+import { gqlRequest, TypegooseConfigService } from '../../utils'
 
 describe('Users Module', () => {
   let app: INestApplication
@@ -14,6 +15,7 @@ describe('Users Module', () => {
       imports: [
         UsersModule,
         ConfigModule,
+        TypegooseModule.forRootAsync({ useClass: TypegooseConfigService }),
         GraphQLModule.forRoot({
           autoSchemaFile: true,
         }),

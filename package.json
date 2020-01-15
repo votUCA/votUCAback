@@ -29,9 +29,7 @@
     "deploy": "cross-conf-env ssh -T $npm_package_config_sshServer 'cd $npm_package_config_projectPath; docker-compose up -d'",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:cov": "jest --coverage"
   },
   "config": {
     "image": "docker.pkg.github.com/votuca/votucaback/api",
@@ -96,6 +94,7 @@
     "husky": "^3.1.0",
     "jest": "^24.9.0",
     "lint-staged": "^9.5.0",
+    "mongo-seeding": "^3.4.0-alpha.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
@@ -127,19 +126,5 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "./coverage",
-    "testEnvironment": "node"
   }
 }
