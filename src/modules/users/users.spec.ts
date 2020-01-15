@@ -1,11 +1,13 @@
 import { INestApplication } from '@nestjs/common'
-import { Test, TestingModule } from '@nestjs/testing'
 import { GraphQLModule } from '@nestjs/graphql'
+import { Test, TestingModule } from '@nestjs/testing'
+import { getObjectId } from 'mongo-seeding'
 import { TypegooseModule } from 'nestjs-typegoose'
-import { UsersModule } from './users.module'
+import { addModelId, gqlRequest, TypegooseConfigService } from '../../utils'
 import { GqlAuthGuard } from '../auth/gql.guard'
+import { RolesGuard } from '../auth/roles.guard'
 import { ConfigModule } from '../config/config.module'
-import { gqlRequest, TypegooseConfigService } from '../../utils'
+import { UsersModule } from './users.module'
 
 describe('Users Module', () => {
   let app: INestApplication
@@ -23,6 +25,8 @@ describe('Users Module', () => {
     })
       .overrideGuard(GqlAuthGuard)
       .useValue({ canActivate: () => true })
+      .overrideGuard(RolesGuard)
+      .useValue({ canActivate: () => true })
       .compile()
 
     app = usersModule.createNestApplication()
@@ -31,6 +35,40 @@ describe('Users Module', () => {
 
   afterAll(async () => {
     await app.close()
+  })
+
+  describe('Mutations', () => {
+    it('When createUsers is requested, should return the User created', () => {
+      const query = /* GraphQL */ `
+        mutation createUser($input: UserInput!) {
+          createUser(input: $input) {
+            id
+          }
+        }
+      `
+      const input = {
+        uid: 'u20192020',
+        dni: '20192020U',
+        password: `votuca`,
+        firstName: 'Pepe',
+        lastName: 'Perez',
+        roles: 'VOTER',
+        colegiateBody: getObjectId('colegiateBody').toHexString(),
+        genre: 'MALE',
+      }
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          addModelId('user', body.data.createUser.id)
+          expect(body.data.createUser).toMatchObject({
+            id: expect.any(String),
+          })
+        }
+      )
+    })
   })
 
   describe('Queries', () => {
