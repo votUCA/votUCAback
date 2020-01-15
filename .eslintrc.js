@@ -59,6 +59,7 @@ module.exports = {
       }
     ],
     'import/prefer-default-export': 'off',
-    'import/no-cycle': 'off'
+    'import/no-cycle': 'off',
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.spec.ts",'**/utils/**/*.ts']}]
   }
 }
