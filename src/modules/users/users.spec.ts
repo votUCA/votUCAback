@@ -3,7 +3,12 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { Test, TestingModule } from '@nestjs/testing'
 import { getObjectId } from 'mongo-seeding'
 import { TypegooseModule } from 'nestjs-typegoose'
-import { addModelId, gqlRequest, TypegooseConfigService } from '../../utils'
+import {
+  addModelId,
+  getModelId,
+  gqlRequest,
+  TypegooseConfigService,
+} from '../../utils'
 import { GqlAuthGuard } from '../auth/gql.guard'
 import { RolesGuard } from '../auth/roles.guard'
 import { ConfigModule } from '../config/config.module'
@@ -49,7 +54,7 @@ describe('Users Module', () => {
       const input = {
         uid: 'u20192020',
         dni: '20192020U',
-        password: `votuca`,
+        password: 'votuca',
         firstName: 'Pepe',
         lastName: 'Perez',
         roles: 'VOTER',
@@ -73,6 +78,7 @@ describe('Users Module', () => {
 
   describe('Queries', () => {
     it('When users is requested, should return a User list', () => {
+      // // No funciona si añadimos el campo colegiateBody
       const query = /* GraphQL */ `
         query users {
           users {
@@ -98,6 +104,53 @@ describe('Users Module', () => {
           ])
         )
       })
+    })
+
+    it('When user is requested, should return a User', () => {
+      // No funciona si añadimos el campo colegiateBody
+      const input = getModelId('user', 0)
+      const query = /* GraphQL */ `
+        query user($input: ID!) {
+          user(id: $input) {
+            id
+          }
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.user).toMatchObject({
+            id: expect.stringMatching(input),
+          })
+        }
+      )
+    })
+  })
+
+  describe('Deleter', () => {
+    it('When deleteUser is requested, should return the User deleted', () => {
+      const input = getModelId('user', 0)
+      const query = /* GraphQL */ `
+        mutation deleteUser($input: ID!) {
+          deleteUser(id: $input) {
+            id
+          }
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.deleteUser).toMatchObject({
+            id: expect.stringMatching(input),
+          })
+        }
+      )
     })
   })
 })
