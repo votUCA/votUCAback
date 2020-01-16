@@ -78,7 +78,6 @@ describe('Users Module', () => {
 
   describe('Queries', () => {
     it('When users is requested, should return a User list', () => {
-      // // No funciona si añadimos el campo colegiateBody
       const query = /* GraphQL */ `
         query users {
           users {
@@ -107,7 +106,6 @@ describe('Users Module', () => {
     })
 
     it('When user is requested, should return a User', () => {
-      // No funciona si añadimos el campo colegiateBody
       const input = getModelId('user', 0)
       const query = /* GraphQL */ `
         query user($input: ID!) {
