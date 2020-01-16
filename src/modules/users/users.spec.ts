@@ -113,6 +113,8 @@ describe('Users Module', () => {
         query user($input: ID!) {
           user(id: $input) {
             id
+            firstName
+            lastName
           }
         }
       `
@@ -124,6 +126,35 @@ describe('Users Module', () => {
           expect(body.errors).toBeFalsy()
           expect(body.data.user).toMatchObject({
             id: expect.stringMatching(input),
+          })
+        }
+      )
+    })
+
+    it('When modifyUsers is requested, should return the User modified', () => {
+      const query = /* GraphQL */ `
+        mutation modifyUser($input: UserUpdateInput!, $id: ID!) {
+          modifyUser(input: $input, id: $id) {
+            id
+            lastName
+          }
+        }
+      `
+      const input = {
+        lastName: 'Sánchez',
+      }
+      const id = getModelId('user', 0)
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input, id } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.modifyUser).toMatchObject({
+            id: expect.stringMatching(id),
+          })
+          expect(body.data.user).toMatchObject({
+            lastName: expect.stringMatching('Sánchez'),
           })
         }
       )
@@ -149,6 +180,7 @@ describe('Users Module', () => {
           expect(body.data.deleteUser).toMatchObject({
             id: expect.stringMatching(input),
           })
+          expect(body.data.user).toBeUndefined()
         }
       )
     })
