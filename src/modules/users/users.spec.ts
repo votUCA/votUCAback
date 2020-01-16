@@ -131,7 +131,7 @@ describe('Users Module', () => {
       )
     })
 
-    it('When modifyUsers is requested, should return the User modified', () => {
+    it('When modifyUser is requested, should return the User modified', () => {
       const query = /* GraphQL */ `
         mutation modifyUser($input: UserUpdateInput!, $id: ID!) {
           modifyUser(input: $input, id: $id) {
@@ -152,8 +152,6 @@ describe('Users Module', () => {
           expect(body.errors).toBeFalsy()
           expect(body.data.modifyUser).toMatchObject({
             id: expect.stringMatching(id),
-          })
-          expect(body.data.user).toMatchObject({
             lastName: expect.stringMatching('Sánchez'),
           })
         }
