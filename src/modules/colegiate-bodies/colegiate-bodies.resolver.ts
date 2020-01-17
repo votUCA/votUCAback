@@ -14,9 +14,12 @@ import { GqlAuthGuard } from '../auth/gql.guard'
 import { ColegiateBodyInput } from './colegiate-bodies.input'
 import { UsersService } from '../users/users.service'
 import { User } from '../users/users.type'
+import { Roles } from '../auth/roles.decorator'
+import { Role } from '../users/roles.enum'
+import { RolesGuard } from '../auth/roles.guard'
 
 @Resolver(() => ColegiateBody)
-@UseGuards(GqlAuthGuard)
+@UseGuards(GqlAuthGuard, RolesGuard)
 export class ColegiateBodyResolver {
   constructor(
     private readonly colegiateBodyService: ColegiateBodyService,
@@ -36,6 +39,7 @@ export class ColegiateBodyResolver {
   }
 
   @Mutation(() => ColegiateBody)
+  @Roles(Role.ADMIN)
   async createColegiateBody(
     @Args('input') input: ColegiateBodyInput
   ): Promise<ColegiateBody> {

@@ -4,13 +4,17 @@ import { GqlAuthGuard } from '../auth/gql.guard'
 import { CandidateDeleteArgs } from './candidates.input'
 import { CandidatesService } from './candidates.service'
 import { Candidate } from './candidates.type'
+import { Roles } from '../auth/roles.decorator'
+import { Role } from '../users/roles.enum'
+import { RolesGuard } from '../auth/roles.guard'
 
 @Resolver()
-@UseGuards(GqlAuthGuard)
+@UseGuards(GqlAuthGuard, RolesGuard)
 export class CandidatesResolver {
   constructor(private readonly candidatesService: CandidatesService) {}
 
-  @Mutation(() => Candidate)
+  @Mutation(() => Boolean)
+  @Roles(Role.SECRETARY, Role.ADMIN)
   async deleteCandidate(
     @Args() { id, election }: CandidateDeleteArgs
   ): Promise<Candidate> {

@@ -114,7 +114,7 @@ type Mutation {
   deleteUser(id: ID!): User!
   login(input: LoginInput!): LoginPayload!
   createColegiateBody(input: ColegiateBodyInput!): ColegiateBody!
-  deleteCandidate(id: ID!, election: ID!): Candidate!
+  deleteCandidate(id: ID!, election: ID!): Boolean!
   createElection(input: ElectionInput!): Election!
   voteOnElection(input: VoteElectionInput!): Boolean!
   modifyElection(input: UpdateElectionInput!, id: ID!): Election!

@@ -29,9 +29,12 @@ import { PollInput, UpdatePollInput, VotePollInput } from './poll.input'
 import { PollResultsService } from './poll.results.service'
 import { PollsService } from './poll.service'
 import { Poll } from './poll.type'
+import { RolesGuard } from '../auth/roles.guard'
+import { Roles } from '../auth/roles.decorator'
+import { Role } from '../users/roles.enum'
 
 @Resolver(() => Poll)
-@UseGuards(GqlAuthGuard)
+@UseGuards(GqlAuthGuard, RolesGuard)
 export class PollResolver {
   constructor(
     private readonly pollsService: PollsService,
@@ -103,6 +106,7 @@ export class PollResolver {
   }
 
   @Mutation(() => Poll)
+  @Roles(Role.ADMIN, Role.SECRETARY)
   async createPoll(
     @CurrentUser() user: User,
     @Args('input') { options, censuses, ...args }: PollInput
@@ -187,6 +191,7 @@ export class PollResolver {
   }
 
   @Mutation(() => Poll)
+  @Roles(Role.ADMIN, Role.SECRETARY)
   async modifyPoll(
     @Args({ name: 'id', type: () => ID }) id: string,
     @Args('input') data: UpdatePollInput
@@ -200,6 +205,7 @@ export class PollResolver {
   }
 
   @Mutation(() => Boolean)
+  @Roles(Role.ADMIN, Role.SECRETARY)
   async deletePoll(
     @Args({ name: 'id', type: () => ID }) id: string
   ): Promise<boolean> {
