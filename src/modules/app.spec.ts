@@ -3,11 +3,19 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { Test, TestingModule } from '@nestjs/testing'
 import { useContainer } from 'class-validator'
 import { TypegooseModule } from 'nestjs-typegoose'
+import { _10_MB } from 'src/common/constants'
+import { UploadScalar } from 'src/common/scalars'
 import * as request from 'supertest'
-
 import { seedDB, TypegooseConfigService } from '../utils'
 import { AuthModule } from './auth/auth.module'
+import { CandidatesModule } from './candidates/candidates.module'
+import { CensusModule } from './census/census.module'
+import { ColegiateBodiesModule } from './colegiate-bodies/colegiate-bodies.module'
 import { ConfigModule } from './config/config.module'
+import { ConfigService } from './config/config.service'
+import { ElectoralProcessModule } from './electoral-process/electoral-process.module'
+import { FilesModule } from './files/files.module'
+import { UsersModule } from './users/users.module'
 
 describe('App Module', () => {
   let app: INestApplication
@@ -17,15 +25,31 @@ describe('App Module', () => {
     const appModule: TestingModule = await Test.createTestingModule({
       imports: [
         ConfigModule,
-        TypegooseModule.forRootAsync({ useClass: TypegooseConfigService }),
-        GraphQLModule.forRoot({
-          autoSchemaFile: true,
-          debug: false,
-          playground: false,
-          context: ({ req }) => ({ req }),
+        TypegooseModule.forRootAsync({
+          useClass: TypegooseConfigService,
         }),
+        GraphQLModule.forRootAsync({
+          useFactory: (configService: ConfigService) => ({
+            autoSchemaFile: true,
+            context: ({ req }): object => ({ req }),
+            debug: configService.debug,
+            playground: configService.debug,
+            uploads: {
+              maxFileSize: _10_MB,
+              maxFiles: 5,
+            },
+          }),
+          inject: [ConfigService],
+        }),
+        UsersModule,
         AuthModule,
+        FilesModule,
+        ElectoralProcessModule,
+        CandidatesModule,
+        CensusModule,
+        ColegiateBodiesModule,
       ],
+      providers: [UploadScalar],
     }).compile()
 
     app = appModule.createNestApplication()

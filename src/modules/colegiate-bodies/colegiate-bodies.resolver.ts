@@ -34,7 +34,7 @@ export class ColegiateBodyResolver {
   }
 
   @Query(() => [ColegiateBody])
-  async collegiateBodies(): Promise<ColegiateBody[]> {
+  async colegiateBodies(): Promise<ColegiateBody[]> {
     return this.colegiateBodyService.findAll()
   }
 
