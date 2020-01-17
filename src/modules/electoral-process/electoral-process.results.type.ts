@@ -70,13 +70,13 @@ export class PollResults {
 
 @InputType()
 export class ResultsFilter {
-  @Field()
+  @Field({ defaultValue: false })
   group: boolean
 
-  @Field()
+  @Field({ defaultValue: false })
   location: boolean
 
-  @Field()
+  @Field({ defaultValue: false })
   genre: boolean
 }
 
