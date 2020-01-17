@@ -9,3 +9,4 @@ dist
 *.launch
 .settings/
 *.sublime-workspace
+files/
