@@ -35,9 +35,12 @@ import {
   resultsFilterDefault,
   ResultsForElection,
 } from './electoral-process.results.type'
+import { Roles } from '../auth/roles.decorator'
+import { Role } from '../users/roles.enum'
+import { RolesGuard } from '../auth/roles.guard'
 
 @Resolver(() => Election)
-@UseGuards(GqlAuthGuard)
+@UseGuards(GqlAuthGuard, RolesGuard)
 export class ElectionResolver {
   constructor(
     private readonly electionsService: ElectionsService,
@@ -66,6 +69,7 @@ export class ElectionResolver {
   }
 
   @Mutation(() => Election)
+  @Roles(Role.ADMIN, Role.SECRETARY)
   async createElection(
     @CurrentUser() user: User,
     @Args('input') { censuses, candidates, ...rest }: ElectionInput
@@ -213,6 +217,7 @@ export class ElectionResolver {
   }
 
   @Mutation(() => Election)
+  @Roles(Role.SECRETARY, Role.ADMIN)
   async modifyElection(
     @Args({ name: 'id', type: () => ID }) id: string,
     @Args('input') data: UpdateElectionInput
@@ -226,6 +231,7 @@ export class ElectionResolver {
   }
 
   @Mutation(() => Boolean)
+  @Roles(Role.SECRETARY, Role.ADMIN)
   async deleteElection(
     @Args({ name: 'id', type: () => ID }) id: string
   ): Promise<boolean> {
