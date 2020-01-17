@@ -32,6 +32,6 @@ export class CrudService<M, I> {
   }
 
   async update(ref: Ref<M> | string, data: any): Promise<DocumentType<M>> {
-    return this.model.findByIdAndUpdate(ref, data)
+    return this.model.findByIdAndUpdate(ref, data, { new: true })
   }
 }
