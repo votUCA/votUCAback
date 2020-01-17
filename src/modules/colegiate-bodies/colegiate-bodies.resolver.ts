@@ -39,7 +39,7 @@ export class ColegiateBodyResolver {
   }
 
   @Mutation(() => ColegiateBody)
-  @Roles(Role.ADMIN)
+  @Roles(Role.ADMIN, Role.SECRETARY)
   async createColegiateBody(
     @Args('input') input: ColegiateBodyInput
   ): Promise<ColegiateBody> {
