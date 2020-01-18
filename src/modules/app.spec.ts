@@ -193,7 +193,6 @@ describe('App Module', () => {
           },
         },
         body => {
-          console.log(body.errors)
           accessToken = body.data.login.accessToken
           expect(accessToken).toBeTruthy()
           expect(body.errors).toBeFalsy()
