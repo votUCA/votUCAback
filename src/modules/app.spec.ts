@@ -20,6 +20,7 @@ import {
   censusesQuery,
 } from './querys-test/short-queries'
 import { electionsQuery } from './querys-test/electionsQuery'
+import { pollsQuery } from './querys-test/pollsQuery'
 
 describe('App Module', () => {
   let app: INestApplication
@@ -125,6 +126,14 @@ describe('App Module', () => {
       return gqlRequest(app.getHttpServer(), { query, accessToken }, body => {
         expect(body.errors).toBeFalsy()
         expect(body.data.elections).toMatchSnapshot()
+      })
+    })
+
+    it('When polls is requested, should return a poll list', () => {
+      const query = pollsQuery
+      return gqlRequest(app.getHttpServer(), { query, accessToken }, body => {
+        expect(body.errors).toBeFalsy()
+        expect(body.data.polls).toMatchSnapshot()
       })
     })
   }) // Queries
