@@ -179,6 +179,40 @@ describe('App Module', () => {
       )
     })
 
+    it('login with wrong credentials, should throw an error', () => {
+      const query = loginQuery
+      return gqlRequest(
+        app.getHttpServer(),
+        {
+          query,
+          variables: {
+            input: {
+              uid: 'A20192066',
+              password: '20192066A',
+            },
+          },
+        },
+        body => {
+          expect(body.data).toBeFalsy()
+          expect(body.errors).toBeTruthy()
+        }
+      )
+    })
+
+    it('When passing wrong accessToken, should throw an error', () => {
+      return gqlRequest(
+        app.getHttpServer(),
+        {
+          query: votePollQuery,
+          accessToken: `${accessToken}wrong`,
+        },
+        body => {
+          expect(body.errors).toBeTruthy()
+          expect(body.data).toBeFalsy()
+        }
+      )
+    })
+
     it('login with another user', () => {
       const query = loginQuery
       return gqlRequest(
