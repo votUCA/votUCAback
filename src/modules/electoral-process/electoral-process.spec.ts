@@ -9,8 +9,7 @@ import { RolesGuard } from '../auth/roles.guard'
 import { ConfigModule } from '../config/config.module'
 import { Role } from '../users/roles.enum'
 import { ElectoralProcessModule } from './electoral-process.module'
-
-import inputElection = require('./createElection.example')
+import electionInput from './election.spec.input'
 
 describe('ElectoralProcess Module', () => {
   let app: INestApplication
@@ -24,6 +23,13 @@ describe('ElectoralProcess Module', () => {
           TypegooseModule.forRootAsync({ useClass: TypegooseConfigService }),
           GraphQLModule.forRoot({
             autoSchemaFile: true,
+            context: ({ req }): object => {
+              req.user = {
+                _id: getObjectId('user'),
+                rolesName: [Role.ADMIN],
+              }
+              return { req }
+            },
           }),
         ],
       }
@@ -31,18 +37,10 @@ describe('ElectoralProcess Module', () => {
       .overrideGuard(GqlAuthGuard)
       .useValue({
         canActivate: () => true,
-        handleRequest: () => ({
-          _id: getObjectId('user'),
-          rolesName: [Role.ADMIN],
-        }),
       })
       .overrideGuard(RolesGuard)
       .useValue({
         canActivate: () => true,
-        handleRequest: () => ({
-          _id: getObjectId('user'),
-          rolesName: [Role.ADMIN],
-        }),
       })
       .compile()
 
@@ -63,11 +61,10 @@ describe('ElectoralProcess Module', () => {
           }
         }
       `
-      const input = inputElection
 
       return gqlRequest(
         app.getHttpServer(),
-        { query, variables: { input } },
+        { query, variables: { input: electionInput } },
         body => {
           expect(body.errors).toBeFalsy()
           addModelId('election', body.data.createElection.id)
