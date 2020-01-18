@@ -54,4 +54,4 @@ const inputElection = {
   ],
 }
 
-export = inputElection
+export default inputElection
