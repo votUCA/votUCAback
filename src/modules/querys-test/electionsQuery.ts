@@ -1,78 +1,78 @@
-export const electionsQuery = `query elections
-{
-  elections {
-    id
-    start
-    end
-    description
-    maxVotes
-    voteWeights {
-      group
-      weight
-    }
-    candidates {
+export const electionsQuery = /* GraphQL */ `
+  query elections {
+    elections {
       id
-      firstName
-      lastName
-      about
-      image
-    }
-    secretary {
-      id
-      uid
-      dni
-      firstName
-      lastName
-      roles
-      genre
-      colegiateBody {
-        id
-        name
-      }
-    }
-    results {
-      voters
-      votesCast
-      whiteVotes
-      results {
-        votes
+      start
+      end
+      description
+      maxVotes
+      voteWeights {
         group
-        location
+        weight
+      }
+      candidates {
+        id
+        firstName
+        lastName
+        about
+        image
+      }
+      secretary {
+        id
+        uid
+        dni
+        firstName
+        lastName
+        roles
         genre
-        candidate {
+        colegiateBody {
           id
+          name
+        }
+      }
+      results {
+        voters
+        votesCast
+        whiteVotes
+        results {
+          votes
+          group
+          location
+          genre
+          candidate {
+            id
+            firstName
+            lastName
+            about
+            image
+          }
+        }
+      }
+      censuses {
+        id
+        group
+        date
+        location
+        voters {
           firstName
           lastName
-          about
-          image
+          uid
+          dni
+        }
+      }
+      delegates {
+        id
+        uid
+        dni
+        firstName
+        lastName
+        roles
+        genre
+        colegiateBody {
+          id
+          name
         }
       }
     }
-    censuses {
-      id
-      group
-      date
-      location
-      voters {
-        firstName
-        lastName
-        uid
-        dni
-      }
-    }
-    delegates {
-      id
-      uid
-      dni
-      firstName
-      lastName
-      roles
-      genre
-      colegiateBody {
-        id
-        name
-      }
-    }
   }
-  
-}`
+`
