@@ -45,3 +45,45 @@ export const censusesQuery = /* GraphQL */ `
     }
   }
 `
+export const pendingElectoralProcessesQuery = /* GraphQL */ `
+  query pendingElectoralProcess {
+    pendingElectoralProcesses {
+      __typename
+      ... on Election {
+        id
+        start
+        end
+        description
+        candidates {
+          id
+        }
+      }
+      ... on Poll {
+        id
+        start
+        end
+        description
+        options {
+          id
+        }
+      }
+    }
+  }
+`
+export const voteElectionQuery = /* GraphQL */ `
+  mutation voteElection($input: VoteElectionInput!) {
+    voteOnElection(input: $input)
+  }
+`
+export const votePollQuery = /* GraphQL */ `
+  mutation votePoll($input: VotePollInput!) {
+    voteOnPoll(input: $input)
+  }
+`
+export const loginQuery = /* GraphQL */ `
+  mutation login($input: LoginInput!) {
+    login(input: $input) {
+      accessToken
+    }
+  }
+`

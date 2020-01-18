@@ -7158,11 +7158,11 @@ Array [
       "results": Array [
         Object {
           "candidate": Object {
-            "about": "Ut est repellat aspernatur cupiditate laboriosam at quam. Quis molestiae vel veritatis illo aperiam. Dolor molestiae hic occaecati doloribus quo eos soluta enim. Eos dolores doloribus id ea perspiciatis aliquam. Rem et facilis provident enim omnis labore reiciendis voluptatem. Voluptatem excepturi et et natus at corporis perferendis. Eius doloremque sunt vitae corporis in illo. Cupiditate consequatur animi similique incidunt. Beatae consequuntur dolores aliquid maiores. Provident dolorem et dolorem animi quia maxime fugit ducimus dolorem. Eos harum ea molestiae assumenda. Fugit inventore facere natus omnis magnam.",
-            "firstName": "Sadie",
-            "id": "5e1e0163f9344483bc3ac648",
+            "about": "Praesentium sunt illum non deleniti consectetur voluptates libero sit voluptas. Veritatis animi libero ut nobis consequatur. Distinctio molestiae repellat enim ex expedita. Est maiores qui nisi ipsa aut consequuntur. Labore perferendis incidunt recusandae. Adipisci ea rem incidunt sit rerum aut et. Soluta temporibus ullam sit. Architecto maiores facere voluptas. Tempore eaque minima quo at sit consequatur et delectus. Commodi doloremque nam vel et. Omnis et quo ut sit iste. Praesentium ducimus numquam. Quis dolores voluptas est voluptatem ab pariatur impedit.",
+            "firstName": "Vicky",
+            "id": "5e1e0163f9344483bc3ac647",
             "image": null,
-            "lastName": "Abshire",
+            "lastName": "Effertz",
           },
           "genre": null,
           "group": null,
@@ -7184,11 +7184,11 @@ Array [
         },
         Object {
           "candidate": Object {
-            "about": "Praesentium sunt illum non deleniti consectetur voluptates libero sit voluptas. Veritatis animi libero ut nobis consequatur. Distinctio molestiae repellat enim ex expedita. Est maiores qui nisi ipsa aut consequuntur. Labore perferendis incidunt recusandae. Adipisci ea rem incidunt sit rerum aut et. Soluta temporibus ullam sit. Architecto maiores facere voluptas. Tempore eaque minima quo at sit consequatur et delectus. Commodi doloremque nam vel et. Omnis et quo ut sit iste. Praesentium ducimus numquam. Quis dolores voluptas est voluptatem ab pariatur impedit.",
-            "firstName": "Vicky",
-            "id": "5e1e0163f9344483bc3ac647",
+            "about": "Aliquam et dolorem consequatur. Recusandae numquam quo. Et pariatur sit et et sint vero perferendis. Eos ipsam praesentium omnis. Error magni corrupti vel incidunt suscipit tenetur numquam. Quo consequatur voluptate eveniet nesciunt vitae libero consectetur dicta. Ipsum quos nemo possimus sed. Inventore veritatis illo nihil. Pariatur sed quam et fuga provident blanditiis praesentium. Laudantium aut iusto ut fugit consectetur nisi quisquam. Facilis placeat illum similique quo sed tempora asperiores. Commodi ut est porro aspernatur perspiciatis qui. Non quia perferendis explicabo.",
+            "firstName": "Frederik",
+            "id": "5e1e0163f9344483bc3ac645",
             "image": null,
-            "lastName": "Effertz",
+            "lastName": "Walter",
           },
           "genre": null,
           "group": null,
@@ -7197,11 +7197,11 @@ Array [
         },
         Object {
           "candidate": Object {
-            "about": "Aliquam et dolorem consequatur. Recusandae numquam quo. Et pariatur sit et et sint vero perferendis. Eos ipsam praesentium omnis. Error magni corrupti vel incidunt suscipit tenetur numquam. Quo consequatur voluptate eveniet nesciunt vitae libero consectetur dicta. Ipsum quos nemo possimus sed. Inventore veritatis illo nihil. Pariatur sed quam et fuga provident blanditiis praesentium. Laudantium aut iusto ut fugit consectetur nisi quisquam. Facilis placeat illum similique quo sed tempora asperiores. Commodi ut est porro aspernatur perspiciatis qui. Non quia perferendis explicabo.",
-            "firstName": "Frederik",
-            "id": "5e1e0163f9344483bc3ac645",
+            "about": "Ut est repellat aspernatur cupiditate laboriosam at quam. Quis molestiae vel veritatis illo aperiam. Dolor molestiae hic occaecati doloribus quo eos soluta enim. Eos dolores doloribus id ea perspiciatis aliquam. Rem et facilis provident enim omnis labore reiciendis voluptatem. Voluptatem excepturi et et natus at corporis perferendis. Eius doloremque sunt vitae corporis in illo. Cupiditate consequatur animi similique incidunt. Beatae consequuntur dolores aliquid maiores. Provident dolorem et dolorem animi quia maxime fugit ducimus dolorem. Eos harum ea molestiae assumenda. Fugit inventore facere natus omnis magnam.",
+            "firstName": "Sadie",
+            "id": "5e1e0163f9344483bc3ac648",
             "image": null,
-            "lastName": "Walter",
+            "lastName": "Abshire",
           },
           "genre": null,
           "group": null,
@@ -8618,6 +8618,3367 @@ Array [
         "weight": 11,
       },
     ],
+  },
+]
+`;
+
+exports[`App Module Queries When pendingElectoralProcesses is requested, should return a electoralProcess list 1`] = `Array []`;
+
+exports[`App Module Queries When polls is requested, should return a poll list 1`] = `
+Array [
+  Object {
+    "censuses": Array [
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDVP",
+        "id": "5e1e012cf9344483bc3ac216",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192087u",
+            "firstName": "Gaetano O'Connell V",
+            "lastName": "Bauch",
+            "uid": "u20192087",
+          },
+          Object {
+            "dni": "20192118u",
+            "firstName": "Sarai Leuschke",
+            "lastName": "Larson",
+            "uid": "u20192118",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PNDVP",
+        "id": "5e1e012cf9344483bc3ac217",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192098u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Rowe",
+            "uid": "u20192098",
+          },
+          Object {
+            "dni": "20192034u",
+            "firstName": "Elijah Torp",
+            "lastName": "Adams",
+            "uid": "u20192034",
+          },
+          Object {
+            "dni": "20192021u",
+            "firstName": "Mariano Boyle",
+            "lastName": "Bogisich",
+            "uid": "u20192021",
+          },
+          Object {
+            "dni": "20192093u",
+            "firstName": "Mr. Eden Smitham",
+            "lastName": "Dickens",
+            "uid": "u20192093",
+          },
+          Object {
+            "dni": "20192089u",
+            "firstName": "Dr. Rudolph Russel",
+            "lastName": "Thiel",
+            "uid": "u20192089",
+          },
+          Object {
+            "dni": "20192100u",
+            "firstName": "Carmen Wyman",
+            "lastName": "Murphy",
+            "uid": "u20192100",
+          },
+          Object {
+            "dni": "20192117u",
+            "firstName": "Desmond Schoen",
+            "lastName": "Goodwin",
+            "uid": "u20192117",
+          },
+          Object {
+            "dni": "20192022u",
+            "firstName": "Gudrun Rodriguez",
+            "lastName": "Balistreri",
+            "uid": "u20192022",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDINVP",
+        "id": "5e1e012cf9344483bc3ac218",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192068u",
+            "firstName": "Peyton Kerluke",
+            "lastName": "Donnelly",
+            "uid": "u20192068",
+          },
+          Object {
+            "dni": "20192081u",
+            "firstName": "Missouri Dare",
+            "lastName": "Gibson",
+            "uid": "u20192081",
+          },
+          Object {
+            "dni": "20192105u",
+            "firstName": "Marge Kirlin",
+            "lastName": "Torp",
+            "uid": "u20192105",
+          },
+          Object {
+            "dni": "20192033u",
+            "firstName": "Cassidy Murazik",
+            "lastName": "Towne",
+            "uid": "u20192033",
+          },
+          Object {
+            "dni": "20192047u",
+            "firstName": "Jeramy Bayer",
+            "lastName": "Upton",
+            "uid": "u20192047",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "ALU",
+        "id": "5e1e012cf9344483bc3ac219",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192048u",
+            "firstName": "Robert Robel",
+            "lastName": "Satterfield",
+            "uid": "u20192048",
+          },
+          Object {
+            "dni": "20192110u",
+            "firstName": "Monserrate Pacocha",
+            "lastName": "Hilll",
+            "uid": "u20192110",
+          },
+          Object {
+            "dni": "20192084u",
+            "firstName": "Davion D'Amore",
+            "lastName": "Kovacek",
+            "uid": "u20192084",
+          },
+          Object {
+            "dni": "20192086u",
+            "firstName": "Tabitha Jerde",
+            "lastName": "Hansen",
+            "uid": "u20192086",
+          },
+          Object {
+            "dni": "20192076u",
+            "firstName": "Darren Heaney",
+            "lastName": "Mueller",
+            "uid": "u20192076",
+          },
+          Object {
+            "dni": "20192028u",
+            "firstName": "Stephon Zieme",
+            "lastName": "Schamberger",
+            "uid": "u20192028",
+          },
+          Object {
+            "dni": "20192099u",
+            "firstName": "Larry Koepp",
+            "lastName": "Jacobson",
+            "uid": "u20192099",
+          },
+          Object {
+            "dni": "20192076u",
+            "firstName": "Darren Heaney",
+            "lastName": "Mueller",
+            "uid": "u20192076",
+          },
+          Object {
+            "dni": "20192028u",
+            "firstName": "Stephon Zieme",
+            "lastName": "Schamberger",
+            "uid": "u20192028",
+          },
+          Object {
+            "dni": "20192084u",
+            "firstName": "Davion D'Amore",
+            "lastName": "Kovacek",
+            "uid": "u20192084",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PAS",
+        "id": "5e1e012cf9344483bc3ac21a",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192045u",
+            "firstName": "Dr. Arne Block",
+            "lastName": "Skiles",
+            "uid": "u20192045",
+          },
+          Object {
+            "dni": "20192057u",
+            "firstName": "Dahlia Moore Jr.",
+            "lastName": "Heidenreich",
+            "uid": "u20192057",
+          },
+          Object {
+            "dni": "20192079u",
+            "firstName": "Adah Wilderman",
+            "lastName": "Veum",
+            "uid": "u20192079",
+          },
+          Object {
+            "dni": "20192049u",
+            "firstName": "Norwood Tremblay",
+            "lastName": "Hackett",
+            "uid": "u20192049",
+          },
+          Object {
+            "dni": "20192106u",
+            "firstName": "Savanah Johns",
+            "lastName": "Ledner",
+            "uid": "u20192106",
+          },
+        ],
+      },
+    ],
+    "delegates": Array [],
+    "description": "A est deleniti. Nisi officiis nesciunt harum omnis nihil et laudantium optio officiis. Sunt nisi rerum nobis hic et modi ullam in.",
+    "end": "1970-01-01T00:00:00.000Z",
+    "id": "5e1e012cf9344483bc3ac21b",
+    "isRealTime": true,
+    "maxVotes": 1,
+    "options": Array [
+      Object {
+        "id": "5e1e012cf9344483bc3ac21e",
+        "text": "Ratione et possimus deserunt quasi qui itaque pariatur adipisci sit.",
+      },
+      Object {
+        "id": "5e1e012cf9344483bc3ac21d",
+        "text": "Maiores perferendis voluptatem eaque praesentium qui doloribus est eius temporibus.",
+      },
+      Object {
+        "id": "5e1e012cf9344483bc3ac21c",
+        "text": "Mollitia quis dolorum quia odio labore et fuga incidunt earum.",
+      },
+    ],
+    "question": "Omnis quasi labore quis voluptatem consequatur voluptatem dolore amet sit.",
+    "results": Object {
+      "results": Array [
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e012cf9344483bc3ac21c",
+            "text": "Mollitia quis dolorum quia odio labore et fuga incidunt earum.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e012cf9344483bc3ac21d",
+            "text": "Maiores perferendis voluptatem eaque praesentium qui doloribus est eius temporibus.",
+          },
+          "votes": 2,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e012cf9344483bc3ac21e",
+            "text": "Ratione et possimus deserunt quasi qui itaque pariatur adipisci sit.",
+          },
+          "votes": 0,
+        },
+      ],
+      "voters": 30,
+      "votesCast": 2,
+      "whiteVotes": 0,
+    },
+    "secretary": Object {
+      "colegiateBody": Object {
+        "id": "5e1dfd2ff9344483bc3ac1ad",
+        "name": "PDVP",
+      },
+      "dni": "20192020U",
+      "firstName": "votuca",
+      "genre": "OTHER",
+      "id": "5e1b187e21544de30f35531b",
+      "lastName": "admin",
+      "roles": Array [
+        "ADMIN",
+      ],
+      "uid": "u20192020",
+    },
+    "start": "1970-01-01T00:00:00.000Z",
+  },
+  Object {
+    "censuses": Array [
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PNDVP",
+        "id": "5e1e012ff9344483bc3ac24c",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192098u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Rowe",
+            "uid": "u20192098",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDINVP",
+        "id": "5e1e012ff9344483bc3ac24d",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192032u",
+            "firstName": "Aubree Brown",
+            "lastName": "Ortiz",
+            "uid": "u20192032",
+          },
+          Object {
+            "dni": "20192051u",
+            "firstName": "Aniya Howell PhD",
+            "lastName": "Olson",
+            "uid": "u20192051",
+          },
+          Object {
+            "dni": "20192033u",
+            "firstName": "Cassidy Murazik",
+            "lastName": "Towne",
+            "uid": "u20192033",
+          },
+          Object {
+            "dni": "20192026u",
+            "firstName": "Connor Zemlak",
+            "lastName": "Mitchell",
+            "uid": "u20192026",
+          },
+          Object {
+            "dni": "20192032u",
+            "firstName": "Aubree Brown",
+            "lastName": "Ortiz",
+            "uid": "u20192032",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDVP",
+        "id": "5e1e012ff9344483bc3ac24e",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192101u",
+            "firstName": "Roberta Hansen",
+            "lastName": "Berge",
+            "uid": "u20192101",
+          },
+          Object {
+            "dni": "20192050u",
+            "firstName": "Salvatore Gutkowski",
+            "lastName": "Cartwright",
+            "uid": "u20192050",
+          },
+          Object {
+            "dni": "20192101u",
+            "firstName": "Roberta Hansen",
+            "lastName": "Berge",
+            "uid": "u20192101",
+          },
+          Object {
+            "dni": "20192056u",
+            "firstName": "Sandy Brown",
+            "lastName": "Hodkiewicz",
+            "uid": "u20192056",
+          },
+          Object {
+            "dni": "20192052u",
+            "firstName": "Ms. Alvis Grant",
+            "lastName": "Toy",
+            "uid": "u20192052",
+          },
+          Object {
+            "dni": "20192071u",
+            "firstName": "Sierra Osinski PhD",
+            "lastName": "Yundt",
+            "uid": "u20192071",
+          },
+          Object {
+            "dni": "20192036u",
+            "firstName": "Manuel Blanda",
+            "lastName": "Wisoky",
+            "uid": "u20192036",
+          },
+          Object {
+            "dni": "20192101u",
+            "firstName": "Roberta Hansen",
+            "lastName": "Berge",
+            "uid": "u20192101",
+          },
+          Object {
+            "dni": "20192077u",
+            "firstName": "Bria Beatty",
+            "lastName": "Boyle",
+            "uid": "u20192077",
+          },
+          Object {
+            "dni": "20192080u",
+            "firstName": "Claudia Hermiston",
+            "lastName": "Emmerich",
+            "uid": "u20192080",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PAS",
+        "id": "5e1e012ff9344483bc3ac24f",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192116u",
+            "firstName": "Milford Harris",
+            "lastName": "Stanton",
+            "uid": "u20192116",
+          },
+          Object {
+            "dni": "20192079u",
+            "firstName": "Adah Wilderman",
+            "lastName": "Veum",
+            "uid": "u20192079",
+          },
+          Object {
+            "dni": "20192094u",
+            "firstName": "Stephanie Marquardt Jr.",
+            "lastName": "Heller",
+            "uid": "u20192094",
+          },
+          Object {
+            "dni": "20192094u",
+            "firstName": "Stephanie Marquardt Jr.",
+            "lastName": "Heller",
+            "uid": "u20192094",
+          },
+          Object {
+            "dni": "20192049u",
+            "firstName": "Norwood Tremblay",
+            "lastName": "Hackett",
+            "uid": "u20192049",
+          },
+          Object {
+            "dni": "20192082u",
+            "firstName": "Moriah Krajcik DVM",
+            "lastName": "Rutherford",
+            "uid": "u20192082",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "ALU",
+        "id": "5e1e012ff9344483bc3ac250",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192099u",
+            "firstName": "Larry Koepp",
+            "lastName": "Jacobson",
+            "uid": "u20192099",
+          },
+          Object {
+            "dni": "20192043u",
+            "firstName": "Rodrick Feeney",
+            "lastName": "Miller",
+            "uid": "u20192043",
+          },
+          Object {
+            "dni": "20192062u",
+            "firstName": "Alaina Hilll",
+            "lastName": "Yundt",
+            "uid": "u20192062",
+          },
+          Object {
+            "dni": "20192028u",
+            "firstName": "Stephon Zieme",
+            "lastName": "Schamberger",
+            "uid": "u20192028",
+          },
+          Object {
+            "dni": "20192035u",
+            "firstName": "Dr. Nasir Lang",
+            "lastName": "Kuhic",
+            "uid": "u20192035",
+          },
+          Object {
+            "dni": "20192119u",
+            "firstName": "Dr. Jorge Sauer",
+            "lastName": "Gerhold",
+            "uid": "u20192119",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "ALU",
+        "id": "5e1e0158f9344483bc3ac553",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192119u",
+            "firstName": "Dr. Jorge Sauer",
+            "lastName": "Gerhold",
+            "uid": "u20192119",
+          },
+          Object {
+            "dni": "20192119u",
+            "firstName": "Dr. Jorge Sauer",
+            "lastName": "Gerhold",
+            "uid": "u20192119",
+          },
+          Object {
+            "dni": "20192109u",
+            "firstName": "Rogers Luettgen",
+            "lastName": "Mayer",
+            "uid": "u20192109",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDINVP",
+        "id": "5e1e0158f9344483bc3ac554",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192105u",
+            "firstName": "Marge Kirlin",
+            "lastName": "Torp",
+            "uid": "u20192105",
+          },
+          Object {
+            "dni": "20192065u",
+            "firstName": "Otilia Graham",
+            "lastName": "Murazik",
+            "uid": "u20192065",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PAS",
+        "id": "5e1e0158f9344483bc3ac555",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192058u",
+            "firstName": "Santos Feil",
+            "lastName": "Mraz",
+            "uid": "u20192058",
+          },
+          Object {
+            "dni": "20192120u",
+            "firstName": "Brycen Adams V",
+            "lastName": "Hauck",
+            "uid": "u20192120",
+          },
+          Object {
+            "dni": "20192107u",
+            "firstName": "Kale Champlin III",
+            "lastName": "Schmitt",
+            "uid": "u20192107",
+          },
+          Object {
+            "dni": "20192085u",
+            "firstName": "Izaiah Beer",
+            "lastName": "Rutherford",
+            "uid": "u20192085",
+          },
+          Object {
+            "dni": "20192120u",
+            "firstName": "Brycen Adams V",
+            "lastName": "Hauck",
+            "uid": "u20192120",
+          },
+          Object {
+            "dni": "20192063u",
+            "firstName": "Audie Baumbach",
+            "lastName": "Feeney",
+            "uid": "u20192063",
+          },
+          Object {
+            "dni": "20192070u",
+            "firstName": "Sandrine Mertz",
+            "lastName": "Smitham",
+            "uid": "u20192070",
+          },
+          Object {
+            "dni": "20192049u",
+            "firstName": "Norwood Tremblay",
+            "lastName": "Hackett",
+            "uid": "u20192049",
+          },
+          Object {
+            "dni": "20192079u",
+            "firstName": "Adah Wilderman",
+            "lastName": "Veum",
+            "uid": "u20192079",
+          },
+          Object {
+            "dni": "20192106u",
+            "firstName": "Savanah Johns",
+            "lastName": "Ledner",
+            "uid": "u20192106",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PNDVP",
+        "id": "5e1e0158f9344483bc3ac556",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192089u",
+            "firstName": "Dr. Rudolph Russel",
+            "lastName": "Thiel",
+            "uid": "u20192089",
+          },
+          Object {
+            "dni": "20192031u",
+            "firstName": "Sarah Johnson",
+            "lastName": "McClure",
+            "uid": "u20192031",
+          },
+          Object {
+            "dni": "20192098u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Rowe",
+            "uid": "u20192098",
+          },
+        ],
+      },
+    ],
+    "delegates": Array [],
+    "description": "Votación mejor manager",
+    "end": "1970-01-01T00:00:00.000Z",
+    "id": "5e1e012ff9344483bc3ac251",
+    "isRealTime": true,
+    "maxVotes": 1,
+    "options": Array [
+      Object {
+        "id": "5e1e012ff9344483bc3ac253",
+        "text": "Dolorem voluptas consequuntur incidunt recusandae consequatur omnis facere et maiores.",
+      },
+      Object {
+        "id": "5e1e012ff9344483bc3ac252",
+        "text": "Dolor accusamus sunt velit cum repudiandae perferendis dolores aut perspiciatis.",
+      },
+    ],
+    "question": "¿Quien ha sido el mejor manager?",
+    "results": Object {
+      "results": Array [
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e012ff9344483bc3ac252",
+            "text": "Dolor accusamus sunt velit cum repudiandae perferendis dolores aut perspiciatis.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e012ff9344483bc3ac253",
+            "text": "Dolorem voluptas consequuntur incidunt recusandae consequatur omnis facere et maiores.",
+          },
+          "votes": 0,
+        },
+      ],
+      "voters": 46,
+      "votesCast": 0,
+      "whiteVotes": 0,
+    },
+    "secretary": Object {
+      "colegiateBody": Object {
+        "id": "5e1dfd2ff9344483bc3ac1ad",
+        "name": "PDVP",
+      },
+      "dni": "20192020U",
+      "firstName": "votuca",
+      "genre": "OTHER",
+      "id": "5e1b187e21544de30f35531b",
+      "lastName": "admin",
+      "roles": Array [
+        "ADMIN",
+      ],
+      "uid": "u20192020",
+    },
+    "start": "1970-01-01T00:00:00.000Z",
+  },
+  Object {
+    "censuses": Array [
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PNDVP",
+        "id": "5e1e0131f9344483bc3ac272",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192021u",
+            "firstName": "Mariano Boyle",
+            "lastName": "Bogisich",
+            "uid": "u20192021",
+          },
+          Object {
+            "dni": "20192078u",
+            "firstName": "Ellsworth Cummerata PhD",
+            "lastName": "Koepp",
+            "uid": "u20192078",
+          },
+          Object {
+            "dni": "20192022u",
+            "firstName": "Gudrun Rodriguez",
+            "lastName": "Balistreri",
+            "uid": "u20192022",
+          },
+          Object {
+            "dni": "20192031u",
+            "firstName": "Sarah Johnson",
+            "lastName": "McClure",
+            "uid": "u20192031",
+          },
+          Object {
+            "dni": "20192098u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Rowe",
+            "uid": "u20192098",
+          },
+          Object {
+            "dni": "20192022u",
+            "firstName": "Gudrun Rodriguez",
+            "lastName": "Balistreri",
+            "uid": "u20192022",
+          },
+          Object {
+            "dni": "20192108u",
+            "firstName": "Abdiel Homenick",
+            "lastName": "Schamberger",
+            "uid": "u20192108",
+          },
+          Object {
+            "dni": "20192098u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Rowe",
+            "uid": "u20192098",
+          },
+          Object {
+            "dni": "20192060u",
+            "firstName": "Jordyn Mueller",
+            "lastName": "Brown",
+            "uid": "u20192060",
+          },
+          Object {
+            "dni": "20192117u",
+            "firstName": "Desmond Schoen",
+            "lastName": "Goodwin",
+            "uid": "u20192117",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDVP",
+        "id": "5e1e0131f9344483bc3ac273",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192118u",
+            "firstName": "Sarai Leuschke",
+            "lastName": "Larson",
+            "uid": "u20192118",
+          },
+          Object {
+            "dni": "20192118u",
+            "firstName": "Sarai Leuschke",
+            "lastName": "Larson",
+            "uid": "u20192118",
+          },
+          Object {
+            "dni": "20192054u",
+            "firstName": "Sadye Kuhic III",
+            "lastName": "Huels",
+            "uid": "u20192054",
+          },
+          Object {
+            "dni": "20192074u",
+            "firstName": "Milford Howe",
+            "lastName": "Ullrich",
+            "uid": "u20192074",
+          },
+          Object {
+            "dni": "20192056u",
+            "firstName": "Sandy Brown",
+            "lastName": "Hodkiewicz",
+            "uid": "u20192056",
+          },
+          Object {
+            "dni": "20192054u",
+            "firstName": "Sadye Kuhic III",
+            "lastName": "Huels",
+            "uid": "u20192054",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "ALU",
+        "id": "5e1e0131f9344483bc3ac274",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192119u",
+            "firstName": "Dr. Jorge Sauer",
+            "lastName": "Gerhold",
+            "uid": "u20192119",
+          },
+          Object {
+            "dni": "20192084u",
+            "firstName": "Davion D'Amore",
+            "lastName": "Kovacek",
+            "uid": "u20192084",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDINVP",
+        "id": "5e1e0131f9344483bc3ac275",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192088u",
+            "firstName": "Shawn O'Connell",
+            "lastName": "Hauck",
+            "uid": "u20192088",
+          },
+          Object {
+            "dni": "20192083u",
+            "firstName": "Mr. Walton Johns",
+            "lastName": "Dach",
+            "uid": "u20192083",
+          },
+          Object {
+            "dni": "20192030u",
+            "firstName": "Adolfo Prohaska IV",
+            "lastName": "Parisian",
+            "uid": "u20192030",
+          },
+          Object {
+            "dni": "20192065u",
+            "firstName": "Otilia Graham",
+            "lastName": "Murazik",
+            "uid": "u20192065",
+          },
+          Object {
+            "dni": "20192033u",
+            "firstName": "Cassidy Murazik",
+            "lastName": "Towne",
+            "uid": "u20192033",
+          },
+          Object {
+            "dni": "20192091u",
+            "firstName": "Angela Schowalter",
+            "lastName": "Sauer",
+            "uid": "u20192091",
+          },
+          Object {
+            "dni": "20192088u",
+            "firstName": "Shawn O'Connell",
+            "lastName": "Hauck",
+            "uid": "u20192088",
+          },
+          Object {
+            "dni": "20192030u",
+            "firstName": "Adolfo Prohaska IV",
+            "lastName": "Parisian",
+            "uid": "u20192030",
+          },
+          Object {
+            "dni": "20192042u",
+            "firstName": "Keira Morar",
+            "lastName": "Volkman",
+            "uid": "u20192042",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PAS",
+        "id": "5e1e0131f9344483bc3ac276",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192116u",
+            "firstName": "Milford Harris",
+            "lastName": "Stanton",
+            "uid": "u20192116",
+          },
+          Object {
+            "dni": "20192116u",
+            "firstName": "Milford Harris",
+            "lastName": "Stanton",
+            "uid": "u20192116",
+          },
+          Object {
+            "dni": "20192120u",
+            "firstName": "Brycen Adams V",
+            "lastName": "Hauck",
+            "uid": "u20192120",
+          },
+          Object {
+            "dni": "20192112u",
+            "firstName": "Cicero Johnston",
+            "lastName": "Green",
+            "uid": "u20192112",
+          },
+          Object {
+            "dni": "20192107u",
+            "firstName": "Kale Champlin III",
+            "lastName": "Schmitt",
+            "uid": "u20192107",
+          },
+        ],
+      },
+    ],
+    "delegates": Array [],
+    "description": "Sequi cum aut accusamus voluptatem suscipit possimus dolores. Molestias voluptatem est dicta.",
+    "end": "1970-01-01T00:00:00.000Z",
+    "id": "5e1e0131f9344483bc3ac277",
+    "isRealTime": true,
+    "maxVotes": 1,
+    "options": Array [
+      Object {
+        "id": "5e1e0131f9344483bc3ac27c",
+        "text": "Qui consequatur est ea in distinctio laboriosam fugit deleniti omnis.",
+      },
+      Object {
+        "id": "5e1e0131f9344483bc3ac27b",
+        "text": "Odit rerum aliquid non ex praesentium sapiente commodi voluptates voluptatem.",
+      },
+      Object {
+        "id": "5e1e0131f9344483bc3ac27a",
+        "text": "Id corrupti molestiae sapiente velit unde numquam sed nisi alias.",
+      },
+      Object {
+        "id": "5e1e0131f9344483bc3ac279",
+        "text": "Magnam fuga atque non aut non reiciendis est voluptatem nisi.",
+      },
+      Object {
+        "id": "5e1e0131f9344483bc3ac278",
+        "text": "Qui alias accusantium praesentium sint et ea id fugit delectus.",
+      },
+    ],
+    "question": "Rerum corrupti placeat aut quo ea labore fugiat neque neque.",
+    "results": Object {
+      "results": Array [
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0131f9344483bc3ac279",
+            "text": "Magnam fuga atque non aut non reiciendis est voluptatem nisi.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0131f9344483bc3ac278",
+            "text": "Qui alias accusantium praesentium sint et ea id fugit delectus.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0131f9344483bc3ac27b",
+            "text": "Odit rerum aliquid non ex praesentium sapiente commodi voluptates voluptatem.",
+          },
+          "votes": 1,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0131f9344483bc3ac27a",
+            "text": "Id corrupti molestiae sapiente velit unde numquam sed nisi alias.",
+          },
+          "votes": 1,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0131f9344483bc3ac27c",
+            "text": "Qui consequatur est ea in distinctio laboriosam fugit deleniti omnis.",
+          },
+          "votes": 0,
+        },
+      ],
+      "voters": 32,
+      "votesCast": 2,
+      "whiteVotes": 0,
+    },
+    "secretary": Object {
+      "colegiateBody": Object {
+        "id": "5e1dfd2ff9344483bc3ac1ad",
+        "name": "PDVP",
+      },
+      "dni": "20192020U",
+      "firstName": "votuca",
+      "genre": "OTHER",
+      "id": "5e1b187e21544de30f35531b",
+      "lastName": "admin",
+      "roles": Array [
+        "ADMIN",
+      ],
+      "uid": "u20192020",
+    },
+    "start": "1970-01-01T00:00:00.000Z",
+  },
+  Object {
+    "censuses": Array [
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDVP",
+        "id": "5e1e0136f9344483bc3ac2c8",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192102u",
+            "firstName": "Alexys Lebsack",
+            "lastName": "Jaskolski",
+            "uid": "u20192102",
+          },
+          Object {
+            "dni": "20192071u",
+            "firstName": "Sierra Osinski PhD",
+            "lastName": "Yundt",
+            "uid": "u20192071",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PNDVP",
+        "id": "5e1e0136f9344483bc3ac2c9",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192024u",
+            "firstName": "Ciara Boehm",
+            "lastName": "Marks",
+            "uid": "u20192024",
+          },
+          Object {
+            "dni": "20192022u",
+            "firstName": "Gudrun Rodriguez",
+            "lastName": "Balistreri",
+            "uid": "u20192022",
+          },
+          Object {
+            "dni": "20192117u",
+            "firstName": "Desmond Schoen",
+            "lastName": "Goodwin",
+            "uid": "u20192117",
+          },
+          Object {
+            "dni": "20192060u",
+            "firstName": "Jordyn Mueller",
+            "lastName": "Brown",
+            "uid": "u20192060",
+          },
+          Object {
+            "dni": "20192073u",
+            "firstName": "Trevor Christiansen",
+            "lastName": "Rowe",
+            "uid": "u20192073",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PAS",
+        "id": "5e1e0136f9344483bc3ac2ca",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192053u",
+            "firstName": "Renee Sauer",
+            "lastName": "Olson",
+            "uid": "u20192053",
+          },
+          Object {
+            "dni": "20192096u",
+            "firstName": "Ceasar Crist",
+            "lastName": "Mohr",
+            "uid": "u20192096",
+          },
+          Object {
+            "dni": "20192057u",
+            "firstName": "Dahlia Moore Jr.",
+            "lastName": "Heidenreich",
+            "uid": "u20192057",
+          },
+          Object {
+            "dni": "20192096u",
+            "firstName": "Ceasar Crist",
+            "lastName": "Mohr",
+            "uid": "u20192096",
+          },
+          Object {
+            "dni": "20192082u",
+            "firstName": "Moriah Krajcik DVM",
+            "lastName": "Rutherford",
+            "uid": "u20192082",
+          },
+          Object {
+            "dni": "20192107u",
+            "firstName": "Kale Champlin III",
+            "lastName": "Schmitt",
+            "uid": "u20192107",
+          },
+          Object {
+            "dni": "20192094u",
+            "firstName": "Stephanie Marquardt Jr.",
+            "lastName": "Heller",
+            "uid": "u20192094",
+          },
+          Object {
+            "dni": "20192106u",
+            "firstName": "Savanah Johns",
+            "lastName": "Ledner",
+            "uid": "u20192106",
+          },
+          Object {
+            "dni": "20192106u",
+            "firstName": "Savanah Johns",
+            "lastName": "Ledner",
+            "uid": "u20192106",
+          },
+          Object {
+            "dni": "20192049u",
+            "firstName": "Norwood Tremblay",
+            "lastName": "Hackett",
+            "uid": "u20192049",
+          },
+          Object {
+            "dni": "20192116u",
+            "firstName": "Milford Harris",
+            "lastName": "Stanton",
+            "uid": "u20192116",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "ALU",
+        "id": "5e1e0136f9344483bc3ac2cb",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192035u",
+            "firstName": "Dr. Nasir Lang",
+            "lastName": "Kuhic",
+            "uid": "u20192035",
+          },
+          Object {
+            "dni": "20192086u",
+            "firstName": "Tabitha Jerde",
+            "lastName": "Hansen",
+            "uid": "u20192086",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDINVP",
+        "id": "5e1e0136f9344483bc3ac2cc",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192042u",
+            "firstName": "Keira Morar",
+            "lastName": "Volkman",
+            "uid": "u20192042",
+          },
+          Object {
+            "dni": "20192047u",
+            "firstName": "Jeramy Bayer",
+            "lastName": "Upton",
+            "uid": "u20192047",
+          },
+        ],
+      },
+    ],
+    "delegates": Array [],
+    "description": "Quis doloremque ipsam qui. Explicabo cum eius consequatur. Deleniti animi nulla dignissimos at et hic et ipsa autem.",
+    "end": "1970-01-01T00:00:00.000Z",
+    "id": "5e1e0136f9344483bc3ac2cd",
+    "isRealTime": true,
+    "maxVotes": 1,
+    "options": Array [
+      Object {
+        "id": "5e1e0136f9344483bc3ac2d1",
+        "text": "Tenetur culpa inventore sed saepe ullam vel id temporibus veritatis.",
+      },
+      Object {
+        "id": "5e1e0136f9344483bc3ac2d0",
+        "text": "Adipisci a at ut architecto expedita libero blanditiis nobis iusto.",
+      },
+      Object {
+        "id": "5e1e0136f9344483bc3ac2cf",
+        "text": "At natus rerum iure molestiae autem et tenetur deserunt sed.",
+      },
+      Object {
+        "id": "5e1e0136f9344483bc3ac2ce",
+        "text": "Est veritatis et cum accusantium velit et quod dignissimos incidunt.",
+      },
+    ],
+    "question": "Esse provident doloremque vero laboriosam autem est fugiat impedit sint.",
+    "results": Object {
+      "results": Array [
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0136f9344483bc3ac2ce",
+            "text": "Est veritatis et cum accusantium velit et quod dignissimos incidunt.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0136f9344483bc3ac2cf",
+            "text": "At natus rerum iure molestiae autem et tenetur deserunt sed.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0136f9344483bc3ac2d0",
+            "text": "Adipisci a at ut architecto expedita libero blanditiis nobis iusto.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0136f9344483bc3ac2d1",
+            "text": "Tenetur culpa inventore sed saepe ullam vel id temporibus veritatis.",
+          },
+          "votes": 1,
+        },
+      ],
+      "voters": 22,
+      "votesCast": 1,
+      "whiteVotes": 0,
+    },
+    "secretary": Object {
+      "colegiateBody": Object {
+        "id": "5e1dfd2ff9344483bc3ac1ad",
+        "name": "PDVP",
+      },
+      "dni": "20192020U",
+      "firstName": "votuca",
+      "genre": "OTHER",
+      "id": "5e1b187e21544de30f35531b",
+      "lastName": "admin",
+      "roles": Array [
+        "ADMIN",
+      ],
+      "uid": "u20192020",
+    },
+    "start": "1970-01-01T00:00:00.000Z",
+  },
+  Object {
+    "censuses": Array [
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDVP",
+        "id": "5e1e0139f9344483bc3ac30e",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192025u",
+            "firstName": "Mrs. Tremayne Douglas",
+            "lastName": "Kassulke",
+            "uid": "u20192025",
+          },
+          Object {
+            "dni": "20192054u",
+            "firstName": "Sadye Kuhic III",
+            "lastName": "Huels",
+            "uid": "u20192054",
+          },
+          Object {
+            "dni": "20192029u",
+            "firstName": "Karley Kohler",
+            "lastName": "Mraz",
+            "uid": "u20192029",
+          },
+          Object {
+            "dni": "20192087u",
+            "firstName": "Gaetano O'Connell V",
+            "lastName": "Bauch",
+            "uid": "u20192087",
+          },
+          Object {
+            "dni": "20192056u",
+            "firstName": "Sandy Brown",
+            "lastName": "Hodkiewicz",
+            "uid": "u20192056",
+          },
+          Object {
+            "dni": "20192074u",
+            "firstName": "Milford Howe",
+            "lastName": "Ullrich",
+            "uid": "u20192074",
+          },
+          Object {
+            "dni": "20192118u",
+            "firstName": "Sarai Leuschke",
+            "lastName": "Larson",
+            "uid": "u20192118",
+          },
+          Object {
+            "dni": "20192092u",
+            "firstName": "Sierra Mayert",
+            "lastName": "Marks",
+            "uid": "u20192092",
+          },
+          Object {
+            "dni": "20192036u",
+            "firstName": "Manuel Blanda",
+            "lastName": "Wisoky",
+            "uid": "u20192036",
+          },
+          Object {
+            "dni": "20192036u",
+            "firstName": "Manuel Blanda",
+            "lastName": "Wisoky",
+            "uid": "u20192036",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDINVP",
+        "id": "5e1e0139f9344483bc3ac30f",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192091u",
+            "firstName": "Angela Schowalter",
+            "lastName": "Sauer",
+            "uid": "u20192091",
+          },
+          Object {
+            "dni": "20192033u",
+            "firstName": "Cassidy Murazik",
+            "lastName": "Towne",
+            "uid": "u20192033",
+          },
+          Object {
+            "dni": "20192041u",
+            "firstName": "Dr. Fredrick Vandervort",
+            "lastName": "Dicki",
+            "uid": "u20192041",
+          },
+          Object {
+            "dni": "20192033u",
+            "firstName": "Cassidy Murazik",
+            "lastName": "Towne",
+            "uid": "u20192033",
+          },
+          Object {
+            "dni": "20192032u",
+            "firstName": "Aubree Brown",
+            "lastName": "Ortiz",
+            "uid": "u20192032",
+          },
+          Object {
+            "dni": "20192026u",
+            "firstName": "Connor Zemlak",
+            "lastName": "Mitchell",
+            "uid": "u20192026",
+          },
+          Object {
+            "dni": "20192032u",
+            "firstName": "Aubree Brown",
+            "lastName": "Ortiz",
+            "uid": "u20192032",
+          },
+          Object {
+            "dni": "20192090u",
+            "firstName": "Dr. Angelo Ledner",
+            "lastName": "Ward",
+            "uid": "u20192090",
+          },
+          Object {
+            "dni": "20192095u",
+            "firstName": "Terrill Davis",
+            "lastName": "Kuvalis",
+            "uid": "u20192095",
+          },
+          Object {
+            "dni": "20192042u",
+            "firstName": "Keira Morar",
+            "lastName": "Volkman",
+            "uid": "u20192042",
+          },
+          Object {
+            "dni": "20192061u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Pagac",
+            "uid": "u20192061",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PAS",
+        "id": "5e1e0139f9344483bc3ac310",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192063u",
+            "firstName": "Audie Baumbach",
+            "lastName": "Feeney",
+            "uid": "u20192063",
+          },
+          Object {
+            "dni": "20192082u",
+            "firstName": "Moriah Krajcik DVM",
+            "lastName": "Rutherford",
+            "uid": "u20192082",
+          },
+          Object {
+            "dni": "20192120u",
+            "firstName": "Brycen Adams V",
+            "lastName": "Hauck",
+            "uid": "u20192120",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PNDVP",
+        "id": "5e1e0139f9344483bc3ac311",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192078u",
+            "firstName": "Ellsworth Cummerata PhD",
+            "lastName": "Koepp",
+            "uid": "u20192078",
+          },
+          Object {
+            "dni": "20192078u",
+            "firstName": "Ellsworth Cummerata PhD",
+            "lastName": "Koepp",
+            "uid": "u20192078",
+          },
+          Object {
+            "dni": "20192040u",
+            "firstName": "Lazaro McGlynn",
+            "lastName": "Witting",
+            "uid": "u20192040",
+          },
+          Object {
+            "dni": "20192108u",
+            "firstName": "Abdiel Homenick",
+            "lastName": "Schamberger",
+            "uid": "u20192108",
+          },
+          Object {
+            "dni": "20192098u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Rowe",
+            "uid": "u20192098",
+          },
+          Object {
+            "dni": "20192089u",
+            "firstName": "Dr. Rudolph Russel",
+            "lastName": "Thiel",
+            "uid": "u20192089",
+          },
+          Object {
+            "dni": "20192108u",
+            "firstName": "Abdiel Homenick",
+            "lastName": "Schamberger",
+            "uid": "u20192108",
+          },
+          Object {
+            "dni": "20192073u",
+            "firstName": "Trevor Christiansen",
+            "lastName": "Rowe",
+            "uid": "u20192073",
+          },
+          Object {
+            "dni": "20192031u",
+            "firstName": "Sarah Johnson",
+            "lastName": "McClure",
+            "uid": "u20192031",
+          },
+          Object {
+            "dni": "20192089u",
+            "firstName": "Dr. Rudolph Russel",
+            "lastName": "Thiel",
+            "uid": "u20192089",
+          },
+          Object {
+            "dni": "20192093u",
+            "firstName": "Mr. Eden Smitham",
+            "lastName": "Dickens",
+            "uid": "u20192093",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "ALU",
+        "id": "5e1e0139f9344483bc3ac312",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192110u",
+            "firstName": "Monserrate Pacocha",
+            "lastName": "Hilll",
+            "uid": "u20192110",
+          },
+          Object {
+            "dni": "20192059u",
+            "firstName": "Jaime Brakus DDS",
+            "lastName": "Weissnat",
+            "uid": "u20192059",
+          },
+          Object {
+            "dni": "20192059u",
+            "firstName": "Jaime Brakus DDS",
+            "lastName": "Weissnat",
+            "uid": "u20192059",
+          },
+          Object {
+            "dni": "20192097u",
+            "firstName": "Wilhelm Barton",
+            "lastName": "Kovacek",
+            "uid": "u20192097",
+          },
+          Object {
+            "dni": "20192043u",
+            "firstName": "Rodrick Feeney",
+            "lastName": "Miller",
+            "uid": "u20192043",
+          },
+          Object {
+            "dni": "20192027u",
+            "firstName": "Leanne Stanton III",
+            "lastName": "Swaniawski",
+            "uid": "u20192027",
+          },
+        ],
+      },
+    ],
+    "delegates": Array [],
+    "description": "Optio minus corporis laborum optio ut ipsam soluta. Ea et facilis optio voluptatem quis quia quo aliquid et. Dolores quia consequuntur ad.",
+    "end": "1970-01-01T00:00:00.000Z",
+    "id": "5e1e0139f9344483bc3ac313",
+    "isRealTime": false,
+    "maxVotes": 1,
+    "options": Array [
+      Object {
+        "id": "5e1e0139f9344483bc3ac316",
+        "text": "Et voluptas ut fugit qui ipsa inventore fugit qui magni.",
+      },
+      Object {
+        "id": "5e1e0139f9344483bc3ac315",
+        "text": "Cupiditate quos qui suscipit et ad consequatur rerum omnis numquam.",
+      },
+      Object {
+        "id": "5e1e0139f9344483bc3ac314",
+        "text": "Asperiores nesciunt cum doloremque earum adipisci ut ducimus harum corrupti.",
+      },
+    ],
+    "question": "Et nobis et ut maxime eaque voluptate autem id id.",
+    "results": Object {
+      "results": Array [
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0139f9344483bc3ac314",
+            "text": "Asperiores nesciunt cum doloremque earum adipisci ut ducimus harum corrupti.",
+          },
+          "votes": 1,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0139f9344483bc3ac315",
+            "text": "Cupiditate quos qui suscipit et ad consequatur rerum omnis numquam.",
+          },
+          "votes": 1,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0139f9344483bc3ac316",
+            "text": "Et voluptas ut fugit qui ipsa inventore fugit qui magni.",
+          },
+          "votes": 0,
+        },
+      ],
+      "voters": 41,
+      "votesCast": 2,
+      "whiteVotes": 0,
+    },
+    "secretary": Object {
+      "colegiateBody": Object {
+        "id": "5e1dfd2ff9344483bc3ac1ad",
+        "name": "PDVP",
+      },
+      "dni": "20192020U",
+      "firstName": "votuca",
+      "genre": "OTHER",
+      "id": "5e1b187e21544de30f35531b",
+      "lastName": "admin",
+      "roles": Array [
+        "ADMIN",
+      ],
+      "uid": "u20192020",
+    },
+    "start": "1970-01-01T00:00:00.000Z",
+  },
+  Object {
+    "censuses": Array [
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDVP",
+        "id": "5e1e013cf9344483bc3ac344",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192054u",
+            "firstName": "Sadye Kuhic III",
+            "lastName": "Huels",
+            "uid": "u20192054",
+          },
+          Object {
+            "dni": "20192029u",
+            "firstName": "Karley Kohler",
+            "lastName": "Mraz",
+            "uid": "u20192029",
+          },
+          Object {
+            "dni": "20192025u",
+            "firstName": "Mrs. Tremayne Douglas",
+            "lastName": "Kassulke",
+            "uid": "u20192025",
+          },
+          Object {
+            "dni": "20192101u",
+            "firstName": "Roberta Hansen",
+            "lastName": "Berge",
+            "uid": "u20192101",
+          },
+          Object {
+            "dni": "20192036u",
+            "firstName": "Manuel Blanda",
+            "lastName": "Wisoky",
+            "uid": "u20192036",
+          },
+          Object {
+            "dni": "20192050u",
+            "firstName": "Salvatore Gutkowski",
+            "lastName": "Cartwright",
+            "uid": "u20192050",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PNDVP",
+        "id": "5e1e013cf9344483bc3ac345",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192100u",
+            "firstName": "Carmen Wyman",
+            "lastName": "Murphy",
+            "uid": "u20192100",
+          },
+          Object {
+            "dni": "20192078u",
+            "firstName": "Ellsworth Cummerata PhD",
+            "lastName": "Koepp",
+            "uid": "u20192078",
+          },
+          Object {
+            "dni": "20192098u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Rowe",
+            "uid": "u20192098",
+          },
+          Object {
+            "dni": "20192073u",
+            "firstName": "Trevor Christiansen",
+            "lastName": "Rowe",
+            "uid": "u20192073",
+          },
+          Object {
+            "dni": "20192060u",
+            "firstName": "Jordyn Mueller",
+            "lastName": "Brown",
+            "uid": "u20192060",
+          },
+          Object {
+            "dni": "20192034u",
+            "firstName": "Elijah Torp",
+            "lastName": "Adams",
+            "uid": "u20192034",
+          },
+          Object {
+            "dni": "20192069u",
+            "firstName": "Lowell Balistreri",
+            "lastName": "Mills",
+            "uid": "u20192069",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDINVP",
+        "id": "5e1e013cf9344483bc3ac346",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192033u",
+            "firstName": "Cassidy Murazik",
+            "lastName": "Towne",
+            "uid": "u20192033",
+          },
+          Object {
+            "dni": "20192026u",
+            "firstName": "Connor Zemlak",
+            "lastName": "Mitchell",
+            "uid": "u20192026",
+          },
+          Object {
+            "dni": "20192090u",
+            "firstName": "Dr. Angelo Ledner",
+            "lastName": "Ward",
+            "uid": "u20192090",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PAS",
+        "id": "5e1e013cf9344483bc3ac347",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192058u",
+            "firstName": "Santos Feil",
+            "lastName": "Mraz",
+            "uid": "u20192058",
+          },
+          Object {
+            "dni": "20192066u",
+            "firstName": "Marquis Predovic",
+            "lastName": "Medhurst",
+            "uid": "u20192066",
+          },
+          Object {
+            "dni": "20192096u",
+            "firstName": "Ceasar Crist",
+            "lastName": "Mohr",
+            "uid": "u20192096",
+          },
+          Object {
+            "dni": "20192045u",
+            "firstName": "Dr. Arne Block",
+            "lastName": "Skiles",
+            "uid": "u20192045",
+          },
+          Object {
+            "dni": "20192053u",
+            "firstName": "Renee Sauer",
+            "lastName": "Olson",
+            "uid": "u20192053",
+          },
+          Object {
+            "dni": "20192063u",
+            "firstName": "Audie Baumbach",
+            "lastName": "Feeney",
+            "uid": "u20192063",
+          },
+          Object {
+            "dni": "20192082u",
+            "firstName": "Moriah Krajcik DVM",
+            "lastName": "Rutherford",
+            "uid": "u20192082",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "ALU",
+        "id": "5e1e013cf9344483bc3ac348",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192097u",
+            "firstName": "Wilhelm Barton",
+            "lastName": "Kovacek",
+            "uid": "u20192097",
+          },
+          Object {
+            "dni": "20192114u",
+            "firstName": "Carli Wilderman",
+            "lastName": "O'Connell",
+            "uid": "u20192114",
+          },
+          Object {
+            "dni": "20192028u",
+            "firstName": "Stephon Zieme",
+            "lastName": "Schamberger",
+            "uid": "u20192028",
+          },
+          Object {
+            "dni": "20192097u",
+            "firstName": "Wilhelm Barton",
+            "lastName": "Kovacek",
+            "uid": "u20192097",
+          },
+          Object {
+            "dni": "20192043u",
+            "firstName": "Rodrick Feeney",
+            "lastName": "Miller",
+            "uid": "u20192043",
+          },
+        ],
+      },
+    ],
+    "delegates": Array [],
+    "description": "Cumque accusantium fuga. Eum iure totam. Sed velit magni hic commodi sint consequatur natus sit. Nulla qui perferendis aut ex officia iure dolorem itaque odit.",
+    "end": "1970-01-01T00:00:00.000Z",
+    "id": "5e1e013cf9344483bc3ac349",
+    "isRealTime": false,
+    "maxVotes": 1,
+    "options": Array [
+      Object {
+        "id": "5e1e013cf9344483bc3ac350",
+        "text": "Nulla sit ducimus ad autem dolores cupiditate quidem at et.",
+      },
+      Object {
+        "id": "5e1e013cf9344483bc3ac34f",
+        "text": "Et ut recusandae quis doloremque facere suscipit quos dignissimos voluptatibus.",
+      },
+      Object {
+        "id": "5e1e013cf9344483bc3ac34e",
+        "text": "Voluptate aut consequuntur alias animi est enim magnam officia impedit.",
+      },
+      Object {
+        "id": "5e1e013cf9344483bc3ac34d",
+        "text": "Omnis quidem sit labore dolor et et fugiat cum quasi.",
+      },
+      Object {
+        "id": "5e1e013cf9344483bc3ac34c",
+        "text": "Dolores non accusantium sit dolorem voluptas dolores debitis aut incidunt.",
+      },
+      Object {
+        "id": "5e1e013cf9344483bc3ac34b",
+        "text": "Amet quia harum dolorum deserunt repellendus quisquam voluptatem sunt quo.",
+      },
+      Object {
+        "id": "5e1e013cf9344483bc3ac34a",
+        "text": "Id ut porro voluptatum in ea vel aut et nam.",
+      },
+    ],
+    "question": "Facere quidem nulla reprehenderit qui placeat voluptatem excepturi qui veniam.",
+    "results": Object {
+      "results": Array [
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e013cf9344483bc3ac34a",
+            "text": "Id ut porro voluptatum in ea vel aut et nam.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e013cf9344483bc3ac34b",
+            "text": "Amet quia harum dolorum deserunt repellendus quisquam voluptatem sunt quo.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e013cf9344483bc3ac34c",
+            "text": "Dolores non accusantium sit dolorem voluptas dolores debitis aut incidunt.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e013cf9344483bc3ac34f",
+            "text": "Et ut recusandae quis doloremque facere suscipit quos dignissimos voluptatibus.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e013cf9344483bc3ac34d",
+            "text": "Omnis quidem sit labore dolor et et fugiat cum quasi.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e013cf9344483bc3ac350",
+            "text": "Nulla sit ducimus ad autem dolores cupiditate quidem at et.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e013cf9344483bc3ac34e",
+            "text": "Voluptate aut consequuntur alias animi est enim magnam officia impedit.",
+          },
+          "votes": 0,
+        },
+      ],
+      "voters": 28,
+      "votesCast": 0,
+      "whiteVotes": 0,
+    },
+    "secretary": Object {
+      "colegiateBody": Object {
+        "id": "5e1dfd2ff9344483bc3ac1ad",
+        "name": "PDVP",
+      },
+      "dni": "20192020U",
+      "firstName": "votuca",
+      "genre": "OTHER",
+      "id": "5e1b187e21544de30f35531b",
+      "lastName": "admin",
+      "roles": Array [
+        "ADMIN",
+      ],
+      "uid": "u20192020",
+    },
+    "start": "1970-01-01T00:00:00.000Z",
+  },
+  Object {
+    "censuses": Array [
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDVP",
+        "id": "5e1e0142f9344483bc3ac3ba",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192077u",
+            "firstName": "Bria Beatty",
+            "lastName": "Boyle",
+            "uid": "u20192077",
+          },
+          Object {
+            "dni": "20192077u",
+            "firstName": "Bria Beatty",
+            "lastName": "Boyle",
+            "uid": "u20192077",
+          },
+          Object {
+            "dni": "20192054u",
+            "firstName": "Sadye Kuhic III",
+            "lastName": "Huels",
+            "uid": "u20192054",
+          },
+          Object {
+            "dni": "20192080u",
+            "firstName": "Claudia Hermiston",
+            "lastName": "Emmerich",
+            "uid": "u20192080",
+          },
+          Object {
+            "dni": "20192101u",
+            "firstName": "Roberta Hansen",
+            "lastName": "Berge",
+            "uid": "u20192101",
+          },
+          Object {
+            "dni": "20192080u",
+            "firstName": "Claudia Hermiston",
+            "lastName": "Emmerich",
+            "uid": "u20192080",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PAS",
+        "id": "5e1e0142f9344483bc3ac3bb",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192063u",
+            "firstName": "Audie Baumbach",
+            "lastName": "Feeney",
+            "uid": "u20192063",
+          },
+          Object {
+            "dni": "20192046u",
+            "firstName": "Shania Mann",
+            "lastName": "Watsica",
+            "uid": "u20192046",
+          },
+          Object {
+            "dni": "20192063u",
+            "firstName": "Audie Baumbach",
+            "lastName": "Feeney",
+            "uid": "u20192063",
+          },
+          Object {
+            "dni": "20192103u",
+            "firstName": "Ms. Damon Gerhold",
+            "lastName": "Legros",
+            "uid": "u20192103",
+          },
+          Object {
+            "dni": "20192049u",
+            "firstName": "Norwood Tremblay",
+            "lastName": "Hackett",
+            "uid": "u20192049",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDINVP",
+        "id": "5e1e0142f9344483bc3ac3bc",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192081u",
+            "firstName": "Missouri Dare",
+            "lastName": "Gibson",
+            "uid": "u20192081",
+          },
+          Object {
+            "dni": "20192051u",
+            "firstName": "Aniya Howell PhD",
+            "lastName": "Olson",
+            "uid": "u20192051",
+          },
+          Object {
+            "dni": "20192033u",
+            "firstName": "Cassidy Murazik",
+            "lastName": "Towne",
+            "uid": "u20192033",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PNDVP",
+        "id": "5e1e0142f9344483bc3ac3bd",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192089u",
+            "firstName": "Dr. Rudolph Russel",
+            "lastName": "Thiel",
+            "uid": "u20192089",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "ALU",
+        "id": "5e1e0142f9344483bc3ac3be",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192076u",
+            "firstName": "Darren Heaney",
+            "lastName": "Mueller",
+            "uid": "u20192076",
+          },
+          Object {
+            "dni": "20192099u",
+            "firstName": "Larry Koepp",
+            "lastName": "Jacobson",
+            "uid": "u20192099",
+          },
+          Object {
+            "dni": "20192114u",
+            "firstName": "Carli Wilderman",
+            "lastName": "O'Connell",
+            "uid": "u20192114",
+          },
+          Object {
+            "dni": "20192075u",
+            "firstName": "Johnpaul Dickinson II",
+            "lastName": "Gutkowski",
+            "uid": "u20192075",
+          },
+          Object {
+            "dni": "20192086u",
+            "firstName": "Tabitha Jerde",
+            "lastName": "Hansen",
+            "uid": "u20192086",
+          },
+        ],
+      },
+    ],
+    "delegates": Array [],
+    "description": "Aspernatur non tempora dolore quae ut dolores aut. Amet aliquid eos odio deserunt reiciendis esse officiis. Omnis repudiandae cum ut aut.",
+    "end": "1970-01-01T00:00:00.000Z",
+    "id": "5e1e0142f9344483bc3ac3bf",
+    "isRealTime": false,
+    "maxVotes": 1,
+    "options": Array [
+      Object {
+        "id": "5e1e0142f9344483bc3ac3c4",
+        "text": "Architecto odio facere accusamus rerum amet incidunt voluptatem et nihil.",
+      },
+      Object {
+        "id": "5e1e0142f9344483bc3ac3c3",
+        "text": "Corporis voluptates asperiores aut beatae et tempora quibusdam autem laudantium.",
+      },
+      Object {
+        "id": "5e1e0142f9344483bc3ac3c2",
+        "text": "Commodi suscipit quaerat iusto dicta iusto rerum officia dolores doloribus.",
+      },
+      Object {
+        "id": "5e1e0142f9344483bc3ac3c1",
+        "text": "Rerum adipisci est eum vel blanditiis blanditiis reiciendis reiciendis ut.",
+      },
+      Object {
+        "id": "5e1e0142f9344483bc3ac3c0",
+        "text": "Rem dolores dolor quaerat nemo illum necessitatibus consequatur iure architecto.",
+      },
+    ],
+    "question": "Voluptas deserunt molestiae sint ea omnis illum ab debitis minus.",
+    "results": Object {
+      "results": Array [
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0142f9344483bc3ac3c0",
+            "text": "Rem dolores dolor quaerat nemo illum necessitatibus consequatur iure architecto.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0142f9344483bc3ac3c1",
+            "text": "Rerum adipisci est eum vel blanditiis blanditiis reiciendis reiciendis ut.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0142f9344483bc3ac3c2",
+            "text": "Commodi suscipit quaerat iusto dicta iusto rerum officia dolores doloribus.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0142f9344483bc3ac3c3",
+            "text": "Corporis voluptates asperiores aut beatae et tempora quibusdam autem laudantium.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0142f9344483bc3ac3c4",
+            "text": "Architecto odio facere accusamus rerum amet incidunt voluptatem et nihil.",
+          },
+          "votes": 0,
+        },
+      ],
+      "voters": 20,
+      "votesCast": 0,
+      "whiteVotes": 0,
+    },
+    "secretary": Object {
+      "colegiateBody": Object {
+        "id": "5e1dfd2ff9344483bc3ac1ad",
+        "name": "PDVP",
+      },
+      "dni": "20192020U",
+      "firstName": "votuca",
+      "genre": "OTHER",
+      "id": "5e1b187e21544de30f35531b",
+      "lastName": "admin",
+      "roles": Array [
+        "ADMIN",
+      ],
+      "uid": "u20192020",
+    },
+    "start": "1970-01-01T00:00:00.000Z",
+  },
+  Object {
+    "censuses": Array [
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PNDVP",
+        "id": "5e1e0147f9344483bc3ac410",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192089u",
+            "firstName": "Dr. Rudolph Russel",
+            "lastName": "Thiel",
+            "uid": "u20192089",
+          },
+          Object {
+            "dni": "20192098u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Rowe",
+            "uid": "u20192098",
+          },
+          Object {
+            "dni": "20192037u",
+            "firstName": "Marianna Champlin",
+            "lastName": "Keebler",
+            "uid": "u20192037",
+          },
+          Object {
+            "dni": "20192117u",
+            "firstName": "Desmond Schoen",
+            "lastName": "Goodwin",
+            "uid": "u20192117",
+          },
+          Object {
+            "dni": "20192037u",
+            "firstName": "Marianna Champlin",
+            "lastName": "Keebler",
+            "uid": "u20192037",
+          },
+          Object {
+            "dni": "20192022u",
+            "firstName": "Gudrun Rodriguez",
+            "lastName": "Balistreri",
+            "uid": "u20192022",
+          },
+          Object {
+            "dni": "20192040u",
+            "firstName": "Lazaro McGlynn",
+            "lastName": "Witting",
+            "uid": "u20192040",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDVP",
+        "id": "5e1e0147f9344483bc3ac411",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192087u",
+            "firstName": "Gaetano O'Connell V",
+            "lastName": "Bauch",
+            "uid": "u20192087",
+          },
+          Object {
+            "dni": "20192080u",
+            "firstName": "Claudia Hermiston",
+            "lastName": "Emmerich",
+            "uid": "u20192080",
+          },
+          Object {
+            "dni": "20192072u",
+            "firstName": "Alberta Walter",
+            "lastName": "Dare",
+            "uid": "u20192072",
+          },
+          Object {
+            "dni": "20192020U",
+            "firstName": "votuca",
+            "lastName": "admin",
+            "uid": "u20192020",
+          },
+          Object {
+            "dni": "20192044u",
+            "firstName": "Kolby Cronin I",
+            "lastName": "Cormier",
+            "uid": "u20192044",
+          },
+          Object {
+            "dni": "20192055u",
+            "firstName": "Neal Gutmann",
+            "lastName": "Koch",
+            "uid": "u20192055",
+          },
+          Object {
+            "dni": "20192044u",
+            "firstName": "Kolby Cronin I",
+            "lastName": "Cormier",
+            "uid": "u20192044",
+          },
+          Object {
+            "dni": "20192064u",
+            "firstName": "Walton Dickens",
+            "lastName": "Rogahn",
+            "uid": "u20192064",
+          },
+          Object {
+            "dni": "20192101u",
+            "firstName": "Roberta Hansen",
+            "lastName": "Berge",
+            "uid": "u20192101",
+          },
+          Object {
+            "dni": "20192080u",
+            "firstName": "Claudia Hermiston",
+            "lastName": "Emmerich",
+            "uid": "u20192080",
+          },
+          Object {
+            "dni": "20192067u",
+            "firstName": "Joshuah Langosh",
+            "lastName": "Hand",
+            "uid": "u20192067",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PAS",
+        "id": "5e1e0147f9344483bc3ac412",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192103u",
+            "firstName": "Ms. Damon Gerhold",
+            "lastName": "Legros",
+            "uid": "u20192103",
+          },
+          Object {
+            "dni": "20192082u",
+            "firstName": "Moriah Krajcik DVM",
+            "lastName": "Rutherford",
+            "uid": "u20192082",
+          },
+          Object {
+            "dni": "20192103u",
+            "firstName": "Ms. Damon Gerhold",
+            "lastName": "Legros",
+            "uid": "u20192103",
+          },
+          Object {
+            "dni": "20192094u",
+            "firstName": "Stephanie Marquardt Jr.",
+            "lastName": "Heller",
+            "uid": "u20192094",
+          },
+          Object {
+            "dni": "20192049u",
+            "firstName": "Norwood Tremblay",
+            "lastName": "Hackett",
+            "uid": "u20192049",
+          },
+          Object {
+            "dni": "20192112u",
+            "firstName": "Cicero Johnston",
+            "lastName": "Green",
+            "uid": "u20192112",
+          },
+          Object {
+            "dni": "20192066u",
+            "firstName": "Marquis Predovic",
+            "lastName": "Medhurst",
+            "uid": "u20192066",
+          },
+          Object {
+            "dni": "20192046u",
+            "firstName": "Shania Mann",
+            "lastName": "Watsica",
+            "uid": "u20192046",
+          },
+          Object {
+            "dni": "20192107u",
+            "firstName": "Kale Champlin III",
+            "lastName": "Schmitt",
+            "uid": "u20192107",
+          },
+          Object {
+            "dni": "20192057u",
+            "firstName": "Dahlia Moore Jr.",
+            "lastName": "Heidenreich",
+            "uid": "u20192057",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "ALU",
+        "id": "5e1e0147f9344483bc3ac413",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192043u",
+            "firstName": "Rodrick Feeney",
+            "lastName": "Miller",
+            "uid": "u20192043",
+          },
+          Object {
+            "dni": "20192043u",
+            "firstName": "Rodrick Feeney",
+            "lastName": "Miller",
+            "uid": "u20192043",
+          },
+          Object {
+            "dni": "20192119u",
+            "firstName": "Dr. Jorge Sauer",
+            "lastName": "Gerhold",
+            "uid": "u20192119",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDINVP",
+        "id": "5e1e0147f9344483bc3ac414",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192083u",
+            "firstName": "Mr. Walton Johns",
+            "lastName": "Dach",
+            "uid": "u20192083",
+          },
+          Object {
+            "dni": "20192041u",
+            "firstName": "Dr. Fredrick Vandervort",
+            "lastName": "Dicki",
+            "uid": "u20192041",
+          },
+          Object {
+            "dni": "20192039u",
+            "firstName": "Kobe Nader",
+            "lastName": "Terry",
+            "uid": "u20192039",
+          },
+          Object {
+            "dni": "20192065u",
+            "firstName": "Otilia Graham",
+            "lastName": "Murazik",
+            "uid": "u20192065",
+          },
+          Object {
+            "dni": "20192083u",
+            "firstName": "Mr. Walton Johns",
+            "lastName": "Dach",
+            "uid": "u20192083",
+          },
+          Object {
+            "dni": "20192039u",
+            "firstName": "Kobe Nader",
+            "lastName": "Terry",
+            "uid": "u20192039",
+          },
+          Object {
+            "dni": "20192051u",
+            "firstName": "Aniya Howell PhD",
+            "lastName": "Olson",
+            "uid": "u20192051",
+          },
+          Object {
+            "dni": "20192090u",
+            "firstName": "Dr. Angelo Ledner",
+            "lastName": "Ward",
+            "uid": "u20192090",
+          },
+        ],
+      },
+    ],
+    "delegates": Array [],
+    "description": "Libero deleniti et eum.",
+    "end": "1970-01-01T00:00:00.000Z",
+    "id": "5e1e0147f9344483bc3ac415",
+    "isRealTime": true,
+    "maxVotes": 1,
+    "options": Array [
+      Object {
+        "id": "5e1e0147f9344483bc3ac41b",
+        "text": "Ut iste ut assumenda blanditiis consectetur eum dolores qui et.",
+      },
+      Object {
+        "id": "5e1e0147f9344483bc3ac41a",
+        "text": "Officiis similique repellat voluptate dolores quam qui deleniti dolores quod.",
+      },
+      Object {
+        "id": "5e1e0147f9344483bc3ac419",
+        "text": "Laudantium totam blanditiis consectetur quia error qui exercitationem ad id.",
+      },
+      Object {
+        "id": "5e1e0147f9344483bc3ac418",
+        "text": "Dicta odit aut adipisci nulla aut et impedit beatae qui.",
+      },
+      Object {
+        "id": "5e1e0147f9344483bc3ac417",
+        "text": "Vel omnis sequi quia corporis repellendus qui repellat delectus doloribus.",
+      },
+      Object {
+        "id": "5e1e0147f9344483bc3ac416",
+        "text": "Id sit eos sit omnis at numquam similique corporis maiores.",
+      },
+    ],
+    "question": "Et qui distinctio eveniet veniam quod ut ex ut quaerat.",
+    "results": Object {
+      "results": Array [
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0147f9344483bc3ac416",
+            "text": "Id sit eos sit omnis at numquam similique corporis maiores.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0147f9344483bc3ac418",
+            "text": "Dicta odit aut adipisci nulla aut et impedit beatae qui.",
+          },
+          "votes": 1,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0147f9344483bc3ac419",
+            "text": "Laudantium totam blanditiis consectetur quia error qui exercitationem ad id.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0147f9344483bc3ac417",
+            "text": "Vel omnis sequi quia corporis repellendus qui repellat delectus doloribus.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0147f9344483bc3ac41b",
+            "text": "Ut iste ut assumenda blanditiis consectetur eum dolores qui et.",
+          },
+          "votes": 1,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0147f9344483bc3ac41a",
+            "text": "Officiis similique repellat voluptate dolores quam qui deleniti dolores quod.",
+          },
+          "votes": 0,
+        },
+      ],
+      "voters": 39,
+      "votesCast": 2,
+      "whiteVotes": 0,
+    },
+    "secretary": Object {
+      "colegiateBody": Object {
+        "id": "5e1dfd2ff9344483bc3ac1ad",
+        "name": "PDVP",
+      },
+      "dni": "20192020U",
+      "firstName": "votuca",
+      "genre": "OTHER",
+      "id": "5e1b187e21544de30f35531b",
+      "lastName": "admin",
+      "roles": Array [
+        "ADMIN",
+      ],
+      "uid": "u20192020",
+    },
+    "start": "1970-01-01T00:00:00.000Z",
+  },
+  Object {
+    "censuses": Array [
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDINVP",
+        "id": "5e1e014cf9344483bc3ac476",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192083u",
+            "firstName": "Mr. Walton Johns",
+            "lastName": "Dach",
+            "uid": "u20192083",
+          },
+          Object {
+            "dni": "20192065u",
+            "firstName": "Otilia Graham",
+            "lastName": "Murazik",
+            "uid": "u20192065",
+          },
+          Object {
+            "dni": "20192061u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Pagac",
+            "uid": "u20192061",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDVP",
+        "id": "5e1e014cf9344483bc3ac477",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192067u",
+            "firstName": "Joshuah Langosh",
+            "lastName": "Hand",
+            "uid": "u20192067",
+          },
+          Object {
+            "dni": "20192080u",
+            "firstName": "Claudia Hermiston",
+            "lastName": "Emmerich",
+            "uid": "u20192080",
+          },
+          Object {
+            "dni": "20192056u",
+            "firstName": "Sandy Brown",
+            "lastName": "Hodkiewicz",
+            "uid": "u20192056",
+          },
+          Object {
+            "dni": "20192101u",
+            "firstName": "Roberta Hansen",
+            "lastName": "Berge",
+            "uid": "u20192101",
+          },
+          Object {
+            "dni": "20192054u",
+            "firstName": "Sadye Kuhic III",
+            "lastName": "Huels",
+            "uid": "u20192054",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PNDVP",
+        "id": "5e1e014cf9344483bc3ac478",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192021u",
+            "firstName": "Mariano Boyle",
+            "lastName": "Bogisich",
+            "uid": "u20192021",
+          },
+          Object {
+            "dni": "20192037u",
+            "firstName": "Marianna Champlin",
+            "lastName": "Keebler",
+            "uid": "u20192037",
+          },
+          Object {
+            "dni": "20192098u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Rowe",
+            "uid": "u20192098",
+          },
+          Object {
+            "dni": "20192098u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Rowe",
+            "uid": "u20192098",
+          },
+          Object {
+            "dni": "20192078u",
+            "firstName": "Ellsworth Cummerata PhD",
+            "lastName": "Koepp",
+            "uid": "u20192078",
+          },
+          Object {
+            "dni": "20192073u",
+            "firstName": "Trevor Christiansen",
+            "lastName": "Rowe",
+            "uid": "u20192073",
+          },
+          Object {
+            "dni": "20192073u",
+            "firstName": "Trevor Christiansen",
+            "lastName": "Rowe",
+            "uid": "u20192073",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PAS",
+        "id": "5e1e014cf9344483bc3ac479",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192063u",
+            "firstName": "Audie Baumbach",
+            "lastName": "Feeney",
+            "uid": "u20192063",
+          },
+          Object {
+            "dni": "20192079u",
+            "firstName": "Adah Wilderman",
+            "lastName": "Veum",
+            "uid": "u20192079",
+          },
+          Object {
+            "dni": "20192045u",
+            "firstName": "Dr. Arne Block",
+            "lastName": "Skiles",
+            "uid": "u20192045",
+          },
+          Object {
+            "dni": "20192094u",
+            "firstName": "Stephanie Marquardt Jr.",
+            "lastName": "Heller",
+            "uid": "u20192094",
+          },
+          Object {
+            "dni": "20192058u",
+            "firstName": "Santos Feil",
+            "lastName": "Mraz",
+            "uid": "u20192058",
+          },
+          Object {
+            "dni": "20192057u",
+            "firstName": "Dahlia Moore Jr.",
+            "lastName": "Heidenreich",
+            "uid": "u20192057",
+          },
+          Object {
+            "dni": "20192063u",
+            "firstName": "Audie Baumbach",
+            "lastName": "Feeney",
+            "uid": "u20192063",
+          },
+          Object {
+            "dni": "20192082u",
+            "firstName": "Moriah Krajcik DVM",
+            "lastName": "Rutherford",
+            "uid": "u20192082",
+          },
+          Object {
+            "dni": "20192066u",
+            "firstName": "Marquis Predovic",
+            "lastName": "Medhurst",
+            "uid": "u20192066",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "ALU",
+        "id": "5e1e014cf9344483bc3ac47a",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192114u",
+            "firstName": "Carli Wilderman",
+            "lastName": "O'Connell",
+            "uid": "u20192114",
+          },
+          Object {
+            "dni": "20192062u",
+            "firstName": "Alaina Hilll",
+            "lastName": "Yundt",
+            "uid": "u20192062",
+          },
+          Object {
+            "dni": "20192110u",
+            "firstName": "Monserrate Pacocha",
+            "lastName": "Hilll",
+            "uid": "u20192110",
+          },
+          Object {
+            "dni": "20192028u",
+            "firstName": "Stephon Zieme",
+            "lastName": "Schamberger",
+            "uid": "u20192028",
+          },
+          Object {
+            "dni": "20192076u",
+            "firstName": "Darren Heaney",
+            "lastName": "Mueller",
+            "uid": "u20192076",
+          },
+          Object {
+            "dni": "20192059u",
+            "firstName": "Jaime Brakus DDS",
+            "lastName": "Weissnat",
+            "uid": "u20192059",
+          },
+          Object {
+            "dni": "20192028u",
+            "firstName": "Stephon Zieme",
+            "lastName": "Schamberger",
+            "uid": "u20192028",
+          },
+          Object {
+            "dni": "20192097u",
+            "firstName": "Wilhelm Barton",
+            "lastName": "Kovacek",
+            "uid": "u20192097",
+          },
+          Object {
+            "dni": "20192104u",
+            "firstName": "Stanley Hudson",
+            "lastName": "Cartwright",
+            "uid": "u20192104",
+          },
+          Object {
+            "dni": "20192075u",
+            "firstName": "Johnpaul Dickinson II",
+            "lastName": "Gutkowski",
+            "uid": "u20192075",
+          },
+          Object {
+            "dni": "20192086u",
+            "firstName": "Tabitha Jerde",
+            "lastName": "Hansen",
+            "uid": "u20192086",
+          },
+        ],
+      },
+    ],
+    "delegates": Array [],
+    "description": "Perferendis laboriosam qui. Quasi suscipit a qui.",
+    "end": "1970-01-01T00:00:00.000Z",
+    "id": "5e1e014cf9344483bc3ac47b",
+    "isRealTime": true,
+    "maxVotes": 1,
+    "options": Array [
+      Object {
+        "id": "5e1e014cf9344483bc3ac482",
+        "text": "Aut id veniam dolores nisi vero modi itaque aperiam dolore.",
+      },
+      Object {
+        "id": "5e1e014cf9344483bc3ac481",
+        "text": "Quo provident rerum voluptatum sapiente et est omnis eius ullam.",
+      },
+      Object {
+        "id": "5e1e014cf9344483bc3ac480",
+        "text": "Et magni vel et quibusdam veniam fugit doloribus nemo repudiandae.",
+      },
+      Object {
+        "id": "5e1e014cf9344483bc3ac47f",
+        "text": "Porro distinctio quos non earum quas veniam velit unde voluptas.",
+      },
+      Object {
+        "id": "5e1e014cf9344483bc3ac47e",
+        "text": "Ullam voluptas iste explicabo culpa voluptatem nihil eveniet aut consectetur.",
+      },
+      Object {
+        "id": "5e1e014cf9344483bc3ac47d",
+        "text": "Est expedita ut ipsum sapiente ipsum labore accusamus facere fugit.",
+      },
+      Object {
+        "id": "5e1e014cf9344483bc3ac47c",
+        "text": "Aspernatur voluptas est et et aut et dolore possimus occaecati.",
+      },
+    ],
+    "question": "Eligendi aut reiciendis ex voluptatem sint culpa iusto sed sint.",
+    "results": Object {
+      "results": Array [
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e014cf9344483bc3ac47c",
+            "text": "Aspernatur voluptas est et et aut et dolore possimus occaecati.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e014cf9344483bc3ac47e",
+            "text": "Ullam voluptas iste explicabo culpa voluptatem nihil eveniet aut consectetur.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e014cf9344483bc3ac480",
+            "text": "Et magni vel et quibusdam veniam fugit doloribus nemo repudiandae.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e014cf9344483bc3ac481",
+            "text": "Quo provident rerum voluptatum sapiente et est omnis eius ullam.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e014cf9344483bc3ac47f",
+            "text": "Porro distinctio quos non earum quas veniam velit unde voluptas.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e014cf9344483bc3ac47d",
+            "text": "Est expedita ut ipsum sapiente ipsum labore accusamus facere fugit.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e014cf9344483bc3ac482",
+            "text": "Aut id veniam dolores nisi vero modi itaque aperiam dolore.",
+          },
+          "votes": 1,
+        },
+      ],
+      "voters": 35,
+      "votesCast": 1,
+      "whiteVotes": 0,
+    },
+    "secretary": Object {
+      "colegiateBody": Object {
+        "id": "5e1dfd2ff9344483bc3ac1ad",
+        "name": "PDVP",
+      },
+      "dni": "20192020U",
+      "firstName": "votuca",
+      "genre": "OTHER",
+      "id": "5e1b187e21544de30f35531b",
+      "lastName": "admin",
+      "roles": Array [
+        "ADMIN",
+      ],
+      "uid": "u20192020",
+    },
+    "start": "1970-01-01T00:00:00.000Z",
+  },
+  Object {
+    "censuses": Array [
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDVP",
+        "id": "5e1e0153f9344483bc3ac4ec",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192067u",
+            "firstName": "Joshuah Langosh",
+            "lastName": "Hand",
+            "uid": "u20192067",
+          },
+          Object {
+            "dni": "20192102u",
+            "firstName": "Alexys Lebsack",
+            "lastName": "Jaskolski",
+            "uid": "u20192102",
+          },
+          Object {
+            "dni": "20192074u",
+            "firstName": "Milford Howe",
+            "lastName": "Ullrich",
+            "uid": "u20192074",
+          },
+          Object {
+            "dni": "20192074u",
+            "firstName": "Milford Howe",
+            "lastName": "Ullrich",
+            "uid": "u20192074",
+          },
+          Object {
+            "dni": "20192025u",
+            "firstName": "Mrs. Tremayne Douglas",
+            "lastName": "Kassulke",
+            "uid": "u20192025",
+          },
+          Object {
+            "dni": "20192074u",
+            "firstName": "Milford Howe",
+            "lastName": "Ullrich",
+            "uid": "u20192074",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PNDVP",
+        "id": "5e1e0153f9344483bc3ac4ed",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192117u",
+            "firstName": "Desmond Schoen",
+            "lastName": "Goodwin",
+            "uid": "u20192117",
+          },
+          Object {
+            "dni": "20192098u",
+            "firstName": "Miss Raegan Collier",
+            "lastName": "Rowe",
+            "uid": "u20192098",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PAS",
+        "id": "5e1e0153f9344483bc3ac4ee",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192082u",
+            "firstName": "Moriah Krajcik DVM",
+            "lastName": "Rutherford",
+            "uid": "u20192082",
+          },
+          Object {
+            "dni": "20192058u",
+            "firstName": "Santos Feil",
+            "lastName": "Mraz",
+            "uid": "u20192058",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "PDINVP",
+        "id": "5e1e0153f9344483bc3ac4ef",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192041u",
+            "firstName": "Dr. Fredrick Vandervort",
+            "lastName": "Dicki",
+            "uid": "u20192041",
+          },
+          Object {
+            "dni": "20192026u",
+            "firstName": "Connor Zemlak",
+            "lastName": "Mitchell",
+            "uid": "u20192026",
+          },
+        ],
+      },
+      Object {
+        "date": "1970-01-01T00:00:00.000Z",
+        "group": "ALU",
+        "id": "5e1e0153f9344483bc3ac4f0",
+        "location": "ESI",
+        "voters": Array [
+          Object {
+            "dni": "20192110u",
+            "firstName": "Monserrate Pacocha",
+            "lastName": "Hilll",
+            "uid": "u20192110",
+          },
+          Object {
+            "dni": "20192086u",
+            "firstName": "Tabitha Jerde",
+            "lastName": "Hansen",
+            "uid": "u20192086",
+          },
+          Object {
+            "dni": "20192076u",
+            "firstName": "Darren Heaney",
+            "lastName": "Mueller",
+            "uid": "u20192076",
+          },
+          Object {
+            "dni": "20192076u",
+            "firstName": "Darren Heaney",
+            "lastName": "Mueller",
+            "uid": "u20192076",
+          },
+          Object {
+            "dni": "20192035u",
+            "firstName": "Dr. Nasir Lang",
+            "lastName": "Kuhic",
+            "uid": "u20192035",
+          },
+          Object {
+            "dni": "20192119u",
+            "firstName": "Dr. Jorge Sauer",
+            "lastName": "Gerhold",
+            "uid": "u20192119",
+          },
+          Object {
+            "dni": "20192111u",
+            "firstName": "Tommie Schiller",
+            "lastName": "Harvey",
+            "uid": "u20192111",
+          },
+          Object {
+            "dni": "20192099u",
+            "firstName": "Larry Koepp",
+            "lastName": "Jacobson",
+            "uid": "u20192099",
+          },
+          Object {
+            "dni": "20192059u",
+            "firstName": "Jaime Brakus DDS",
+            "lastName": "Weissnat",
+            "uid": "u20192059",
+          },
+          Object {
+            "dni": "20192038u",
+            "firstName": "Brendan Rodriguez",
+            "lastName": "Muller",
+            "uid": "u20192038",
+          },
+        ],
+      },
+    ],
+    "delegates": Array [],
+    "description": "Consequatur minima illum nihil nulla aut corporis rerum. Fuga incidunt vitae sed eligendi sit id. Voluptates pariatur totam. Nihil quis explicabo ea totam.",
+    "end": "1970-01-01T00:00:00.000Z",
+    "id": "5e1e0153f9344483bc3ac4f1",
+    "isRealTime": false,
+    "maxVotes": 1,
+    "options": Array [
+      Object {
+        "id": "5e1e0153f9344483bc3ac4f7",
+        "text": "Natus minus neque sit ipsa laborum fugiat corporis blanditiis et.",
+      },
+      Object {
+        "id": "5e1e0153f9344483bc3ac4f6",
+        "text": "Id porro ut expedita a dolores consectetur omnis aut incidunt.",
+      },
+      Object {
+        "id": "5e1e0153f9344483bc3ac4f5",
+        "text": "Ex vitae delectus est aspernatur deleniti est molestiae dolor vel.",
+      },
+      Object {
+        "id": "5e1e0153f9344483bc3ac4f4",
+        "text": "Delectus pariatur sit inventore a aut earum omnis quisquam quia.",
+      },
+      Object {
+        "id": "5e1e0153f9344483bc3ac4f3",
+        "text": "Earum aut qui voluptas repellat recusandae non qui rerum quo.",
+      },
+      Object {
+        "id": "5e1e0153f9344483bc3ac4f2",
+        "text": "Et iure voluptatem rerum et soluta minus mollitia facilis veritatis.",
+      },
+    ],
+    "question": "Facere omnis quia ut omnis nobis laudantium eius unde dolorem.",
+    "results": Object {
+      "results": Array [
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0153f9344483bc3ac4f2",
+            "text": "Et iure voluptatem rerum et soluta minus mollitia facilis veritatis.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0153f9344483bc3ac4f4",
+            "text": "Delectus pariatur sit inventore a aut earum omnis quisquam quia.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0153f9344483bc3ac4f3",
+            "text": "Earum aut qui voluptas repellat recusandae non qui rerum quo.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0153f9344483bc3ac4f6",
+            "text": "Id porro ut expedita a dolores consectetur omnis aut incidunt.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0153f9344483bc3ac4f7",
+            "text": "Natus minus neque sit ipsa laborum fugiat corporis blanditiis et.",
+          },
+          "votes": 0,
+        },
+        Object {
+          "genre": null,
+          "group": null,
+          "location": null,
+          "option": Object {
+            "id": "5e1e0153f9344483bc3ac4f5",
+            "text": "Ex vitae delectus est aspernatur deleniti est molestiae dolor vel.",
+          },
+          "votes": 0,
+        },
+      ],
+      "voters": 22,
+      "votesCast": 0,
+      "whiteVotes": 0,
+    },
+    "secretary": Object {
+      "colegiateBody": Object {
+        "id": "5e1dfd2ff9344483bc3ac1ad",
+        "name": "PDVP",
+      },
+      "dni": "20192020U",
+      "firstName": "votuca",
+      "genre": "OTHER",
+      "id": "5e1b187e21544de30f35531b",
+      "lastName": "admin",
+      "roles": Array [
+        "ADMIN",
+      ],
+      "uid": "u20192020",
+    },
+    "start": "1970-01-01T00:00:00.000Z",
   },
 ]
 `;
@@ -10093,6 +13454,154 @@ Array [
       "VOTER",
     ],
     "uid": "u12345678",
+  },
+]
+`;
+
+exports[`App Module Queries When voteOnElection is requested, should return a error 1`] = `
+Array [
+  Object {
+    "extensions": Object {
+      "code": "INTERNAL_SERVER_ERROR",
+      "exception": Object {
+        "message": Object {
+          "error": "Unauthorized",
+          "message": "Apprently user is not allowed to vote in this election",
+          "statusCode": 401,
+        },
+        "response": Object {
+          "error": "Unauthorized",
+          "message": "Apprently user is not allowed to vote in this election",
+          "statusCode": 401,
+        },
+        "status": 401,
+      },
+    },
+    "locations": Array [
+      Object {
+        "column": 5,
+        "line": 3,
+      },
+    ],
+    "message": Object {
+      "error": "Unauthorized",
+      "message": "Apprently user is not allowed to vote in this election",
+      "statusCode": 401,
+    },
+    "path": Array [
+      "voteOnElection",
+    ],
+  },
+]
+`;
+
+exports[`App Module Queries When voteOnElection is requested, should return error 1`] = `
+Array [
+  Object {
+    "extensions": Object {
+      "code": "INTERNAL_SERVER_ERROR",
+      "exception": Object {
+        "message": Object {
+          "error": "Unauthorized",
+          "message": "User has already Voted",
+          "statusCode": 401,
+        },
+        "response": Object {
+          "error": "Unauthorized",
+          "message": "User has already Voted",
+          "statusCode": 401,
+        },
+        "status": 401,
+      },
+    },
+    "locations": Array [
+      Object {
+        "column": 5,
+        "line": 3,
+      },
+    ],
+    "message": Object {
+      "error": "Unauthorized",
+      "message": "User has already Voted",
+      "statusCode": 401,
+    },
+    "path": Array [
+      "voteOnElection",
+    ],
+  },
+]
+`;
+
+exports[`App Module Queries When voteOnPoll is requested, should return a error 1`] = `
+Array [
+  Object {
+    "extensions": Object {
+      "code": "INTERNAL_SERVER_ERROR",
+      "exception": Object {
+        "message": Object {
+          "error": "Unauthorized",
+          "message": "Apprently user is not allowed to vote in this election",
+          "statusCode": 401,
+        },
+        "response": Object {
+          "error": "Unauthorized",
+          "message": "Apprently user is not allowed to vote in this election",
+          "statusCode": 401,
+        },
+        "status": 401,
+      },
+    },
+    "locations": Array [
+      Object {
+        "column": 5,
+        "line": 3,
+      },
+    ],
+    "message": Object {
+      "error": "Unauthorized",
+      "message": "Apprently user is not allowed to vote in this election",
+      "statusCode": 401,
+    },
+    "path": Array [
+      "voteOnPoll",
+    ],
+  },
+]
+`;
+
+exports[`App Module Queries When voteOnPoll is requested, should return error 1`] = `
+Array [
+  Object {
+    "extensions": Object {
+      "code": "INTERNAL_SERVER_ERROR",
+      "exception": Object {
+        "message": Object {
+          "error": "Unauthorized",
+          "message": "User has already Voted",
+          "statusCode": 401,
+        },
+        "response": Object {
+          "error": "Unauthorized",
+          "message": "User has already Voted",
+          "statusCode": 401,
+        },
+        "status": 401,
+      },
+    },
+    "locations": Array [
+      Object {
+        "column": 5,
+        "line": 3,
+      },
+    ],
+    "message": Object {
+      "error": "Unauthorized",
+      "message": "User has already Voted",
+      "statusCode": 401,
+    },
+    "path": Array [
+      "voteOnPoll",
+    ],
   },
 ]
 `;

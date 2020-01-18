@@ -18,6 +18,10 @@ import {
   usersQuery,
   colegiateBodiesQuery,
   censusesQuery,
+  pendingElectoralProcessesQuery,
+  voteElectionQuery,
+  votePollQuery,
+  loginQuery,
 } from './querys-test/short-queries'
 import { electionsQuery } from './querys-test/electionsQuery'
 import { pollsQuery } from './querys-test/pollsQuery'
@@ -69,17 +73,11 @@ describe('App Module', () => {
 
   describe('Mutations', () => {
     it('login', () => {
-      const loginQuery = /* GraphQL */ `
-        mutation login($input: LoginInput!) {
-          login(input: $input) {
-            accessToken
-          }
-        }
-      `
+      const query = loginQuery
       return gqlRequest(
         app.getHttpServer(),
         {
-          query: loginQuery,
+          query,
           variables: {
             input: {
               uid: 'u20192020',
@@ -132,10 +130,147 @@ describe('App Module', () => {
     it('When polls is requested, should return a poll list', () => {
       const query = pollsQuery
       return gqlRequest(app.getHttpServer(), { query, accessToken }, body => {
-        console.log(body.errors)
         expect(body.errors).toBeFalsy()
         expect(body.data.polls).toMatchSnapshot()
       })
+    })
+
+    it('When pendingElectoralProcesses is requested, should return a electoralProcess list', () => {
+      const query = pendingElectoralProcessesQuery
+      return gqlRequest(app.getHttpServer(), { query, accessToken }, body => {
+        expect(body.errors).toBeFalsy()
+        expect(body.data.pendingElectoralProcesses).toMatchSnapshot()
+      })
+    })
+
+    it('When voteOnElection is requested, should return a error', () => {
+      const query = voteElectionQuery
+      const variables = {
+        input: {
+          election: '5e1e0158f9344483bc3ac557',
+          candidates: ['5e1e0158f9344483bc3ac55e'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables, accessToken },
+        body => {
+          expect(body.errors).toMatchSnapshot()
+          expect(body.data).toBeFalsy()
+        }
+      )
+    })
+
+    // voteOnPoll x2
+    it('When voteOnPoll is requested, should return a error', () => {
+      const query = votePollQuery
+      const variables = {
+        input: {
+          poll: '5e1e012cf9344483bc3ac21b',
+          options: ['5e1e012cf9344483bc3ac21e'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, accessToken, variables },
+        body => {
+          expect(body.errors).toMatchSnapshot()
+          expect(body.data).toBeFalsy()
+        }
+      )
+    })
+
+    it('login with another user', () => {
+      const query = loginQuery
+      return gqlRequest(
+        app.getHttpServer(),
+        {
+          query,
+          variables: {
+            input: {
+              uid: 'u20192100',
+              password: 'user20192100',
+            },
+          },
+        },
+        body => {
+          accessToken = body.data.login.accessToken
+          expect(accessToken).toBeTruthy()
+          expect(body.errors).toBeFalsy()
+        }
+      )
+    })
+
+    it('When voteOnElection is requested, should return true', () => {
+      const query = voteElectionQuery
+      const variables = {
+        input: {
+          election: '5e1e0160f9344483bc3ac603',
+          candidates: ['5e1e0160f9344483bc3ac609'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables, accessToken },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.voteOnElection).toBeTruthy()
+        }
+      )
+    })
+
+    it('When voteOnPoll is requested, should return true', () => {
+      const query = votePollQuery
+      const variables = {
+        input: {
+          poll: '5e1e012cf9344483bc3ac21b',
+          options: ['5e1e012cf9344483bc3ac21e'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, accessToken, variables },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.voteOnPoll).toBeTruthy()
+        }
+      )
+    })
+
+    it('When voteOnElection is requested, should return error', () => {
+      const query = voteElectionQuery
+      const variables = {
+        input: {
+          election: '5e1e0168f9344483bc3ac699',
+          candidates: ['5e1e0168f9344483bc3ac69f'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables, accessToken },
+        body => {
+          expect(body.errors).toMatchSnapshot()
+          expect(body.data).toBeFalsy()
+        }
+      )
+    })
+
+    it('When voteOnPoll is requested, should return error', () => {
+      const query = votePollQuery
+      const variables = {
+        input: {
+          poll: '5e1e012cf9344483bc3ac21b',
+          options: ['5e1e012cf9344483bc3ac21e'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, accessToken, variables },
+        body => {
+          expect(body.errors).toMatchSnapshot()
+          expect(body.data).toBeFalsy()
+        }
+      )
     })
   }) // Queries
 })

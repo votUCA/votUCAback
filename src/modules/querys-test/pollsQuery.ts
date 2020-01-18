@@ -42,7 +42,6 @@ export const pollsQuery = /* GraphQL */ `
         votesCast
         whiteVotes
         results {
-          id
           votes
           group
           location
