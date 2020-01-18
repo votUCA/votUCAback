@@ -8,6 +8,7 @@ export type sendData = {
   operationName?: string
   query: string
   variables?: { [key: string]: any }
+  accessToken?: string
 }
 
 export type expectBody = {
@@ -19,11 +20,12 @@ export type expectFunc = (body: expectBody) => void
 
 export const gqlRequest = (
   httpServer: any,
-  { operationName = null, ...rest }: sendData,
+  { operationName = null, accessToken = '', ...rest }: sendData,
   expect: expectFunc
 ): supertest.Test => {
   return supertest(httpServer)
     .post('/graphql')
+    .set('Authorization', `Bearer ${accessToken}`)
     .send({ operationName, ...rest })
     .expect(({ body }) => {
       expect(body)
@@ -51,11 +53,15 @@ export const seedDB = async (): Promise<void> => {
   const seeder = new Seeder({
     database: global.__MONGO_URI__,
   })
+
   const collections = seeder.readCollectionsFromPath(
-    path.resolve('src/seeder/data')
+    path.resolve('src/seeder/data'),
+    {
+      extensions: ['ts'],
+    }
   )
   try {
-    await seeder.import(collections)
+    await seeder.import(collections, { dropDatabase: true })
   } catch {
     console.warn('Unable to seed database')
   }

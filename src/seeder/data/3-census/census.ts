@@ -1,8 +1,10 @@
+import { ObjectId } from 'mongodb'
+
 const census = [
   {
-    _id: '5e1e012cf9344483bc3ac217',
+    _id: new ObjectId('5e1e012cf9344483bc3ac217'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024684444' } },
+    date: new Date('1579024684444'),
     location: 'ESI',
     voters: [
       {
@@ -65,9 +67,9 @@ const census = [
     filePath: 'f191a3db-8235-4209-8d76-246b16641284.json',
   },
   {
-    _id: '5e1e012cf9344483bc3ac218',
+    _id: new ObjectId('5e1e012cf9344483bc3ac218'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024684445' } },
+    date: new Date('1579024684445'),
     location: 'ESI',
     voters: [
       {
@@ -109,9 +111,9 @@ const census = [
     filePath: '238ddd0d-0fe0-459f-9fd6-96b1e33770e7.json',
   },
   {
-    _id: '5e1e012cf9344483bc3ac219',
+    _id: new ObjectId('5e1e012cf9344483bc3ac219'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024684445' } },
+    date: new Date('1579024684445'),
     location: 'ESI',
     voters: [
       {
@@ -188,9 +190,9 @@ const census = [
     filePath: 'cfe08779-aa6a-40e2-9e45-3b4af44f061d.json',
   },
   {
-    _id: '5e1e012cf9344483bc3ac21a',
+    _id: new ObjectId('5e1e012cf9344483bc3ac21a'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024684445' } },
+    date: new Date('1579024684445'),
     location: 'ESI',
     voters: [
       {
@@ -232,9 +234,9 @@ const census = [
     filePath: '9420dedb-1fb2-45eb-acdf-c18f6534c1a1.json',
   },
   {
-    _id: '5e1e012cf9344483bc3ac216',
+    _id: new ObjectId('5e1e012cf9344483bc3ac216'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024684444' } },
+    date: new Date('1579024684444'),
     location: 'ESI',
     voters: [
       {
@@ -255,9 +257,9 @@ const census = [
     filePath: '224c6dcd-6810-439e-b7fd-9ce7ef4fdfc5.json',
   },
   {
-    _id: '5e1e012ff9344483bc3ac24c',
+    _id: new ObjectId('5e1e012ff9344483bc3ac24c'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024687389' } },
+    date: new Date('1579024687389'),
     location: 'ESI',
     voters: [
       {
@@ -271,9 +273,9 @@ const census = [
     filePath: '41fb931d-d6a4-4d4a-8779-0aed4d85ee47.json',
   },
   {
-    _id: '5e1e012ff9344483bc3ac24d',
+    _id: new ObjectId('5e1e012ff9344483bc3ac24d'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024687389' } },
+    date: new Date('1579024687389'),
     location: 'ESI',
     voters: [
       {
@@ -315,9 +317,9 @@ const census = [
     filePath: '185567dd-3231-4741-93fa-1225513038bd.json',
   },
   {
-    _id: '5e1e012ff9344483bc3ac24e',
+    _id: new ObjectId('5e1e012ff9344483bc3ac24e'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024687389' } },
+    date: new Date('1579024687389'),
     location: 'ESI',
     voters: [
       {
@@ -394,9 +396,9 @@ const census = [
     filePath: 'c11dfbfc-5b10-40be-9954-23d788c91bf5.json',
   },
   {
-    _id: '5e1e012ff9344483bc3ac24f',
+    _id: new ObjectId('5e1e012ff9344483bc3ac24f'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024687389' } },
+    date: new Date('1579024687389'),
     location: 'ESI',
     voters: [
       {
@@ -445,9 +447,9 @@ const census = [
     filePath: 'd932d2ca-b9df-4bd4-84e2-6ef717e030bf.json',
   },
   {
-    _id: '5e1e012ff9344483bc3ac250',
+    _id: new ObjectId('5e1e012ff9344483bc3ac250'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024687389' } },
+    date: new Date('1579024687389'),
     location: 'ESI',
     voters: [
       {
@@ -496,9 +498,9 @@ const census = [
     filePath: '27bd5b0f-15a3-4f56-8180-63a01da6d53f.json',
   },
   {
-    _id: '5e1e0131f9344483bc3ac272',
+    _id: new ObjectId('5e1e0131f9344483bc3ac272'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024689354' } },
+    date: new Date('1579024689354'),
     location: 'ESI',
     voters: [
       {
@@ -575,9 +577,9 @@ const census = [
     filePath: '30269d26-b6ca-4055-aa17-8140fd0af34c.json',
   },
   {
-    _id: '5e1e0131f9344483bc3ac273',
+    _id: new ObjectId('5e1e0131f9344483bc3ac273'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024689354' } },
+    date: new Date('1579024689354'),
     location: 'ESI',
     voters: [
       {
@@ -626,9 +628,9 @@ const census = [
     filePath: 'c58e3855-c72f-4c51-99ce-ac52f3ca26fb.json',
   },
   {
-    _id: '5e1e0131f9344483bc3ac274',
+    _id: new ObjectId('5e1e0131f9344483bc3ac274'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024689354' } },
+    date: new Date('1579024689354'),
     location: 'ESI',
     voters: [
       {
@@ -649,9 +651,9 @@ const census = [
     filePath: 'd463389c-c65f-4b65-84c7-78f0b880bc06.json',
   },
   {
-    _id: '5e1e0131f9344483bc3ac275',
+    _id: new ObjectId('5e1e0131f9344483bc3ac275'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024689354' } },
+    date: new Date('1579024689354'),
     location: 'ESI',
     voters: [
       {
@@ -721,9 +723,9 @@ const census = [
     filePath: '1c1fb5a7-a6d1-4f48-a6d0-4031ce40a91c.json',
   },
   {
-    _id: '5e1e0131f9344483bc3ac276',
+    _id: new ObjectId('5e1e0131f9344483bc3ac276'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024689354' } },
+    date: new Date('1579024689354'),
     location: 'ESI',
     voters: [
       {
@@ -765,9 +767,9 @@ const census = [
     filePath: '7772c5a7-16a4-4350-92b0-d6d9b9f8a234.json',
   },
   {
-    _id: '5e1e0136f9344483bc3ac2c8',
+    _id: new ObjectId('5e1e0136f9344483bc3ac2c8'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024693971' } },
+    date: new Date('1579024693971'),
     location: 'ESI',
     voters: [
       {
@@ -788,9 +790,9 @@ const census = [
     filePath: 'd46512bf-689e-4405-aa06-9732f3f6faa5.json',
   },
   {
-    _id: '5e1e0136f9344483bc3ac2c9',
+    _id: new ObjectId('5e1e0136f9344483bc3ac2c9'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024693971' } },
+    date: new Date('1579024693971'),
     location: 'ESI',
     voters: [
       {
@@ -832,9 +834,9 @@ const census = [
     filePath: '15139fa1-c9b6-4a30-aa2d-424f5c6b45e6.json',
   },
   {
-    _id: '5e1e0136f9344483bc3ac2ca',
+    _id: new ObjectId('5e1e0136f9344483bc3ac2ca'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024693971' } },
+    date: new Date('1579024693971'),
     location: 'ESI',
     voters: [
       {
@@ -918,9 +920,9 @@ const census = [
     filePath: '3fa6b057-982b-4358-96a1-802aa0a05032.json',
   },
   {
-    _id: '5e1e0136f9344483bc3ac2cb',
+    _id: new ObjectId('5e1e0136f9344483bc3ac2cb'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024693971' } },
+    date: new Date('1579024693971'),
     location: 'ESI',
     voters: [
       {
@@ -941,9 +943,9 @@ const census = [
     filePath: 'dbae3fcf-0011-4f12-85e0-2bb69d5a6c66.json',
   },
   {
-    _id: '5e1e0136f9344483bc3ac2cc',
+    _id: new ObjectId('5e1e0136f9344483bc3ac2cc'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024693971' } },
+    date: new Date('1579024693971'),
     location: 'ESI',
     voters: [
       {
@@ -964,9 +966,9 @@ const census = [
     filePath: '254dcd51-b820-4182-b0f8-d125a9d797a1.json',
   },
   {
-    _id: '5e1e0139f9344483bc3ac30e',
+    _id: new ObjectId('5e1e0139f9344483bc3ac30e'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024697650' } },
+    date: new Date('1579024697650'),
     location: 'ESI',
     voters: [
       {
@@ -1043,9 +1045,9 @@ const census = [
     filePath: '56559146-ba7b-4f1a-9f4d-2c27c734a370.json',
   },
   {
-    _id: '5e1e0139f9344483bc3ac30f',
+    _id: new ObjectId('5e1e0139f9344483bc3ac30f'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024697650' } },
+    date: new Date('1579024697650'),
     location: 'ESI',
     voters: [
       {
@@ -1129,9 +1131,9 @@ const census = [
     filePath: 'f9c03bfa-ffcf-40fc-9eec-d1faf0bf70bf.json',
   },
   {
-    _id: '5e1e0139f9344483bc3ac310',
+    _id: new ObjectId('5e1e0139f9344483bc3ac310'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024697651' } },
+    date: new Date('1579024697651'),
     location: 'ESI',
     voters: [
       {
@@ -1159,9 +1161,9 @@ const census = [
     filePath: '1219d5dd-368f-4daa-88d4-c8f7bd46d4f7.json',
   },
   {
-    _id: '5e1e0139f9344483bc3ac311',
+    _id: new ObjectId('5e1e0139f9344483bc3ac311'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024697650' } },
+    date: new Date('1579024697650'),
     location: 'ESI',
     voters: [
       {
@@ -1245,9 +1247,9 @@ const census = [
     filePath: '9d554e61-ebb6-4940-a74e-c72202baa8e0.json',
   },
   {
-    _id: '5e1e0139f9344483bc3ac312',
+    _id: new ObjectId('5e1e0139f9344483bc3ac312'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024697651' } },
+    date: new Date('1579024697651'),
     location: 'ESI',
     voters: [
       {
@@ -1296,9 +1298,9 @@ const census = [
     filePath: '74f9293b-ba78-4dd8-8150-ad51ec7e4ef8.json',
   },
   {
-    _id: '5e1e013cf9344483bc3ac344',
+    _id: new ObjectId('5e1e013cf9344483bc3ac344'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024700453' } },
+    date: new Date('1579024700453'),
     location: 'ESI',
     voters: [
       {
@@ -1347,9 +1349,9 @@ const census = [
     filePath: '5c8ed850-0c00-4bf3-96bd-f62cb558a541.json',
   },
   {
-    _id: '5e1e013cf9344483bc3ac345',
+    _id: new ObjectId('5e1e013cf9344483bc3ac345'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024700453' } },
+    date: new Date('1579024700453'),
     location: 'ESI',
     voters: [
       {
@@ -1405,9 +1407,9 @@ const census = [
     filePath: 'da100b9a-a92b-481c-aef3-fea49137ee84.json',
   },
   {
-    _id: '5e1e013cf9344483bc3ac346',
+    _id: new ObjectId('5e1e013cf9344483bc3ac346'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024700453' } },
+    date: new Date('1579024700453'),
     location: 'ESI',
     voters: [
       {
@@ -1435,9 +1437,9 @@ const census = [
     filePath: '6f3927b4-967d-4ceb-9a7c-8bf98c8fde8d.json',
   },
   {
-    _id: '5e1e013cf9344483bc3ac347',
+    _id: new ObjectId('5e1e013cf9344483bc3ac347'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024700453' } },
+    date: new Date('1579024700453'),
     location: 'ESI',
     voters: [
       {
@@ -1493,9 +1495,9 @@ const census = [
     filePath: '64f64066-be97-4211-8288-0c40bc26afdb.json',
   },
   {
-    _id: '5e1e013cf9344483bc3ac348',
+    _id: new ObjectId('5e1e013cf9344483bc3ac348'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024700453' } },
+    date: new Date('1579024700453'),
     location: 'ESI',
     voters: [
       {
@@ -1537,9 +1539,9 @@ const census = [
     filePath: '76ba81f2-7c82-47fe-a88c-66c1a5b6fa3e.json',
   },
   {
-    _id: '5e1e0142f9344483bc3ac3ba',
+    _id: new ObjectId('5e1e0142f9344483bc3ac3ba'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024706774' } },
+    date: new Date('1579024706774'),
     location: 'ESI',
     voters: [
       {
@@ -1588,9 +1590,9 @@ const census = [
     filePath: 'b19d79db-0e4c-4540-92be-263e0bcc79b9.json',
   },
   {
-    _id: '5e1e0142f9344483bc3ac3bb',
+    _id: new ObjectId('5e1e0142f9344483bc3ac3bb'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024706774' } },
+    date: new Date('1579024706774'),
     location: 'ESI',
     voters: [
       {
@@ -1632,9 +1634,9 @@ const census = [
     filePath: '95f144d1-23ad-4715-8d41-e2da7f3fb6d6.json',
   },
   {
-    _id: '5e1e0142f9344483bc3ac3bc',
+    _id: new ObjectId('5e1e0142f9344483bc3ac3bc'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024706774' } },
+    date: new Date('1579024706774'),
     location: 'ESI',
     voters: [
       {
@@ -1662,9 +1664,9 @@ const census = [
     filePath: '332c845c-bf8d-4da3-a695-b78c8924d60a.json',
   },
   {
-    _id: '5e1e0142f9344483bc3ac3bd',
+    _id: new ObjectId('5e1e0142f9344483bc3ac3bd'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024706774' } },
+    date: new Date('1579024706774'),
     location: 'ESI',
     voters: [
       {
@@ -1678,9 +1680,9 @@ const census = [
     filePath: '246eb26d-a2da-4fd5-826a-765ecda733bc.json',
   },
   {
-    _id: '5e1e0142f9344483bc3ac3be',
+    _id: new ObjectId('5e1e0142f9344483bc3ac3be'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024706774' } },
+    date: new Date('1579024706774'),
     location: 'ESI',
     voters: [
       {
@@ -1722,9 +1724,9 @@ const census = [
     filePath: '1e5795df-a5d8-49d7-9e5a-9d5545935842.json',
   },
   {
-    _id: '5e1e0147f9344483bc3ac410',
+    _id: new ObjectId('5e1e0147f9344483bc3ac410'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024711297' } },
+    date: new Date('1579024711297'),
     location: 'ESI',
     voters: [
       {
@@ -1780,9 +1782,9 @@ const census = [
     filePath: '8994ff38-c242-4cc0-887b-7a465a9e3a47.json',
   },
   {
-    _id: '5e1e0147f9344483bc3ac411',
+    _id: new ObjectId('5e1e0147f9344483bc3ac411'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024711297' } },
+    date: new Date('1579024711297'),
     location: 'ESI',
     voters: [
       {
@@ -1866,9 +1868,9 @@ const census = [
     filePath: '55f72419-3485-410d-8aff-7de571086e77.json',
   },
   {
-    _id: '5e1e0147f9344483bc3ac412',
+    _id: new ObjectId('5e1e0147f9344483bc3ac412'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024711297' } },
+    date: new Date('1579024711297'),
     location: 'ESI',
     voters: [
       {
@@ -1945,9 +1947,9 @@ const census = [
     filePath: '1815481e-ca67-4b75-821e-d3359fbeaa2d.json',
   },
   {
-    _id: '5e1e0147f9344483bc3ac413',
+    _id: new ObjectId('5e1e0147f9344483bc3ac413'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024711297' } },
+    date: new Date('1579024711297'),
     location: 'ESI',
     voters: [
       {
@@ -1975,9 +1977,9 @@ const census = [
     filePath: 'e9cb402e-287b-4c09-8744-5324cf2e4bbf.json',
   },
   {
-    _id: '5e1e0147f9344483bc3ac414',
+    _id: new ObjectId('5e1e0147f9344483bc3ac414'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024711297' } },
+    date: new Date('1579024711297'),
     location: 'ESI',
     voters: [
       {
@@ -2040,9 +2042,9 @@ const census = [
     filePath: '5180781b-0f2a-436a-8cf7-ece883804f18.json',
   },
   {
-    _id: '5e1e014cf9344483bc3ac476',
+    _id: new ObjectId('5e1e014cf9344483bc3ac476'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024716764' } },
+    date: new Date('1579024716764'),
     location: 'ESI',
     voters: [
       {
@@ -2070,9 +2072,9 @@ const census = [
     filePath: '0f42f030-cd6f-4d4a-92c0-00722a610da2.json',
   },
   {
-    _id: '5e1e014cf9344483bc3ac477',
+    _id: new ObjectId('5e1e014cf9344483bc3ac477'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024716764' } },
+    date: new Date('1579024716764'),
     location: 'ESI',
     voters: [
       {
@@ -2114,9 +2116,9 @@ const census = [
     filePath: '4589e74a-c743-48a3-8194-8360fa5f8db9.json',
   },
   {
-    _id: '5e1e014cf9344483bc3ac478',
+    _id: new ObjectId('5e1e014cf9344483bc3ac478'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024716764' } },
+    date: new Date('1579024716764'),
     location: 'ESI',
     voters: [
       {
@@ -2172,9 +2174,9 @@ const census = [
     filePath: '8ed7eb57-97a8-4cee-853f-0a2a754c6bf0.json',
   },
   {
-    _id: '5e1e014cf9344483bc3ac479',
+    _id: new ObjectId('5e1e014cf9344483bc3ac479'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024716764' } },
+    date: new Date('1579024716764'),
     location: 'ESI',
     voters: [
       {
@@ -2244,9 +2246,9 @@ const census = [
     filePath: '637dabd8-7b35-40f8-977e-ef86b7cf80d8.json',
   },
   {
-    _id: '5e1e014cf9344483bc3ac47a',
+    _id: new ObjectId('5e1e014cf9344483bc3ac47a'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024716764' } },
+    date: new Date('1579024716764'),
     location: 'ESI',
     voters: [
       {
@@ -2330,9 +2332,9 @@ const census = [
     filePath: '346ebcd3-24d8-49fb-a419-c0cc954a74fe.json',
   },
   {
-    _id: '5e1e0153f9344483bc3ac4ec',
+    _id: new ObjectId('5e1e0153f9344483bc3ac4ec'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024723053' } },
+    date: new Date('1579024723053'),
     location: 'ESI',
     voters: [
       {
@@ -2381,9 +2383,9 @@ const census = [
     filePath: '916b8b52-5727-4455-8c53-503535e16784.json',
   },
   {
-    _id: '5e1e0153f9344483bc3ac4ed',
+    _id: new ObjectId('5e1e0153f9344483bc3ac4ed'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024723053' } },
+    date: new Date('1579024723053'),
     location: 'ESI',
     voters: [
       {
@@ -2404,9 +2406,9 @@ const census = [
     filePath: 'b7ab9f70-4e0d-4dad-82e6-85f9c93d5044.json',
   },
   {
-    _id: '5e1e0153f9344483bc3ac4ee',
+    _id: new ObjectId('5e1e0153f9344483bc3ac4ee'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024723054' } },
+    date: new Date('1579024723054'),
     location: 'ESI',
     voters: [
       {
@@ -2427,9 +2429,9 @@ const census = [
     filePath: 'c84bed8f-1a25-4f86-86ca-fe7f15063d3c.json',
   },
   {
-    _id: '5e1e0153f9344483bc3ac4ef',
+    _id: new ObjectId('5e1e0153f9344483bc3ac4ef'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024723053' } },
+    date: new Date('1579024723053'),
     location: 'ESI',
     voters: [
       {
@@ -2450,9 +2452,9 @@ const census = [
     filePath: 'dd718cbc-f571-40a1-b687-49253ca05ec7.json',
   },
   {
-    _id: '5e1e0153f9344483bc3ac4f0',
+    _id: new ObjectId('5e1e0153f9344483bc3ac4f0'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024723054' } },
+    date: new Date('1579024723054'),
     location: 'ESI',
     voters: [
       {
@@ -2529,9 +2531,9 @@ const census = [
     filePath: 'a01136cd-625b-4dde-9933-671eb3791cbc.json',
   },
   {
-    _id: '5e1e0158f9344483bc3ac552',
+    _id: new ObjectId('5e1e0158f9344483bc3ac552'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024728558' } },
+    date: new Date('1579024728558'),
     location: 'ESI',
     voters: [
       {
@@ -2573,9 +2575,9 @@ const census = [
     filePath: '2b2e4a89-87cd-4d10-a553-82fa6423f67e.json',
   },
   {
-    _id: '5e1e0158f9344483bc3ac553',
+    _id: new ObjectId('5e1e0158f9344483bc3ac553'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024728558' } },
+    date: new Date('1579024728558'),
     location: 'ESI',
     voters: [
       {
@@ -2603,9 +2605,9 @@ const census = [
     filePath: 'b0999193-96e8-411a-84e6-79bc804cd255.json',
   },
   {
-    _id: '5e1e0158f9344483bc3ac554',
+    _id: new ObjectId('5e1e0158f9344483bc3ac554'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024728558' } },
+    date: new Date('1579024728558'),
     location: 'ESI',
     voters: [
       {
@@ -2626,9 +2628,9 @@ const census = [
     filePath: 'cc5d7764-0f99-4b77-870f-293099039e8b.json',
   },
   {
-    _id: '5e1e0158f9344483bc3ac555',
+    _id: new ObjectId('5e1e0158f9344483bc3ac555'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024728558' } },
+    date: new Date('1579024728558'),
     location: 'ESI',
     voters: [
       {
@@ -2705,9 +2707,9 @@ const census = [
     filePath: '76d5f53a-6bc1-47b1-b99e-3318fd65abeb.json',
   },
   {
-    _id: '5e1e0158f9344483bc3ac556',
+    _id: new ObjectId('5e1e0158f9344483bc3ac556'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024728558' } },
+    date: new Date('1579024728558'),
     location: 'ESI',
     voters: [
       {
@@ -2735,9 +2737,9 @@ const census = [
     filePath: '02d5549c-e040-4c02-992a-3cbf7a76296c.json',
   },
   {
-    _id: '5e1e015cf9344483bc3ac59d',
+    _id: new ObjectId('5e1e015cf9344483bc3ac59d'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024732357' } },
+    date: new Date('1579024732357'),
     location: 'ESI',
     voters: [
       {
@@ -2772,9 +2774,9 @@ const census = [
     filePath: 'ee5eee2b-ddae-4fad-999c-7d4bbe8cb512.json',
   },
   {
-    _id: '5e1e015cf9344483bc3ac59e',
+    _id: new ObjectId('5e1e015cf9344483bc3ac59e'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024732357' } },
+    date: new Date('1579024732357'),
     location: 'ESI',
     voters: [
       {
@@ -2802,9 +2804,9 @@ const census = [
     filePath: '73bbb7ee-cac0-48d9-8b5a-cddfda0b990f.json',
   },
   {
-    _id: '5e1e015cf9344483bc3ac59f',
+    _id: new ObjectId('5e1e015cf9344483bc3ac59f'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024732357' } },
+    date: new Date('1579024732357'),
     location: 'ESI',
     voters: [
       {
@@ -2853,9 +2855,9 @@ const census = [
     filePath: '87a3fa93-4fef-4181-8ba5-8728f6212d0e.json',
   },
   {
-    _id: '5e1e015cf9344483bc3ac5a0',
+    _id: new ObjectId('5e1e015cf9344483bc3ac5a0'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024732357' } },
+    date: new Date('1579024732357'),
     location: 'ESI',
     voters: [
       {
@@ -2869,9 +2871,9 @@ const census = [
     filePath: '8efe496b-ced0-46ad-be00-fe79cdd181c4.json',
   },
   {
-    _id: '5e1e015cf9344483bc3ac5a1',
+    _id: new ObjectId('5e1e015cf9344483bc3ac5a1'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024732357' } },
+    date: new Date('1579024732357'),
     location: 'ESI',
     voters: [
       {
@@ -2906,9 +2908,9 @@ const census = [
     filePath: 'e6ccf61c-bd07-41fe-b7fb-79215998c69d.json',
   },
   {
-    _id: '5e1e015df9344483bc3ac5b8',
+    _id: new ObjectId('5e1e015df9344483bc3ac5b8'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024733470' } },
+    date: new Date('1579024733470'),
     location: 'ESI',
     voters: [
       {
@@ -2971,9 +2973,9 @@ const census = [
     filePath: '79172dd4-b962-45d8-9109-25beb0de3314.json',
   },
   {
-    _id: '5e1e015df9344483bc3ac5b9',
+    _id: new ObjectId('5e1e015df9344483bc3ac5b9'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024733471' } },
+    date: new Date('1579024733471'),
     location: 'ESI',
     voters: [
       {
@@ -3029,9 +3031,9 @@ const census = [
     filePath: 'eda2b266-f6e7-4491-a314-abbbb3a6f6ca.json',
   },
   {
-    _id: '5e1e015df9344483bc3ac5ba',
+    _id: new ObjectId('5e1e015df9344483bc3ac5ba'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024733471' } },
+    date: new Date('1579024733471'),
     location: 'ESI',
     voters: [
       {
@@ -3101,9 +3103,9 @@ const census = [
     filePath: '3cfbead5-9a31-40fc-b4be-db3e4a8fd3eb.json',
   },
   {
-    _id: '5e1e015df9344483bc3ac5bb',
+    _id: new ObjectId('5e1e015df9344483bc3ac5bb'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024733471' } },
+    date: new Date('1579024733471'),
     location: 'ESI',
     voters: [
       {
@@ -3145,9 +3147,9 @@ const census = [
     filePath: '3edcb6e7-d076-4561-9a87-24ec626382b7.json',
   },
   {
-    _id: '5e1e015df9344483bc3ac5bc',
+    _id: new ObjectId('5e1e015df9344483bc3ac5bc'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024733471' } },
+    date: new Date('1579024733471'),
     location: 'ESI',
     voters: [
       {
@@ -3217,9 +3219,9 @@ const census = [
     filePath: '4254c55c-ec7f-40d2-86c8-9f29f9b3170b.json',
   },
   {
-    _id: '5e1e015ff9344483bc3ac5e3',
+    _id: new ObjectId('5e1e015ff9344483bc3ac5e3'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024735593' } },
+    date: new Date('1579024735593'),
     location: 'ESI',
     voters: [
       {
@@ -3254,9 +3256,9 @@ const census = [
     filePath: 'dafc89d4-d414-4019-9092-6cf9026cda1c.json',
   },
   {
-    _id: '5e1e015ff9344483bc3ac5e4',
+    _id: new ObjectId('5e1e015ff9344483bc3ac5e4'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024735593' } },
+    date: new Date('1579024735593'),
     location: 'ESI',
     voters: [
       {
@@ -3312,9 +3314,9 @@ const census = [
     filePath: 'f425caae-e310-4997-a5db-b48412f4afd7.json',
   },
   {
-    _id: '5e1e015ff9344483bc3ac5e5',
+    _id: new ObjectId('5e1e015ff9344483bc3ac5e5'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024735593' } },
+    date: new Date('1579024735593'),
     location: 'ESI',
     voters: [
       {
@@ -3391,9 +3393,9 @@ const census = [
     filePath: '7a9cde5b-a9e1-41e4-bddd-0bc1091b5faf.json',
   },
   {
-    _id: '5e1e015ff9344483bc3ac5e6',
+    _id: new ObjectId('5e1e015ff9344483bc3ac5e6'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024735593' } },
+    date: new Date('1579024735593'),
     location: 'ESI',
     voters: [
       {
@@ -3435,9 +3437,9 @@ const census = [
     filePath: '49719803-1113-4117-ba2e-4d565232c4b5.json',
   },
   {
-    _id: '5e1e015ff9344483bc3ac5e7',
+    _id: new ObjectId('5e1e015ff9344483bc3ac5e7'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024735593' } },
+    date: new Date('1579024735593'),
     location: 'ESI',
     voters: [
       {
@@ -3493,9 +3495,9 @@ const census = [
     filePath: '6765815a-ebec-4476-898e-529b879f05a6.json',
   },
   {
-    _id: '5e1e0160f9344483bc3ac5fe',
+    _id: new ObjectId('5e1e0160f9344483bc3ac5fe'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024736721' } },
+    date: new Date('1579024736721'),
     location: 'ESI',
     voters: [
       {
@@ -3565,9 +3567,9 @@ const census = [
     filePath: 'db75b707-abf0-44b2-92d3-382713d3482d.json',
   },
   {
-    _id: '5e1e0160f9344483bc3ac5ff',
+    _id: new ObjectId('5e1e0160f9344483bc3ac5ff'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024736721' } },
+    date: new Date('1579024736721'),
     location: 'ESI',
     voters: [
       {
@@ -3623,9 +3625,9 @@ const census = [
     filePath: '7ad62c6c-f90e-4b10-ac8f-b55e281f2ccc.json',
   },
   {
-    _id: '5e1e0160f9344483bc3ac600',
+    _id: new ObjectId('5e1e0160f9344483bc3ac600'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024736721' } },
+    date: new Date('1579024736721'),
     location: 'ESI',
     voters: [
       {
@@ -3688,9 +3690,9 @@ const census = [
     filePath: '4236332c-3b59-4e4b-b02e-cadcffabead9.json',
   },
   {
-    _id: '5e1e0160f9344483bc3ac601',
+    _id: new ObjectId('5e1e0160f9344483bc3ac601'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024736721' } },
+    date: new Date('1579024736721'),
     location: 'ESI',
     voters: [
       {
@@ -3739,9 +3741,9 @@ const census = [
     filePath: '08f00332-d067-4213-b22a-505d447b9781.json',
   },
   {
-    _id: '5e1e0160f9344483bc3ac602',
+    _id: new ObjectId('5e1e0160f9344483bc3ac602'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024736721' } },
+    date: new Date('1579024736721'),
     location: 'ESI',
     voters: [
       {
@@ -3797,9 +3799,9 @@ const census = [
     filePath: '78adc6dd-aa20-4238-9e9d-f410489562df.json',
   },
   {
-    _id: '5e1e0163f9344483bc3ac639',
+    _id: new ObjectId('5e1e0163f9344483bc3ac639'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024739596' } },
+    date: new Date('1579024739596'),
     location: 'ESI',
     voters: [
       {
@@ -3848,9 +3850,9 @@ const census = [
     filePath: 'ed45c431-f28b-4925-91f3-a398103fc857.json',
   },
   {
-    _id: '5e1e0163f9344483bc3ac63a',
+    _id: new ObjectId('5e1e0163f9344483bc3ac63a'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024739596' } },
+    date: new Date('1579024739596'),
     location: 'ESI',
     voters: [
       {
@@ -3885,9 +3887,9 @@ const census = [
     filePath: 'dc5c9101-b988-4132-bc82-5fd95bd4f956.json',
   },
   {
-    _id: '5e1e0163f9344483bc3ac63b',
+    _id: new ObjectId('5e1e0163f9344483bc3ac63b'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024739596' } },
+    date: new Date('1579024739596'),
     location: 'ESI',
     voters: [
       {
@@ -3936,9 +3938,9 @@ const census = [
     filePath: '238dab66-64c4-4f16-a6db-160bb9d2fa6b.json',
   },
   {
-    _id: '5e1e0163f9344483bc3ac63c',
+    _id: new ObjectId('5e1e0163f9344483bc3ac63c'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024739596' } },
+    date: new Date('1579024739596'),
     location: 'ESI',
     voters: [
       {
@@ -3980,9 +3982,9 @@ const census = [
     filePath: '2c379cfe-a48b-4eb7-a2ae-58735c8106d8.json',
   },
   {
-    _id: '5e1e0163f9344483bc3ac63d',
+    _id: new ObjectId('5e1e0163f9344483bc3ac63d'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024739596' } },
+    date: new Date('1579024739596'),
     location: 'ESI',
     voters: [
       {
@@ -4010,9 +4012,9 @@ const census = [
     filePath: 'b1adba70-b9d3-43c0-888c-171080a0e65e.json',
   },
   {
-    _id: '5e1e0168f9344483bc3ac694',
+    _id: new ObjectId('5e1e0168f9344483bc3ac694'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024744166' } },
+    date: new Date('1579024744166'),
     location: 'ESI',
     voters: [
       {
@@ -4026,9 +4028,9 @@ const census = [
     filePath: '1a65f36d-1ff1-4630-b1eb-783f3c7a9f23.json',
   },
   {
-    _id: '5e1e0168f9344483bc3ac695',
+    _id: new ObjectId('5e1e0168f9344483bc3ac695'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024744166' } },
+    date: new Date('1579024744166'),
     location: 'ESI',
     voters: [
       {
@@ -4112,9 +4114,9 @@ const census = [
     filePath: 'd412a251-dc59-4975-890b-8e7ea7ac0b05.json',
   },
   {
-    _id: '5e1e0168f9344483bc3ac696',
+    _id: new ObjectId('5e1e0168f9344483bc3ac696'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024744166' } },
+    date: new Date('1579024744166'),
     location: 'ESI',
     voters: [
       {
@@ -4142,9 +4144,9 @@ const census = [
     filePath: 'd39e36d0-8981-41c7-9d87-2975b92547af.json',
   },
   {
-    _id: '5e1e0168f9344483bc3ac697',
+    _id: new ObjectId('5e1e0168f9344483bc3ac697'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024744167' } },
+    date: new Date('1579024744167'),
     location: 'ESI',
     voters: [
       {
@@ -4228,9 +4230,9 @@ const census = [
     filePath: '44ba0c0d-573b-4500-a36c-98d5dd53b120.json',
   },
   {
-    _id: '5e1e0168f9344483bc3ac698',
+    _id: new ObjectId('5e1e0168f9344483bc3ac698'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024744167' } },
+    date: new Date('1579024744167'),
     location: 'ESI',
     voters: [
       {
@@ -4300,9 +4302,9 @@ const census = [
     filePath: 'e55b66e0-2e90-4203-992a-3417ed4fbdd9.json',
   },
   {
-    _id: '5e1e016af9344483bc3ac6bf',
+    _id: new ObjectId('5e1e016af9344483bc3ac6bf'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024746150' } },
+    date: new Date('1579024746150'),
     location: 'ESI',
     voters: [
       {
@@ -4372,9 +4374,9 @@ const census = [
     filePath: 'cae78a5a-47eb-4eda-aad4-06d46b2a9b0d.json',
   },
   {
-    _id: '5e1e016af9344483bc3ac6c0',
+    _id: new ObjectId('5e1e016af9344483bc3ac6c0'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024746150' } },
+    date: new Date('1579024746150'),
     location: 'ESI',
     voters: [
       {
@@ -4444,9 +4446,9 @@ const census = [
     filePath: 'b4eb12de-6be6-4b2f-bf52-e7ca6adbd1b5.json',
   },
   {
-    _id: '5e1e016af9344483bc3ac6c1',
+    _id: new ObjectId('5e1e016af9344483bc3ac6c1'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024746150' } },
+    date: new Date('1579024746150'),
     location: 'ESI',
     voters: [
       {
@@ -4516,9 +4518,9 @@ const census = [
     filePath: 'b49382c9-de74-4464-9dc5-0a4103d0d8b5.json',
   },
   {
-    _id: '5e1e016af9344483bc3ac6c2',
+    _id: new ObjectId('5e1e016af9344483bc3ac6c2'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024746150' } },
+    date: new Date('1579024746150'),
     location: 'ESI',
     voters: [
       {
@@ -4595,9 +4597,9 @@ const census = [
     filePath: '100e9628-f87c-4a9e-b8cd-43f42d7bb0f9.json',
   },
   {
-    _id: '5e1e016af9344483bc3ac6c3',
+    _id: new ObjectId('5e1e016af9344483bc3ac6c3'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024746150' } },
+    date: new Date('1579024746150'),
     location: 'ESI',
     voters: [
       {
@@ -4639,9 +4641,9 @@ const census = [
     filePath: 'ebfc884d-b7a2-4511-931b-6b5196b3fc4b.json',
   },
   {
-    _id: '5e1e016bf9344483bc3ac6da',
+    _id: new ObjectId('5e1e016bf9344483bc3ac6da'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024747308' } },
+    date: new Date('1579024747308'),
     location: 'ESI',
     voters: [
       {
@@ -4697,9 +4699,9 @@ const census = [
     filePath: '65bf68ff-731c-4fdd-9c14-15284e93a5be.json',
   },
   {
-    _id: '5e1e016bf9344483bc3ac6db',
+    _id: new ObjectId('5e1e016bf9344483bc3ac6db'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024747308' } },
+    date: new Date('1579024747308'),
     location: 'ESI',
     voters: [
       {
@@ -4720,9 +4722,9 @@ const census = [
     filePath: '0f2b1d39-9bdc-425b-94ee-6420d54c7276.json',
   },
   {
-    _id: '5e1e016bf9344483bc3ac6dc',
+    _id: new ObjectId('5e1e016bf9344483bc3ac6dc'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024747308' } },
+    date: new Date('1579024747308'),
     location: 'ESI',
     voters: [
       {
@@ -4771,9 +4773,9 @@ const census = [
     filePath: 'ea8dca8b-c2fd-4036-9b00-8eea9ef1a5b1.json',
   },
   {
-    _id: '5e1e016bf9344483bc3ac6dd',
+    _id: new ObjectId('5e1e016bf9344483bc3ac6dd'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024747308' } },
+    date: new Date('1579024747308'),
     location: 'ESI',
     voters: [
       {
@@ -4843,9 +4845,9 @@ const census = [
     filePath: '7237e49b-9a64-4cea-8a30-e8986ce4afc8.json',
   },
   {
-    _id: '5e1e016bf9344483bc3ac6de',
+    _id: new ObjectId('5e1e016bf9344483bc3ac6de'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024747308' } },
+    date: new Date('1579024747308'),
     location: 'ESI',
     voters: [
       {
@@ -4887,9 +4889,9 @@ const census = [
     filePath: 'a18936b3-135b-45b8-9078-8cb84660d36a.json',
   },
   {
-    _id: '5e1e016ef9344483bc3ac715',
+    _id: new ObjectId('5e1e016ef9344483bc3ac715'),
     group: 'PDVP',
-    date: { $date: { $numberLong: '1579024750148' } },
+    date: new Date('1579024750148'),
     location: 'ESI',
     voters: [
       {
@@ -4952,9 +4954,9 @@ const census = [
     filePath: '7b892ee8-6444-4cc7-af2d-2e413098981d.json',
   },
   {
-    _id: '5e1e016ef9344483bc3ac716',
+    _id: new ObjectId('5e1e016ef9344483bc3ac716'),
     group: 'ALU',
-    date: { $date: { $numberLong: '1579024750148' } },
+    date: new Date('1579024750148'),
     location: 'ESI',
     voters: [
       {
@@ -5017,9 +5019,9 @@ const census = [
     filePath: 'd1b889c7-b1f4-4489-998e-1e1e96f9a6ce.json',
   },
   {
-    _id: '5e1e016ef9344483bc3ac717',
+    _id: new ObjectId('5e1e016ef9344483bc3ac717'),
     group: 'PAS',
-    date: { $date: { $numberLong: '1579024750148' } },
+    date: new Date('1579024750148'),
     location: 'ESI',
     voters: [
       {
@@ -5047,9 +5049,9 @@ const census = [
     filePath: 'd146e6b3-cc45-46a6-933f-25ccfec9b121.json',
   },
   {
-    _id: '5e1e016ef9344483bc3ac718',
+    _id: new ObjectId('5e1e016ef9344483bc3ac718'),
     group: 'PNDVP',
-    date: { $date: { $numberLong: '1579024750148' } },
+    date: new Date('1579024750148'),
     location: 'ESI',
     voters: [
       {
@@ -5119,9 +5121,9 @@ const census = [
     filePath: '08087843-3c98-493f-9a7c-1a410dee9537.json',
   },
   {
-    _id: '5e1e016ef9344483bc3ac719',
+    _id: new ObjectId('5e1e016ef9344483bc3ac719'),
     group: 'PDINVP',
-    date: { $date: { $numberLong: '1579024750148' } },
+    date: new Date('1579024750148'),
     location: 'ESI',
     voters: [
       {

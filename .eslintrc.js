@@ -2,34 +2,34 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
-    tsconfigRootDir: './'
+    tsconfigRootDir: './',
   },
   env: {
     node: true,
     jest: true,
-    es6: true
+    es6: true,
   },
   extends: [
     'airbnb-base',
     'plugin:@typescript-eslint/recommended',
     'prettier',
-    'prettier/@typescript-eslint'
+    'prettier/@typescript-eslint',
   ],
   plugins: ['import', 'prettier', '@typescript-eslint', 'promise'],
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.ts', '.js', '.json']
+        extensions: ['.ts', '.js', '.json'],
       },
       typescript: {
         alwaysTryTypes: true,
-        directory: './tsconfig.json'
-      }
+        directory: './tsconfig.json',
+      },
     },
     'import/extensions': ['.ts', '.js'],
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts']
-    }
+      '@typescript-eslint/parser': ['.ts'],
+    },
   },
   rules: {
     // eslint
@@ -45,8 +45,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
-        argsIgnorePattern: '^_'
-      }
+        argsIgnorePattern: '^_',
+      },
     ],
     '@typescript-eslint/no-explicit-any': 'off',
     // import
@@ -55,11 +55,20 @@ module.exports = {
       'ignorePackages',
       {
         js: 'never',
-        ts: 'never'
-      }
+        ts: 'never',
+      },
     ],
     'import/prefer-default-export': 'off',
     'import/no-cycle': 'off',
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.spec.ts",'**/utils/**/*.ts']}]
-  }
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          '**/*.spec.ts',
+          '**/utils/**/*.ts',
+          '**/seeder/**/*.ts',
+        ],
+      },
+    ],
+  },
 }
