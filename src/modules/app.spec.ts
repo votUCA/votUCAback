@@ -132,6 +132,7 @@ describe('App Module', () => {
     it('When polls is requested, should return a poll list', () => {
       const query = pollsQuery
       return gqlRequest(app.getHttpServer(), { query, accessToken }, body => {
+        console.log(body.errors)
         expect(body.errors).toBeFalsy()
         expect(body.data.polls).toMatchSnapshot()
       })
