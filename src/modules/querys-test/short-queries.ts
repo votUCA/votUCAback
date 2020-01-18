@@ -1,16 +1,16 @@
 export const usersQuery = `query users {
 	users {
-	id
-	uid
-	dni
-	firstName
-	lastName
-	roles
-	genre
-	colegiateBody {
-		id
-		name
-	}
+	  id
+	  uid
+      dni
+      firstName
+      lastName
+      roles
+      genre
+      colegiateBody {
+        id
+        name
+	  }
 	}
 }
 `
