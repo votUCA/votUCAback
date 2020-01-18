@@ -37,13 +37,7 @@ describe('ElectoralProcess Module', () => {
         }),
       })
       .overrideGuard(RolesGuard)
-      .useValue({
-        canActivate: () => true,
-        handleRequest: () => ({
-          _id: getObjectId('user'),
-          rolesName: [Role.ADMIN],
-        }),
-      })
+      .useValue({ canActivate: () => true })
       .compile()
 
     app = electoralProcessModule.createNestApplication()

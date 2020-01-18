@@ -90,15 +90,21 @@ describe('App Module', () => {
   }) // Mutations
 
   describe('Queries', () => {
-    it('When users is requested, should return a User list', () => {
+    it('When colegiateBody is requested, should return a colegiateBody', () => {
       const query = /* GraphQL */ `
         query users {
           users {
             id
             uid
+            dni
             firstName
             lastName
             roles
+            genre
+            colegiateBody {
+              id
+              name
+            }
           }
         }
       `
@@ -109,9 +115,15 @@ describe('App Module', () => {
             expect.objectContaining({
               id: expect.any(String),
               uid: expect.stringMatching(/^u(?:[0-9]{8}|[xyz][0-9]{7})/),
+              dni: expect.stringMatching(/^[0-9]{8}[A-Z]{1}/),
               firstName: expect.any(String),
               lastName: expect.any(String),
               roles: expect.arrayContaining([expect.any(String)]),
+              genre: expect.stringMatching(/MALE|FEMALE|OTHER/),
+              colegiateBody: expect.objectContaining({
+                id: expect.any(String),
+                name: expect.any(String),
+              }),
             }),
           ])
         )
