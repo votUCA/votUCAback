@@ -82,29 +82,6 @@ describe('ElectoralProcess Module', () => {
       )
     })
 
-    it('When createPoll is requested, should return the Poll created', () => {
-      const query = /* GraphQL */ `
-        mutation createPoll($input: PollInput!) {
-          createPoll(input: $input) {
-            id
-          }
-        }
-      `
-
-      return gqlRequest(
-        app.getHttpServer(),
-        { query, variables: { input: pollSpec.inputPoll } },
-        body => {
-          expect(body.errors).toBeFalsy()
-          addModelId('poll', body.data.createPoll.id)
-
-          expect(body.data.createPoll).toMatchObject({
-            id: expect.any(String),
-          })
-        }
-      )
-    })
-
     it('When createPoll is requested, should return the Poll created (closed)', () => {
       const query = /* GraphQL */ `
         mutation createPoll($input: PollInput!) {
