@@ -3,7 +3,13 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { Test, TestingModule } from '@nestjs/testing'
 import { getObjectId } from 'mongo-seeding'
 import { TypegooseModule } from 'nestjs-typegoose'
-import { addModelId, gqlRequest, TypegooseConfigService } from '../../utils'
+import { ObjectId } from 'mongodb'
+import {
+  addModelId,
+  getModelId,
+  gqlRequest,
+  TypegooseConfigService,
+} from '../../utils'
 import { GqlAuthGuard } from '../auth/gql.guard'
 import { RolesGuard } from '../auth/roles.guard'
 import { ConfigModule } from '../config/config.module'
@@ -11,8 +17,11 @@ import { Role } from '../users/roles.enum'
 import { ElectoralProcessModule } from './electoral-process.module'
 import electionInput from './election.spec.input'
 
+import pollSpec from './poll.spec.input'
+
 describe('ElectoralProcess Module', () => {
   let app: INestApplication
+  let closedPollId: ObjectId
 
   beforeAll(async () => {
     const electoralProcessModule: TestingModule = await Test.createTestingModule(
@@ -69,6 +78,218 @@ describe('ElectoralProcess Module', () => {
           expect(body.data.createElection).toMatchObject({
             id: expect.any(String),
           })
+        }
+      )
+    })
+
+    it('When createPoll is requested, should return the Poll created', () => {
+      const query = /* GraphQL */ `
+        mutation createPoll($input: PollInput!) {
+          createPoll(input: $input) {
+            id
+          }
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input: pollSpec.inputPoll } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          addModelId('poll', body.data.createPoll.id)
+
+          expect(body.data.createPoll).toMatchObject({
+            id: expect.any(String),
+          })
+        }
+      )
+    })
+
+    it('When createPoll is requested, should return the Poll created (closed)', () => {
+      const query = /* GraphQL */ `
+        mutation createPoll($input: PollInput!) {
+          createPoll(input: $input) {
+            id
+          }
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input: pollSpec.closedPoll } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          addModelId('poll', body.data.createPoll.id)
+          closedPollId = body.data.createPoll.id
+          expect(body.data.createPoll).toMatchObject({
+            id: expect.any(String),
+          })
+        }
+      )
+    })
+  })
+
+  describe('Queries', () => {
+    it('When polls is requested, should return a poll list', () => {
+      const query = /* GraphQL */ `
+        query polls {
+          polls {
+            id
+          }
+        }
+      `
+      return gqlRequest(app.getHttpServer(), { query }, body => {
+        expect(body.errors).toBeFalsy()
+        expect(body.data.polls).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              id: expect.any(String),
+            }),
+          ])
+        )
+      })
+    })
+
+    it('When poll is requested, should return a poll', () => {
+      const input = getModelId('poll', 0)
+      const query = /* GraphQL */ `
+        query poll($input: ID!) {
+          poll(id: $input) {
+            id
+          }
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.poll).toMatchObject({
+            id: expect.stringMatching(input),
+          })
+        }
+      )
+    })
+
+    it('When invalid poll is requested, should return a error', () => {
+      const input = new ObjectId('5e1b187e21544de30f35531b') // id supuestamente no válido
+      const query = /* GraphQL */ `
+        query poll($input: ID!) {
+          poll(id: $input) {
+            id
+          }
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeTruthy()
+        }
+      )
+    })
+
+    it('When pending polls is requested, should return the pending to vote polls of the user', () => {
+      const query = /* GraphQL */ `
+        query pendingPolls {
+          pendingPolls {
+            id
+          }
+        }
+      `
+
+      return gqlRequest(app.getHttpServer(), { query }, body => {
+        expect(body.errors).toBeFalsy()
+      })
+    })
+
+    it('When censuses of a poll is requested, should return censuses of a poll', () => {
+      const input = getModelId('poll', 0)
+      const query = /* GraphQL */ `
+        query testCensuses($input: ID!) {
+          poll(id: $input) {
+            censuses {
+              id
+            }
+          }
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.poll.censuses).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                id: expect.any(String),
+              }),
+            ])
+          )
+        }
+      )
+    })
+
+    it('When results of a poll is requested, should return results of a poll', () => {
+      const input = closedPollId
+      const query = /* GraphQL */ `
+        query testPollResults($input: ID!) {
+          poll(id: $input) {
+            results {
+              voters
+              results {
+                votes
+                option {
+                  id
+                }
+              }
+            }
+          }
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.poll.results).toEqual(
+            expect.objectContaining({
+              voters: expect.any(Number),
+              results: expect.arrayContaining([
+                expect.objectContaining({
+                  votes: expect.any(Number),
+                  option: expect.objectContaining({
+                    id: expect.any(String),
+                  }),
+                }),
+              ]),
+            })
+          )
+        }
+      )
+    })
+
+    it('When delegates of a poll is requested, should return the delegates of that poll', () => {
+      const input = getModelId('poll', 0)
+      const query = /* GraphQL */ `
+        query testDelegates($input: ID!) {
+          poll(id: $input) {
+            delegates {
+              id
+            }
+          }
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeFalsy()
         }
       )
     })
