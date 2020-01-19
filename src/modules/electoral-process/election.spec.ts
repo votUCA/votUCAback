@@ -119,5 +119,32 @@ describe('Election Module', () => {
         }
       )
     })
+
+    it('When modifyElection is requested, should return the Election modified', () => {
+      const query = /* GraphQL */ `
+        mutation modifyElection($input: UpdateElectionInput!, $id: ID!) {
+          modifyElection(input: $input, id: $id) {
+            id
+            description
+          }
+        }
+      `
+      const input = {
+        description: 'Descripcion nueva',
+      }
+      const id = getModelId('election', 0)
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input, id } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.modifyElection).toMatchObject({
+            id: expect.stringMatching(id),
+            description: expect.stringMatching('Descripcion nueva'),
+          })
+        }
+      )
+    })
   })
 })

@@ -19,30 +19,28 @@ import electionInput from './election.spec.input'
 
 import pollSpec from './poll.spec.input'
 
-describe('ElectoralProcess Module', () => {
+describe('Poll Module', () => {
   let app: INestApplication
   let closedPollId: ObjectId
 
   beforeAll(async () => {
-    const electoralProcessModule: TestingModule = await Test.createTestingModule(
-      {
-        imports: [
-          ElectoralProcessModule,
-          ConfigModule,
-          TypegooseModule.forRootAsync({ useClass: TypegooseConfigService }),
-          GraphQLModule.forRoot({
-            autoSchemaFile: true,
-            context: ({ req }): object => {
-              req.user = {
-                _id: getObjectId('user'),
-                rolesName: [Role.ADMIN],
-              }
-              return { req }
-            },
-          }),
-        ],
-      }
-    )
+    const pollModule: TestingModule = await Test.createTestingModule({
+      imports: [
+        ElectoralProcessModule,
+        ConfigModule,
+        TypegooseModule.forRootAsync({ useClass: TypegooseConfigService }),
+        GraphQLModule.forRoot({
+          autoSchemaFile: true,
+          context: ({ req }): object => {
+            req.user = {
+              _id: getObjectId('user'),
+              rolesName: [Role.ADMIN],
+            }
+            return { req }
+          },
+        }),
+      ],
+    })
       .overrideGuard(GqlAuthGuard)
       .useValue({
         canActivate: () => true,
@@ -51,7 +49,7 @@ describe('ElectoralProcess Module', () => {
       .useValue({ canActivate: () => true })
       .compile()
 
-    app = electoralProcessModule.createNestApplication()
+    app = pollModule.createNestApplication()
     await app.init()
   })
 
