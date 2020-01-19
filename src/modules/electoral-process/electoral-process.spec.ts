@@ -104,6 +104,36 @@ describe('ElectoralProcess Module', () => {
         }
       )
     })
+
+    it('When modifyPoll is requested, should return the Poll modified', () => {
+      const query = /* GraphQL */ `
+        mutation modifyPoll($input: UpdatePollInput!, $id: ID!) {
+          modifyPoll(input: $input, id: $id) {
+            id
+            question
+            description
+          }
+        }
+      `
+      const input = {
+        question: 'Pregunta actualizada',
+        description: 'Descripcion nueva',
+      }
+      const id = getModelId('poll', 0)
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input, id } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.modifyPoll).toMatchObject({
+            id: expect.stringMatching(id),
+            question: expect.stringMatching('Pregunta actualizada'),
+            description: expect.stringMatching('Descripcion nueva'),
+          })
+        }
+      )
+    })
   })
 
   describe('Queries', () => {
@@ -267,6 +297,43 @@ describe('ElectoralProcess Module', () => {
         { query, variables: { input } },
         body => {
           expect(body.errors).toBeFalsy()
+        }
+      )
+    })
+  })
+
+  describe('Deleter', () => {
+    it('When deletePoll is requested, should return the Poll deleted', () => {
+      const input = getModelId('poll', 0)
+      const query = /* GraphQL */ `
+        mutation deletePoll($input: ID!) {
+          deletePoll(id: $input)
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.poll).toBeUndefined()
+        }
+      )
+    })
+
+    it('When deletePoll is requested with an incorrect id, should return error', () => {
+      const input = '5e1b187e21544de30f35531b'
+      const query = /* GraphQL */ `
+        mutation deletePoll($input: ID!) {
+          deletePoll(id: $input)
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeTruthy()
         }
       )
     })
