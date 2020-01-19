@@ -1,0 +1,13 @@
+node_modules
+dist
+.DS_Store
+.env
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+files/
+coverage

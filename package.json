@@ -1,0 +1,133 @@
+{
+  "name": "@pinf2019/backend",
+  "version": "0.2.4",
+  "description": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "author": {
+    "name": "Carlos Rodrigo Sanabria Flores",
+    "email": "rodrigosanabria22@opinno.com"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "preinstall": "npx use-yarn",
+    "build": "tsc",
+    "release": "standard-version --no-verify",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:prod": "node dist/main",
+    "start:debug": "nest start --debug --watch",
+    "start:mongo": "docker-compose -f .devcontainer/docker-compose.yml up -d mongo",
+    "down:mongo": "docker-compose -f .devcontainer/docker-compose.yml down -v",
+    "docker:build": "cross-conf-env docker image build . -t $npm_package_config_image:$npm_package_version",
+    "predocker:tag": "yarn docker:build",
+    "docker:tag": " cross-conf-env docker image tag $npm_package_config_image:$npm_package_version $npm_package_config_image:latest",
+    "predocker:push": "yarn docker:tag",
+    "docker:push": "cross-conf-env docker push $npm_package_config_image:$npm_package_version",
+    "upload:compose": "cross-conf-env scp $npm_package_config_deployFiles $npm_package_config_sshServer:$npm_package_config_projectPath",
+    "predeploy": "run-s docker:push upload:compose",
+    "deploy": "cross-conf-env ssh -T $npm_package_config_sshServer 'cd $npm_package_config_projectPath; docker-compose up -d'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
+  },
+  "config": {
+    "image": "docker.pkg.github.com/votuca/votucaback/api",
+    "deployFiles": "docker-compose.yml .env",
+    "sshServer": "rancher@votuca.krosf.com",
+    "projectPath": ".votuca"
+  },
+  "dependencies": {
+    "@hapi/joi": "^16.1.8",
+    "@nestjs/common": "^6.10.12",
+    "@nestjs/config": "^0.0.8",
+    "@nestjs/core": "^6.10.12",
+    "@nestjs/graphql": "^6.5.3",
+    "@nestjs/jwt": "^6.1.1",
+    "@nestjs/passport": "^6.1.1",
+    "@nestjs/platform-express": "^6.10.12",
+    "@typegoose/typegoose": "^6.2.0",
+    "apollo-server-express": "^2.9.14",
+    "bcryptjs": "^2.4.3",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.11.0",
+    "dotenv": "^8.2.0",
+    "graphql": "^14.5.8",
+    "graphql-upload": "^9.0.0",
+    "mongoose": "^5.8.3",
+    "nestjs-typegoose": "^7.0.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.3",
+    "type-graphql": "^0.17.6",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@nestjs/cli": "^6.12.9",
+    "@nestjs/schematics": "^6.7.6",
+    "@nestjs/testing": "^6.10.12",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.2",
+    "@types/faker": "^4.1.8",
+    "@types/hapi__joi": "^16.0.4",
+    "@types/jest": "^24.0.25",
+    "@types/mongoose": "^5.5.35",
+    "@types/node": "^13.1.1",
+    "@types/passport-jwt": "^3.0.3",
+    "@types/supertest": "^2.0.8",
+    "@types/uuid": "^3.4.6",
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/parser": "^2.13.0",
+    "codecov": "^3.6.1",
+    "cross-conf-env": "^1.1.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.8.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "graphql-voyager": "^1.0.0-rc.28",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "mongo-seeding": "^3.4.0-alpha.1",
+    "mongodb": "^3.5.1",
+    "mongodb-memory-server": "^6.2.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "standard-version": "^7.0.1",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.2.0",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.5.4",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.4"
+  },
+  "contributors": [],
+  "engines": {
+    "node": ">=12.13.x",
+    "yarn": ">=1.19.x"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(ts|tsx)": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.+(json|less|md|yml)": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
