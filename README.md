@@ -13,6 +13,10 @@
 <a href="https://nodejs.org/" alt="Node Version"><img src="https://img.shields.io/badge/node-12.13.0-blue?style=flat-square"></a>
 <a href="https://nodejs.org/" alt="Yarn Version"><img src="https://img.shields.io/github/v/release/yarnpkg/yarn?label=yarn&sort=semver&style=flat-square"></a>
 </p>
+<p align="center">
+<a href="https://codecov.io/gh/votUCA/votUCAback"><img src="https://codecov.io/gh/votUCA/votUCAback/branch/develop/graph/badge.svg" /></a>
+<a href="https://www.codacy.com/gh/votUCA/votUCAback?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=votUCA/votUCAback&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/f8c6f262cf4e45d3b0206958f4c81305"/></a>
+</p>
 
 ## Prerequisites
 
