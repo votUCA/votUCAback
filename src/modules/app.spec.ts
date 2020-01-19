@@ -304,5 +304,36 @@ describe('App Module', () => {
         }
       )
     })
+
+    it('When secretary of a poll is requested, should return user that is secretary', () => {
+      const input = '5e1e013cf9344483bc3ac349'
+      const query = /* GraphQL */ `
+        query testSecretary($input: ID!) {
+          poll(id: $input) {
+            secretary {
+              id
+              roles
+            }
+          }
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, accessToken, variables: { input } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.poll.secretary).toEqual(
+            expect.objectContaining({
+              id: expect.any(String),
+              roles: expect.any(Array),
+            })
+          )
+          expect(String(body.data.poll.secretary.roles)).toMatch(
+            /^ADMIN|SECRETARY$/
+          )
+        }
+      )
+    })
   }) // Queries
 })

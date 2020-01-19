@@ -236,9 +236,13 @@ export class ElectionResolver {
     @Args({ name: 'id', type: () => ID }) id: string
   ): Promise<boolean> {
     const election = await this.electionsService.delete(id)
-    await this.candidatesService.deleteByElection(election.id)
-    await this.censusService.deleteAllIn(election.censuses)
-    await this.electionResultsService.deleteByElection(election.id)
-    return true
+    if (election) {
+      await this.candidatesService.deleteByElection(election.id)
+      await this.censusService.deleteAllIn(election.censuses)
+      await this.electionResultsService.deleteByElection(election.id)
+      return true
+    }
+
+    throw new BadRequestException('The election does not exist')
   }
 }

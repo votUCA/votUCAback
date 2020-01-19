@@ -2,8 +2,8 @@ import { INestApplication } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { Test, TestingModule } from '@nestjs/testing'
 import { getObjectId } from 'mongo-seeding'
-import { TypegooseModule } from 'nestjs-typegoose'
 import { ObjectId } from 'mongodb'
+import { TypegooseModule } from 'nestjs-typegoose'
 import {
   addModelId,
   getModelId,
@@ -15,34 +15,30 @@ import { RolesGuard } from '../auth/roles.guard'
 import { ConfigModule } from '../config/config.module'
 import { Role } from '../users/roles.enum'
 import { ElectoralProcessModule } from './electoral-process.module'
-import electionInput from './election.spec.input'
-
 import pollSpec from './poll.spec.input'
 
-describe('ElectoralProcess Module', () => {
+describe('Poll Module', () => {
   let app: INestApplication
   let closedPollId: ObjectId
 
   beforeAll(async () => {
-    const electoralProcessModule: TestingModule = await Test.createTestingModule(
-      {
-        imports: [
-          ElectoralProcessModule,
-          ConfigModule,
-          TypegooseModule.forRootAsync({ useClass: TypegooseConfigService }),
-          GraphQLModule.forRoot({
-            autoSchemaFile: true,
-            context: ({ req }): object => {
-              req.user = {
-                _id: getObjectId('user'),
-                rolesName: [Role.ADMIN],
-              }
-              return { req }
-            },
-          }),
-        ],
-      }
-    )
+    const pollModule: TestingModule = await Test.createTestingModule({
+      imports: [
+        ElectoralProcessModule,
+        ConfigModule,
+        TypegooseModule.forRootAsync({ useClass: TypegooseConfigService }),
+        GraphQLModule.forRoot({
+          autoSchemaFile: true,
+          context: ({ req }): object => {
+            req.user = {
+              _id: getObjectId('user'),
+              rolesName: [Role.ADMIN],
+            }
+            return { req }
+          },
+        }),
+      ],
+    })
       .overrideGuard(GqlAuthGuard)
       .useValue({
         canActivate: () => true,
@@ -51,7 +47,7 @@ describe('ElectoralProcess Module', () => {
       .useValue({ canActivate: () => true })
       .compile()
 
-    app = electoralProcessModule.createNestApplication()
+    app = pollModule.createNestApplication()
     await app.init()
   })
 
@@ -60,51 +56,6 @@ describe('ElectoralProcess Module', () => {
   })
 
   describe('Mutations', () => {
-    it('When createElection is requested, should return the Election created', () => {
-      const query = /* GraphQL */ `
-        mutation createElection($input: ElectionInput!) {
-          createElection(input: $input) {
-            id
-          }
-        }
-      `
-
-      return gqlRequest(
-        app.getHttpServer(),
-        { query, variables: { input: electionInput } },
-        body => {
-          expect(body.errors).toBeFalsy()
-          addModelId('election', body.data.createElection.id)
-          expect(body.data.createElection).toMatchObject({
-            id: expect.any(String),
-          })
-        }
-      )
-    })
-
-    it('When createPoll is requested, should return the Poll created', () => {
-      const query = /* GraphQL */ `
-        mutation createPoll($input: PollInput!) {
-          createPoll(input: $input) {
-            id
-          }
-        }
-      `
-
-      return gqlRequest(
-        app.getHttpServer(),
-        { query, variables: { input: pollSpec.inputPoll } },
-        body => {
-          expect(body.errors).toBeFalsy()
-          addModelId('poll', body.data.createPoll.id)
-
-          expect(body.data.createPoll).toMatchObject({
-            id: expect.any(String),
-          })
-        }
-      )
-    })
-
     it('When createPoll is requested, should return the Poll created (closed)', () => {
       const query = /* GraphQL */ `
         mutation createPoll($input: PollInput!) {
@@ -123,6 +74,36 @@ describe('ElectoralProcess Module', () => {
           closedPollId = body.data.createPoll.id
           expect(body.data.createPoll).toMatchObject({
             id: expect.any(String),
+          })
+        }
+      )
+    })
+
+    it('When modifyPoll is requested, should return the Poll modified', () => {
+      const query = /* GraphQL */ `
+        mutation modifyPoll($input: UpdatePollInput!, $id: ID!) {
+          modifyPoll(input: $input, id: $id) {
+            id
+            question
+            description
+          }
+        }
+      `
+      const input = {
+        question: 'Pregunta actualizada',
+        description: 'Descripcion nueva',
+      }
+      const id = getModelId('poll', 0)
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input, id } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.modifyPoll).toMatchObject({
+            id: expect.stringMatching(id),
+            question: expect.stringMatching('Pregunta actualizada'),
+            description: expect.stringMatching('Descripcion nueva'),
           })
         }
       )
@@ -173,7 +154,7 @@ describe('ElectoralProcess Module', () => {
     })
 
     it('When invalid poll is requested, should return a error', () => {
-      const input = new ObjectId('5e1b187e21544de30f35531b') // id supuestamente no válido
+      const input = new ObjectId('5e1b187e21544de30f35531b')
       const query = /* GraphQL */ `
         query poll($input: ID!) {
           poll(id: $input) {
@@ -233,7 +214,7 @@ describe('ElectoralProcess Module', () => {
       )
     })
 
-    it('When results of a poll is requested, should return results of a poll', () => {
+    it('When results of a poll is requested, should return results of a p oll', () => {
       const input = closedPollId
       const query = /* GraphQL */ `
         query testPollResults($input: ID!) {
@@ -290,6 +271,43 @@ describe('ElectoralProcess Module', () => {
         { query, variables: { input } },
         body => {
           expect(body.errors).toBeFalsy()
+        }
+      )
+    })
+  })
+
+  describe('Deleter', () => {
+    it('When deletePoll is requested, should return the Poll deleted', () => {
+      const input = getModelId('poll', 0)
+      const query = /* GraphQL */ `
+        mutation deletePoll($input: ID!) {
+          deletePoll(id: $input)
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.poll).toBeUndefined()
+        }
+      )
+    })
+
+    it('When deletePoll is requested with an incorrect id, should return error', () => {
+      const input = '5e1b187e21544de30f35531b'
+      const query = /* GraphQL */ `
+        mutation deletePoll($input: ID!) {
+          deletePoll(id: $input)
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeTruthy()
         }
       )
     })

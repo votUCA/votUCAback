@@ -210,8 +210,13 @@ export class PollResolver {
     @Args({ name: 'id', type: () => ID }) id: string
   ): Promise<boolean> {
     const poll = await this.pollsService.delete(id)
-    await this.censusService.deleteAllIn(poll.censuses)
-    await this.pollResultsService.deleteByPoll(poll.id)
-    return true
+
+    if (poll) {
+      await this.censusService.deleteAllIn(poll.censuses)
+      await this.pollResultsService.deleteByPoll(poll.id)
+      return true
+    }
+
+    throw new BadRequestException('The poll does not exist')
   }
 }
