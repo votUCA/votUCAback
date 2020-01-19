@@ -5,7 +5,7 @@ import { useContainer } from 'class-validator'
 import { TypegooseModule } from 'nestjs-typegoose'
 import { _10_MB } from '../common/constants'
 import { UploadScalar } from '../common/scalars'
-import { seedDB, TypegooseConfigService, gqlRequest } from '../utils'
+import { gqlRequest, seedDB, TypegooseConfigService } from '../utils'
 import { AuthModule } from './auth/auth.module'
 import { CandidatesModule } from './candidates/candidates.module'
 import { CensusModule } from './census/census.module'
@@ -14,6 +14,17 @@ import { ConfigModule } from './config/config.module'
 import { ElectoralProcessModule } from './electoral-process/electoral-process.module'
 import { FilesModule } from './files/files.module'
 import { UsersModule } from './users/users.module'
+import {
+  usersQuery,
+  colegiateBodiesQuery,
+  censusesQuery,
+  pendingElectoralProcessesQuery,
+  voteElectionQuery,
+  votePollQuery,
+  loginQuery,
+} from './querys-test/short-queries'
+import { electionsQuery } from './querys-test/electionsQuery'
+import { pollsQuery } from './querys-test/pollsQuery'
 
 describe('App Module', () => {
   let app: INestApplication
@@ -62,17 +73,11 @@ describe('App Module', () => {
 
   describe('Mutations', () => {
     it('login', () => {
-      const loginQuery = /* GraphQL */ `
-        mutation login($input: LoginInput!) {
-          login(input: $input) {
-            accessToken
-          }
-        }
-      `
+      const query = loginQuery
       return gqlRequest(
         app.getHttpServer(),
         {
-          query: loginQuery,
+          query,
           variables: {
             input: {
               uid: 'u20192020',
@@ -91,31 +96,213 @@ describe('App Module', () => {
 
   describe('Queries', () => {
     it('When users is requested, should return a User list', () => {
-      const query = /* GraphQL */ `
-        query users {
-          users {
-            id
-            uid
-            firstName
-            lastName
-            roles
-          }
-        }
-      `
+      const query = usersQuery
       return gqlRequest(app.getHttpServer(), { query, accessToken }, body => {
         expect(body.errors).toBeFalsy()
-        expect(body.data.users).toEqual(
-          expect.arrayContaining([
-            expect.objectContaining({
-              id: expect.any(String),
-              uid: expect.stringMatching(/^u(?:[0-9]{8}|[xyz][0-9]{7})/),
-              firstName: expect.any(String),
-              lastName: expect.any(String),
-              roles: expect.arrayContaining([expect.any(String)]),
-            }),
-          ])
-        )
+        expect(body.data.users).toBeTruthy()
       })
+    })
+
+    it('When colegiateBodies is requested, should return a colegiateBody list', () => {
+      const query = colegiateBodiesQuery
+      return gqlRequest(app.getHttpServer(), { query, accessToken }, body => {
+        expect(body.errors).toBeFalsy()
+        expect(body.data.colegiateBodies).toBeTruthy()
+      })
+    })
+
+    it('When censuses is requested, should return a census list', () => {
+      const query = censusesQuery
+      return gqlRequest(app.getHttpServer(), { query, accessToken }, body => {
+        expect(body.errors).toBeFalsy()
+        expect(body.data.censuses).toBeTruthy()
+      })
+    })
+
+    it('When elections is requested, should return a election list', () => {
+      const query = electionsQuery
+      return gqlRequest(app.getHttpServer(), { query, accessToken }, body => {
+        expect(body.errors).toBeFalsy()
+        expect(body.data.elections).toBeTruthy()
+      })
+    })
+
+    it('When polls is requested, should return a poll list', () => {
+      const query = pollsQuery
+      return gqlRequest(app.getHttpServer(), { query, accessToken }, body => {
+        expect(body.errors).toBeFalsy()
+        expect(body.data.polls).toBeTruthy()
+      })
+    })
+
+    it('When pendingElectoralProcesses is requested, should return a electoralProcess list', () => {
+      const query = pendingElectoralProcessesQuery
+      return gqlRequest(app.getHttpServer(), { query, accessToken }, body => {
+        expect(body.errors).toBeFalsy()
+        expect(body.data.pendingElectoralProcesses).toBeTruthy()
+      })
+    })
+
+    it('When voteOnElection is requested, should return a error', () => {
+      const query = voteElectionQuery
+      const variables = {
+        input: {
+          election: '5e1e0158f9344483bc3ac557',
+          candidates: ['5e1e0158f9344483bc3ac55e'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables, accessToken },
+        body => {
+          expect(body.errors).toBeTruthy()
+          expect(body.data).toBeFalsy()
+        }
+      )
+    })
+
+    it('When voteOnPoll is requested, should return a error', () => {
+      const query = votePollQuery
+      const variables = {
+        input: {
+          poll: '5e1e012cf9344483bc3ac21b',
+          options: ['5e1e012cf9344483bc3ac21e'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, accessToken, variables },
+        body => {
+          expect(body.errors).toBeTruthy()
+          expect(body.data).toBeFalsy()
+        }
+      )
+    })
+
+    it('login with wrong credentials, should throw an error', () => {
+      const query = loginQuery
+      return gqlRequest(
+        app.getHttpServer(),
+        {
+          query,
+          variables: {
+            input: {
+              uid: 'A20192066',
+              password: '20192066A',
+            },
+          },
+        },
+        body => {
+          expect(body.data).toBeFalsy()
+          expect(body.errors).toBeTruthy()
+        }
+      )
+    })
+
+    it('When passing wrong accessToken, should throw an error', () => {
+      return gqlRequest(
+        app.getHttpServer(),
+        {
+          query: votePollQuery,
+          accessToken: `${accessToken}wrong`,
+        },
+        body => {
+          expect(body.errors).toBeTruthy()
+          expect(body.data).toBeFalsy()
+        }
+      )
+    })
+
+    it('login with another user', () => {
+      const query = loginQuery
+      return gqlRequest(
+        app.getHttpServer(),
+        {
+          query,
+          variables: {
+            input: {
+              uid: 'u20192066',
+              password: 'user20192066',
+            },
+          },
+        },
+        body => {
+          accessToken = body.data.login.accessToken
+          expect(accessToken).toBeTruthy()
+          expect(body.errors).toBeFalsy()
+        }
+      )
+    })
+
+    it('When voteOnElection is requested, should return true', () => {
+      const query = voteElectionQuery
+      const variables = {
+        input: {
+          election: '5e1e0163f9344483bc3ac63e',
+          candidates: ['5e1e0163f9344483bc3ac644'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables, accessToken },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.voteOnElection).toBeTruthy()
+        }
+      )
+    })
+    it('When voteOnPoll is requested, should return true', () => {
+      const query = votePollQuery
+      const variables = {
+        input: {
+          poll: '5e1e013cf9344483bc3ac349',
+          options: ['5e1e013cf9344483bc3ac350'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, accessToken, variables },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.voteOnPoll).toBeTruthy()
+        }
+      )
+    })
+
+    it('When voteOnElection is requested, should return error', () => {
+      const query = voteElectionQuery
+      const variables = {
+        input: {
+          election: '5e1e0163f9344483bc3ac63e',
+          candidates: ['5e1e0163f9344483bc3ac644'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables, accessToken },
+        body => {
+          expect(body.errors).toBeTruthy()
+          expect(body.data).toBeFalsy()
+        }
+      )
+    })
+
+    it('When voteOnPoll is requested, should return error', () => {
+      const query = votePollQuery
+      const variables = {
+        input: {
+          poll: '5e1e013cf9344483bc3ac349',
+          options: ['5e1e013cf9344483bc3ac350'],
+        },
+      }
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, accessToken, variables },
+        body => {
+          expect(body.errors).toBeTruthy()
+          expect(body.data).toBeFalsy()
+        }
+      )
     })
   }) // Queries
 })

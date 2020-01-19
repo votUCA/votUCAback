@@ -179,7 +179,7 @@ type Query {
   user(id: ID!): User!
   me: User!
   colegiateBody(id: ID!): ColegiateBody!
-  collegiateBodies: [ColegiateBody!]!
+  colegiateBodies: [ColegiateBody!]!
   electoralProcesses(open: Boolean = false, finished: Boolean = false): [ElectoralProcess!]!
   electoralProcess(id: ID!): ElectoralProcess!
   pendingElectoralProcesses: [ElectoralProcess!]!
@@ -194,9 +194,9 @@ type Query {
 }
 
 input ResultsFilter {
-  group: Boolean!
-  location: Boolean!
-  genre: Boolean!
+  group: Boolean = false
+  location: Boolean = false
+  genre: Boolean = false
 }
 
 type ResultsForElection {

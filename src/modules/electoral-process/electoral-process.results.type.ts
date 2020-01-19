@@ -1,18 +1,14 @@
-import { ObjectType, Field, ID, Int, InputType } from 'type-graphql'
 import { prop, Ref } from '@typegoose/typegoose'
-import { Election } from './election.type'
-import { required, nullable } from '../../common/constants'
+import { Field, InputType, Int, ObjectType } from 'type-graphql'
+import { nullable, required } from '../../common/constants'
 import { Candidate } from '../candidates/candidates.type'
 import { Census } from '../census/census.type'
-import { Poll, PollOption } from './poll.type'
 import { Genre } from '../users/users.type'
+import { Election } from './election.type'
+import { Poll, PollOption } from './poll.type'
 
 @ObjectType()
 export class ElectionResults {
-  get id(this: any): string {
-    return this._id || this._doc._id
-  }
-
   @Field(() => Int)
   @prop({ default: 0 })
   votes: number
@@ -39,11 +35,6 @@ export class ElectionResults {
 
 @ObjectType()
 export class PollResults {
-  @Field(() => ID)
-  get id(this: any): string {
-    return this._id || this._doc._id
-  }
-
   @Field(() => Int)
   @prop({ default: 0 })
   votes: number
