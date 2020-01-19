@@ -16,6 +16,8 @@
 
 ## Prerequisites
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0cfc69966b78416fab146d1b5d108a98)](https://app.codacy.com/gh/votUCA/votUCAback?utm_source=github.com&utm_medium=referral&utm_content=votUCA/votUCAback&utm_campaign=Badge_Grade_Dashboard)
+
 ### Node
 
 If you don't have node yet, install using [nvm](https://github.com/nvm-sh/nvm#installation-and-update)
