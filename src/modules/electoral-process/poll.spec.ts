@@ -2,8 +2,8 @@ import { INestApplication } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { Test, TestingModule } from '@nestjs/testing'
 import { getObjectId } from 'mongo-seeding'
-import { TypegooseModule } from 'nestjs-typegoose'
 import { ObjectId } from 'mongodb'
+import { TypegooseModule } from 'nestjs-typegoose'
 import {
   addModelId,
   getModelId,
@@ -15,8 +15,6 @@ import { RolesGuard } from '../auth/roles.guard'
 import { ConfigModule } from '../config/config.module'
 import { Role } from '../users/roles.enum'
 import { ElectoralProcessModule } from './electoral-process.module'
-import electionInput from './election.spec.input'
-
 import pollSpec from './poll.spec.input'
 
 describe('Poll Module', () => {
@@ -58,28 +56,6 @@ describe('Poll Module', () => {
   })
 
   describe('Mutations', () => {
-    it('When createElection is requested, should return the Election created', () => {
-      const query = /* GraphQL */ `
-        mutation createElection($input: ElectionInput!) {
-          createElection(input: $input) {
-            id
-          }
-        }
-      `
-
-      return gqlRequest(
-        app.getHttpServer(),
-        { query, variables: { input: electionInput } },
-        body => {
-          expect(body.errors).toBeFalsy()
-          addModelId('election', body.data.createElection.id)
-          expect(body.data.createElection).toMatchObject({
-            id: expect.any(String),
-          })
-        }
-      )
-    })
-
     it('When createPoll is requested, should return the Poll created (closed)', () => {
       const query = /* GraphQL */ `
         mutation createPoll($input: PollInput!) {
@@ -238,7 +214,7 @@ describe('Poll Module', () => {
       )
     })
 
-    it('When results of a poll is requested, should return results of a poll', () => {
+    it('When results of a poll is requested, should return results of a p oll', () => {
       const input = closedPollId
       const query = /* GraphQL */ `
         query testPollResults($input: ID!) {
