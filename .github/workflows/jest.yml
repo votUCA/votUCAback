@@ -4,8 +4,10 @@ on: [push, pull_request]
 
 jobs:
   build:
+    env:
+      CI: 'true'
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
       - name: Get yarn cache
@@ -22,6 +24,5 @@ jobs:
         with:
           node-version: '12.x'
       - run: yarn
-      - run: yarn test
-        env:
-          CI: true
+      - run: yarn test --coverage
+      - run: yarn codecov
