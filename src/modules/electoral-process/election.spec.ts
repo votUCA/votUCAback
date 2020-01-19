@@ -3,6 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { Test, TestingModule } from '@nestjs/testing'
 import { getObjectId } from 'mongo-seeding'
 import { TypegooseModule } from 'nestjs-typegoose'
+import { ObjectId } from 'mongodb'
 import {
   addModelId,
   getModelId,
@@ -75,6 +76,33 @@ describe('Election Module', () => {
         }
       )
     })
+
+    it('When modifyElection is requested, should return the Election modified', () => {
+      const query = /* GraphQL */ `
+        mutation modifyElection($input: UpdateElectionInput!, $id: ID!) {
+          modifyElection(input: $input, id: $id) {
+            id
+            description
+          }
+        }
+      `
+      const input = {
+        description: 'Descripcion nueva',
+      }
+      const id = getModelId('election', 0)
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input, id } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.modifyElection).toMatchObject({
+            id: expect.stringMatching(id),
+            description: expect.stringMatching('Descripcion nueva'),
+          })
+        }
+      )
+    })
   })
 
   describe('Queries', () => {
@@ -120,56 +148,13 @@ describe('Election Module', () => {
       )
     })
 
-    it('When modifyElection is requested, should return the Election modified', () => {
+    it('When invalid election is requested, should return a error', () => {
+      const input = new ObjectId('5e1b187e21544de30f35531b')
       const query = /* GraphQL */ `
-        mutation modifyElection($input: UpdateElectionInput!, $id: ID!) {
-          modifyElection(input: $input, id: $id) {
+        query election($input: ID!) {
+          election(id: $input) {
             id
-            description
           }
-        }
-      `
-      const input = {
-        description: 'Descripcion nueva',
-      }
-      const id = getModelId('election', 0)
-
-      return gqlRequest(
-        app.getHttpServer(),
-        { query, variables: { input, id } },
-        body => {
-          expect(body.errors).toBeFalsy()
-          expect(body.data.modifyElection).toMatchObject({
-            id: expect.stringMatching(id),
-            description: expect.stringMatching('Descripcion nueva'),
-          })
-        }
-      )
-    })
-
-    it('When deleteElection is requested, should return the Election deleted', () => {
-      const input = getModelId('election', 0)
-      const query = /* GraphQL */ `
-        mutation deleteElection($input: ID!) {
-          deleteElection(id: $input)
-        }
-      `
-
-      return gqlRequest(
-        app.getHttpServer(),
-        { query, variables: { input } },
-        body => {
-          expect(body.errors).toBeFalsy()
-          expect(body.data.election).toBeUndefined()
-        }
-      )
-    })
-
-    it('When deleteElection is requested with an incorrect id, should return error', () => {
-      const input = '5e1b187e21544de30f35531b'
-      const query = /* GraphQL */ `
-        mutation deleteElection($input: ID!) {
-          deleteElection(id: $input)
         }
       `
 
@@ -180,6 +165,43 @@ describe('Election Module', () => {
           expect(body.errors).toBeTruthy()
         }
       )
+    })
+
+    describe('Queries', () => {
+      it('When deleteElection is requested, should return the Election deleted', () => {
+        const input = getModelId('election', 0)
+        const query = /* GraphQL */ `
+          mutation deleteElection($input: ID!) {
+            deleteElection(id: $input)
+          }
+        `
+
+        return gqlRequest(
+          app.getHttpServer(),
+          { query, variables: { input } },
+          body => {
+            expect(body.errors).toBeFalsy()
+            expect(body.data.election).toBeUndefined()
+          }
+        )
+      })
+
+      it('When deleteElection is requested with an incorrect id, should return error', () => {
+        const input = '5e1b187e21544de30f35531b'
+        const query = /* GraphQL */ `
+          mutation deleteElection($input: ID!) {
+            deleteElection(id: $input)
+          }
+        `
+
+        return gqlRequest(
+          app.getHttpServer(),
+          { query, variables: { input } },
+          body => {
+            expect(body.errors).toBeTruthy()
+          }
+        )
+      })
     })
   })
 })

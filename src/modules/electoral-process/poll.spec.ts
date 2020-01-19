@@ -154,7 +154,7 @@ describe('Poll Module', () => {
     })
 
     it('When invalid poll is requested, should return a error', () => {
-      const input = new ObjectId('5e1b187e21544de30f35531b') // id supuestamente no válido
+      const input = new ObjectId('5e1b187e21544de30f35531b')
       const query = /* GraphQL */ `
         query poll($input: ID!) {
           poll(id: $input) {
