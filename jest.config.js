@@ -1,5 +1,5 @@
 process.env.TEST = 'Test' // set TEST variable to create testing database
-global.__MODELS__
+
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: '<rootDir>/jest.mongo.enviroment',
