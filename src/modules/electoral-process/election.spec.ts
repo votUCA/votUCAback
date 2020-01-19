@@ -146,5 +146,40 @@ describe('Election Module', () => {
         }
       )
     })
+
+    it('When deleteElection is requested, should return the Election deleted', () => {
+      const input = getModelId('election', 0)
+      const query = /* GraphQL */ `
+        mutation deleteElection($input: ID!) {
+          deleteElection(id: $input)
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeFalsy()
+          expect(body.data.election).toBeUndefined()
+        }
+      )
+    })
+
+    it('When deleteElection is requested with an incorrect id, should return error', () => {
+      const input = '5e1b187e21544de30f35531b'
+      const query = /* GraphQL */ `
+        mutation deleteElection($input: ID!) {
+          deleteElection(id: $input)
+        }
+      `
+
+      return gqlRequest(
+        app.getHttpServer(),
+        { query, variables: { input } },
+        body => {
+          expect(body.errors).toBeTruthy()
+        }
+      )
+    })
   })
 })
