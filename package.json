@@ -81,7 +81,7 @@
     "@types/uuid": "^3.4.6",
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
-    "codecov": "^3.6.1",
+    "codecov": "^3.6.5",
     "cross-conf-env": "^1.1.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
